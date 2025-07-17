@@ -17,6 +17,7 @@ const cardReducer=(state, action)=>{
 }
 
 //셔플함수
+//안녕안녕
 const shuffle =(arr)=>{
     const arrNum=[...arr];
     for(let i=arrNum.length-1; i>0; i--){
