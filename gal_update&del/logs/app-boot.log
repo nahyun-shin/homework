@@ -1,0 +1,68 @@
+[2025-09-15 16:39:01:850897][restartedMain] INFO  i.korea.app_boot.AppBootApplication - Starting AppBootApplication using Java 21.0.7 with PID 9352 (C:\nahyun.shin\boot-workspace\app-boot\app-boot\bin\main started by ITSC in C:\nahyun.shin\boot-workspace\app-boot\app-boot)
+[2025-09-15 16:39:01:850897][restartedMain] INFO  i.korea.app_boot.AppBootApplication - No active profile set, falling back to 1 default profile: "default"
+[2025-09-15 16:39:01:851051][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2025-09-15 16:39:01:851066][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 3 JPA repository interfaces.
+[2025-09-15 16:39:01:851091][restartedMain] INFO  o.s.b.f.s.DefaultListableBeanFactory - Overriding bean definition for bean 'characterEncodingFilter' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=webConfig; factoryMethodName=characterEncodingFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [it/korea/app_boot/common/config/WebConfig.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration; factoryMethodName=characterEncodingFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class]]
+[2025-09-15 16:39:01:851152][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 9090 (http)
+[2025-09-15 16:39:01:851153][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+[2025-09-15 16:39:01:851153][restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2025-09-15 16:39:01:851153][restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.44]
+[2025-09-15 16:39:01:851174][restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2025-09-15 16:39:01:851174][restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 276 ms
+[2025-09-15 16:39:01:851212][restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2025-09-15 16:39:01:851215][restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[2025-09-15 16:39:01:851222][restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2025-09-15 16:39:01:851223][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+[2025-09-15 16:39:01:851227][restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.mariadb.jdbc.Connection@14c4eab3
+[2025-09-15 16:39:01:851227][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+[2025-09-15 16:39:01:851228][restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2025-09-15 16:39:01:851233][restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'p6SpyDataSourceDecorator [com.p6spy.engine.spy.P6DataSource] -> dataSource [com.zaxxer.hikari.HikariDataSource]']
+	Database driver: undefined/unknown
+	Database version: 11.8.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+[2025-09-15 16:39:01:851233][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@55426d24) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5a9594bb)
+[2025-09-15 16:39:01:851233][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2f8b8659) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7e339c82)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@385ee52d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4e188ed1)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3dd26005) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5f672cb1)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@105fcdfd) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1a3bb721)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@34c73e2b) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@52238ea6)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3c7d913a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7bb8ab2b)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7603f411) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@381b02c9)
+[2025-09-15 16:39:01:851234][restartedMain] DEBUG o.h.t.d.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@683fa0b1) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5660bf6e)
+[2025-09-15 16:39:01:851290][restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-09-15 16:39:01:851291][restartedMain] INFO  p6spy - 2025-09-15 16:39:01|OperationTime : 0ms | 
+(P6Spy sql, Hibernate format):
+
+    select
+        table_name 
+    from
+        information_schema.TABLES 
+    where
+        table_schema=database() 
+        and table_type='SEQUENCE'
+[2025-09-15 16:39:01:851296][restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-15 16:39:01:851428][restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: ca1cba4b-8570-43fb-b2cd-2201577ec07d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2025-09-15 16:39:01:851428][restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2025-09-15 16:39:01:851441][restartedMain] INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+[2025-09-15 16:39:01:851446][restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2025-09-15 16:39:02:851451][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9090"]
+[2025-09-15 16:39:02:851458][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 9090 (http) with context path '/'
+[2025-09-15 16:39:02:851460][restartedMain] INFO  i.korea.app_boot.AppBootApplication - Started AppBootApplication in 0.593 seconds (process running for 852.09)
+[2025-09-15 16:39:02:851460][restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[2025-09-15 16:40:25:935020][File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2025-09-15 16:40:25:935021][Thread-20] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+[2025-09-15 16:40:25:935021][tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-9090"]
+[2025-09-15 16:40:25:935023][tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+[2025-09-15 16:40:25:935024][Thread-20] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-9090"]
+[2025-09-15 16:40:25:935026][Thread-20] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2025-09-15 16:40:25:935026][Thread-20] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+[2025-09-15 16:40:25:935028][Thread-20] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.

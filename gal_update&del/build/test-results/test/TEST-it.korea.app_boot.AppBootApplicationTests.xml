@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.korea.app_boot.AppBootApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-09-17T01:51:17.533Z" hostname="ISTC" time="0.296">
+  <properties/>
+  <testcase name="contextLoads()" classname="it.korea.app_boot.AppBootApplicationTests" time="0.296"/>
+  <system-out><![CDATA[10:51:12,072 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.5.18
+10:51:12,074 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Here is a list of configurators discovered as a service, by rank: 
+10:51:12,074 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b -   org.springframework.boot.logging.logback.RootLogLevelConfigurator
+10:51:12,074 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - They will be invoked in order until ExecutionStatus.DO_NOT_INVOKE_NEXT_IF_ANY is returned.
+10:51:12,074 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Constructed configurator of type class org.springframework.boot.logging.logback.RootLogLevelConfigurator
+10:51:12,079 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - org.springframework.boot.logging.logback.RootLogLevelConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+10:51:12,079 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+10:51:12,080 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+10:51:12,082 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+10:51:12,082 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+10:51:12,082 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+10:51:12,082 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+10:51:12,083 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+10:51:12,083 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+10:51:12,085 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/nahyun.shin/boot-workspace/app-boot/app-boot/build/resources/main/logback.xml]
+10:51:12,153 |-INFO in ch.qos.logback.core.joran.util.ConfigurationWatchListUtil@2b58f754 - Adding [file:/C:/nahyun.shin/boot-workspace/app-boot/app-boot/build/resources/main/logback-common.xml] to configuration watch list.
+10:51:12,169 |-INFO in ch.qos.logback.classic.model.processor.ConfigurationModelHandlerFull - Registering a new ReconfigureOnChangeTask ReconfigureOnChangeTask(born:1758073872167)
+10:51:12,171 |-INFO in ch.qos.logback.classic.model.processor.ConfigurationModelHandlerFull - Will scan for changes in [ConfigurationWatchList(mainURL=file:/C:/nahyun.shin/boot-workspace/app-boot/app-boot/build/resources/main/logback.xml, fileWatchList={C:\nahyun.shin\boot-workspace\app-boot\app-boot\build\resources\main\logback.xml, C:\nahyun.shin\boot-workspace\app-boot\app-boot\build\resources\main\logback-common.xml}, urlWatchList=[})] 
+10:51:12,171 |-INFO in ch.qos.logback.classic.model.processor.ConfigurationModelHandlerFull - Setting ReconfigureOnChangeTask scanning period to 1 minutes
+10:51:12,174 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [STDOUT]
+10:51:12,174 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+10:51:12,183 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+10:51:12,184 |-INFO in ch.qos.logback.core.model.processor.ModelInterpretationContext@3ebff828 - value "%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n" substituted for "${LOG_PATTERN}"
+10:51:12,211 |-INFO in ch.qos.logback.core.ConsoleAppender[STDOUT] - BEWARE: Writing to the console can be very slow. Avoid logging to the 
+10:51:12,211 |-INFO in ch.qos.logback.core.ConsoleAppender[STDOUT] - console in production environments, especially in high volume systems.
+10:51:12,211 |-INFO in ch.qos.logback.core.ConsoleAppender[STDOUT] - See also https://logback.qos.ch/codes.html#slowConsole
+10:51:12,211 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [FILE]
+10:51:12,211 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+10:51:12,221 |-INFO in ch.qos.logback.core.model.processor.ModelInterpretationContext@3ebff828 - value "./logs/appboot.log" substituted for "${LOGS_ABSOLUTE_PATH}/appboot.log"
+10:51:12,221 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+10:51:12,224 |-INFO in ch.qos.logback.core.model.processor.ModelInterpretationContext@3ebff828 - value "./logs/appboot.%d{yyyy-MM-dd}.%i.log.gz" substituted for "${LOGS_ABSOLUTE_PATH}/appboot.%d{yyyy-MM-dd}.%i.log.gz"
+10:51:12,230 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@626193099 - Will use gz compression
+10:51:12,233 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@626193099 - Will use the pattern ./logs/appboot.%d{yyyy-MM-dd}.%i.log for the active file
+10:51:12,233 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - SizeAndTimeBasedFNATP class was renamed as SizeAndTimeBasedFileNamingAndTriggeringPolicy.
+10:51:12,236 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - The date pattern is 'yyyy-MM-dd' from file name pattern './logs/appboot.%d{yyyy-MM-dd}.%i.log.gz'.
+10:51:12,236 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - Roll-over at midnight.
+10:51:12,237 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - Setting initial period to 2025-09-17T01:50:58.495Z
+10:51:12,237 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - Direct use of either SizeAndTimeBasedFNATP or SizeAndTimeBasedFileNamingAndTriggeringPolicy 
+10:51:12,237 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - is deprecated. Please use SizeAndTimeBasedRollingPolicy instead.
+10:51:12,237 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@33352f32 - For more information see https://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+10:51:12,239 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE] - Active log file name: ./logs/appboot.log
+10:51:12,241 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE] - Setting currentFileLength to 253399 for .\logs\appboot.log
+10:51:12,241 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE] - File property is set to [./logs/appboot.log]
+10:51:12,242 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [ERROR]
+10:51:12,242 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+10:51:12,245 |-INFO in ch.qos.logback.core.model.processor.ModelInterpretationContext@3ebff828 - value "./logs/appboot_error.log" substituted for "${LOGS_ABSOLUTE_PATH}/appboot_error.log"
+10:51:12,246 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@1597742167 - setting totalSizeCap to 10 GB
+10:51:12,246 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@1597742167 - Archive files will be limited to [100 MB] each.
+10:51:12,246 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@1597742167 - No compression will be used
+10:51:12,247 |-INFO in c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@1597742167 - Will use the pattern logs/appboot_error-%d{yyyy-MM-dd}.%i.txt for the active file
+10:51:12,247 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy@1e044120 - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/appboot_error-%d{yyyy-MM-dd}.%i.txt'.
+10:51:12,247 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy@1e044120 - Roll-over at midnight.
+10:51:12,247 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy@1e044120 - Setting initial period to 2025-09-17T01:25:25.858Z
+10:51:12,248 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+10:51:12,248 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR] - Active log file name: ./logs/appboot_error.log
+10:51:12,248 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR] - Setting currentFileLength to 13632 for .\logs\appboot_error.log
+10:51:12,248 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR] - File property is set to [./logs/appboot_error.log]
+10:51:12,249 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [ASYNC_STDOUT]
+10:51:12,249 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.classic.AsyncAppender]
+10:51:12,250 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [STDOUT] to ch.qos.logback.classic.AsyncAppender[ASYNC_STDOUT]
+10:51:12,250 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_STDOUT] - Attaching appender named [STDOUT] to AsyncAppender.
+10:51:12,251 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_STDOUT] - Setting discardingThreshold to 0
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [ASYNC_FILE_LOGGING]
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.classic.AsyncAppender]
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [FILE] to ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_LOGGING]
+10:51:12,251 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_LOGGING] - Attaching appender named [FILE] to AsyncAppender.
+10:51:12,251 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_LOGGING] - Setting discardingThreshold to 51
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [ASYNC_FILE_ERROR_LOGGING]
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.classic.AsyncAppender]
+10:51:12,251 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [ERROR] to ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_ERROR_LOGGING]
+10:51:12,251 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_ERROR_LOGGING] - Attaching appender named [ERROR] to AsyncAppender.
+10:51:12,251 |-INFO in ch.qos.logback.classic.AsyncAppender[ASYNC_FILE_ERROR_LOGGING] - Setting discardingThreshold to 51
+10:51:12,252 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [p6spy] to INFO
+10:51:12,252 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+10:51:12,252 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [ASYNC_STDOUT] to Logger[ROOT]
+10:51:12,252 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [ASYNC_FILE_LOGGING] to Logger[ROOT]
+10:51:12,252 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [ASYNC_FILE_ERROR_LOGGING] to Logger[ROOT]
+10:51:12,252 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@2cf23c81 - End of configuration.
+10:51:12,252 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@3624da92 - Registering current configuration as safe fallback point
+10:51:12,252 |-INFO in ch.qos.logback.classic.util.ContextInitializer@5f2606b - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 169 milliseconds. ExecutionStatus=DO_NOT_INVOKE_NEXT_IF_ANY
+
+INFO  25-09-17 10:51:12[Test worker] [AnnotationConfigContextLoaderUtils:?] - Could not detect default configuration classes for test class [it.korea.app_boot.AppBootApplicationTests]: AppBootApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  25-09-17 10:51:12[Test worker] [SpringBootTestContextBootstrapper:?] - Found @SpringBootConfiguration it.korea.app_boot.AppBootApplication for test class it.korea.app_boot.AppBootApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.5)
+
+INFO  25-09-17 10:51:12[background-preinit] [Version:?] - HV000001: Hibernate Validator 8.0.3.Final
+INFO  25-09-17 10:51:12[Test worker] [AppBootApplicationTests:?] - Starting AppBootApplicationTests using Java 21.0.8 with PID 7276 (started by ITSC in C:\nahyun.shin\boot-workspace\app-boot\app-boot)
+INFO  25-09-17 10:51:12[Test worker] [AppBootApplicationTests:?] - No active profile set, falling back to 1 default profile: "default"
+INFO  25-09-17 10:51:13[Test worker] [RepositoryConfigurationDelegate:?] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  25-09-17 10:51:13[Test worker] [RepositoryConfigurationDelegate:?] - Finished Spring Data repository scanning in 47 ms. Found 4 JPA repository interfaces.
+INFO  25-09-17 10:51:13[Test worker] [DefaultListableBeanFactory:?] - Overriding bean definition for bean 'characterEncodingFilter' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=webConfig; factoryMethodName=characterEncodingFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [it/korea/app_boot/common/config/WebConfig.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration; factoryMethodName=characterEncodingFilter; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class]]
+INFO  25-09-17 10:51:14[Test worker] [LogHelper:?] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  25-09-17 10:51:14[Test worker] [Version:?] - HHH000412: Hibernate ORM core version 6.6.26.Final
+INFO  25-09-17 10:51:14[Test worker] [RegionFactoryInitiator:?] - HHH000026: Second-level cache disabled
+INFO  25-09-17 10:51:14[Test worker] [SpringPersistenceUnitInfo:?] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  25-09-17 10:51:14[Test worker] [HikariDataSource:?] - HikariPool-1 - Starting...
+INFO  25-09-17 10:51:14[Test worker] [HikariPool:?] - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@c157abf
+INFO  25-09-17 10:51:14[Test worker] [HikariDataSource:?] - HikariPool-1 - Start completed.
+WARN  25-09-17 10:51:14[Test worker] [deprecation:?] - HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  25-09-17 10:51:14[Test worker] [pooling:?] - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'p6SpyDataSourceDecorator [com.p6spy.engine.spy.P6DataSource] -> dataSource [com.zaxxer.hikari.HikariDataSource]']
+	Database driver: undefined/unknown
+	Database version: 11.8.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3abdc11d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@624be1d4)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@336e17be) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3897f9ae)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6c767288) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@510e6b93)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@129e45eb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@15c3849f)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4a7e469d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@688efeb2)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@85f5f55) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@131c5bd)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@394331a8) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2627335c)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5470753a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5b634e24)
+DEBUG 25-09-17 10:51:14[Test worker] [DdlTypeRegistry:?] - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7b0dfa91) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@642f8b7f)
+INFO  25-09-17 10:51:15[Test worker] [JtaPlatformInitiator:?] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  25-09-17 10:51:15[Test worker] [p6spy:?] - 2025-09-17 10:51:15|OperationTime : 7ms | 
+(P6Spy sql, Hibernate format):
+
+    select
+        table_name 
+    from
+        information_schema.TABLES 
+    where
+        table_schema=database() 
+        and table_type='SEQUENCE'
+INFO  25-09-17 10:51:15[Test worker] [LocalContainerEntityManagerFactoryBean:?] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+INFO  25-09-17 10:51:16[Test worker] [QueryEnhancerFactory:?] - Hibernate is in classpath; If applicable, HQL parser will be used.
+INFO  25-09-17 10:51:17[Test worker] [InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer:?] - Global AuthenticationManager configured with AuthenticationProvider bean with name authProvider
+WARN  25-09-17 10:51:17[Test worker] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:?] - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+WARN  25-09-17 10:51:17[Test worker] [WebSecurity:?] - You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@63c8d3da. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+INFO  25-09-17 10:51:17[Test worker] [AnnotationActionEndpointMapping:?] - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+INFO  25-09-17 10:51:17[Test worker] [AppBootApplicationTests:?] - Started AppBootApplicationTests in 4.99 seconds (process running for 6.029)
+]]></system-out>
+  <system-err><![CDATA[10:51:12,730 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@6b8280e6 - SizeAndTimeBasedFNATP class was renamed as SizeAndTimeBasedFileNamingAndTriggeringPolicy.
+10:51:12,730 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@6b8280e6 - Direct use of either SizeAndTimeBasedFNATP or SizeAndTimeBasedFileNamingAndTriggeringPolicy 
+10:51:12,730 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@6b8280e6 - is deprecated. Please use SizeAndTimeBasedRollingPolicy instead.
+10:51:12,730 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@6b8280e6 - For more information see https://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\ITSC\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.17.7\fbf3d6d649ed37fc9e9c59480a05be0a26e3c2da\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

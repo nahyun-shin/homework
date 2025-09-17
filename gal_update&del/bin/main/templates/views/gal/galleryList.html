@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main_layout}" >
+<th:block  layout:fragment ="css">
+    <style>
+        .modal-dialog{
+            width: 70%;
+            max-width: 50%;
+        }
+
+        .thumbnail{
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 150px;
+        }
+        .content{
+            margin-top: 60px;
+        }
+
+        .imgboard{
+            height: 500px;
+            overflow: auto;
+        }
+
+        span{
+            height: 30px;
+        }
+        .img-box{
+            text-align: center;
+        }
+        
+        .current-image-preview {
+            max-width: 200px;
+            max-height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</th:block>
+<div layout:fragment="content">
+    <section class="content">
+        <section class="container">
+            <header class="text-center">
+                <h2>이미지 갤러리</h2>
+            </header>
+            <input type="hidden" id="page" name="page" value="0">
+            <section class="row imgboard" id="galleryCanvas">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                    <input type="checkbox">
+                    <div class="img-box">
+                        <img class="thumbnail img-responsiv" src="/img/apeach.jpg">
+                    </div>
+                    <span style="font-size: 20px;">
+                        <a href="javascript:void(0)">어피치</a>
+                    </span>
+                    <span>저자 | 2023-01-01</span>
+                </div>
+            </section>
+            <section>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pageArea"></ul>
+                </nav>
+            </section>
+            <section class="row" style="margin-top: 15px;">
+                <div class="col-12" style="width: 100%; text-align: right; margin-right: 80px;">
+                    <button type="button" class="btn btn-primary" onclick="openModal('add')">글 등록</button>
+                    <button type="button" class="btn btn-warning" onclick="editSelectedGallery()">글 수정</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteGal()">글 삭제</button>
+                </div>
+            </section>
+        </section>
+    </section>
+    
+    <!-- 기존 모달을 등록/수정 공용으로 사용 -->
+    <div class="modal fade" tabindex="-1" id="gallModal" aria-labelledby="gallModalLabel" aria-hidden="true" data-bs-foucs="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gallModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="gallFrm">
+                        <input type="hidden" id="nums" name="nums">
+                        
+                        <div class="row mb-3">
+                            <div class="col-auto pt-1">
+                                <label for="title" class="col-form-label">제목 : </label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                        </div>
+                        
+                        <!-- 현재 이미지 미리보기 (수정 모드에서만 표시) -->
+                        <div class="row mb-3" id="currentImageContainer" style="display: none;">
+                            <div class="col-auto pt-1">
+                                <label class="col-form-label">현재 이미지 : </label>
+                            </div>
+                            <div class="col-9">
+                                <img id="currentImage" class="current-image-preview" alt="현재 이미지">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <label for="file" class="col-form-label">파일 : </label>
+                        </div>
+                        <div class="col-9">
+                            <input type="file" class="form-control" id="file" name="file">
+                            <small id="fileHelpText" class="form-text text-muted" style="display: none;">
+                                ※ 새 파일을 선택하지 않으면 기존 이미지가 유지됩니다.
+                            </small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveGallery()">저장</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let modalType = '';
+    const titles = ['등록', '수정'];
+
+    const openModal = (type) => {
+        modalType = type;
+
+        if (modalType === 'add') {
+            addModal(titles[0]);
+        } else {
+            updateModal(titles[1]);
+        }
+    }
+
+    function addModal(title) {
+        const addModal = $('#gallModal');
+        $('#gallModalLabel').text(title);
+        $('#currentImageContainer').hide();
+        $('#fileHelpText').hide();
+        addModal.modal('show');
+        
+        addModal.on('hidden.bs.modal', evt => {
+            $('#gallFrm')[0].reset();
+        });
+    }
+
+    function updateModal(title) {
+        $('#gallModalLabel').text(title);
+        $('#currentImageContainer').show();
+        $('#fileHelpText').show();
+    }
+
+    function closeModal() {
+        $('#gallModal').modal('hide');
+    }
+
+    function validated() {
+        const title = $('#title');
+        const file = $('#file');
+
+        if ($.trim(title.val()).length === 0) {
+            alert("제목을 입력해 주세요");
+            title.focus();
+            return false;
+        }
+
+        if (modalType === 'add' && file.val().length === 0) {
+            alert("등록할 파일을 선택하십시오.");
+            return false;
+        }
+
+        if (modalType === 'update' && file.val().length === 0) {
+            // 수정 모드에서 파일이 없어도 OK (기존 파일 유지)
+            return true;
+        }
+
+        if (file.val().length > 0) {
+            if (!file.val().match(/\.(jpg|jpeg|png|gif|webp|bmp)$/i)) {
+                alert("이미지만 등록 가능합니다.");
+                return false;
+            }
+
+            const maxSize = 1024 * 1024 * 50;
+            if (file[0].files[0].size > maxSize) {
+                alert("파일 최대 크기는 50MB 까지 가능합니다.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    async function saveGallery() {
+        if (validated()) {
+            const gallFrm = $('#gallFrm');
+            const formData = new FormData(gallFrm[0]);
+
+            const headers = {
+                'Content-type': 'multipart/form-data'
+            };
+
+            try {
+                let resp;
+                
+                if (modalType === 'add') {
+                    // 등록
+                    resp = await axios.post('/api/v1/gal', formData, headers);
+                } else {
+                    // 수정
+                    const nums = $('#nums').val();
+                    resp = await axios.put(`/api/v1/gal/${nums}`, formData, headers);
+                }
+
+                if (resp.data.resultCode === 200) {
+                    alert(modalType === 'add' ? "이미지가 등록되었습니다." : "이미지가 수정되었습니다.");
+                    getData();
+                    closeModal();
+                } else {
+                    alert(modalType === 'add' ? "이미지 등록에 실패하였습니다." : "이미지 수정에 실패하였습니다.");
+                }
+
+            } catch (error) {
+                alert("오류가 발생했습니다: " + error);
+            }
+        }
+    }
+
+    function getData() {
+        const page = $('#page').val();
+        axios.get('/api/v1/gal', {
+            params: { page }
+        }).then(res => {
+            console.log(res);
+            drawGalleryPage(res.data);
+        });
+    }
+
+    $(document).ready(function() {
+        getData();
+    });
+
+    function drawGalleryPage(data) {
+        const galleryCanvas = $('#galleryCanvas');
+        const pageArea = $('#pageArea');
+
+        galleryCanvas.empty();
+        pageArea.empty();
+
+        $.each(data.content, (index, obj) => {
+            const html = makeGalleryBox(obj);
+            galleryCanvas.append(html);
+        });
+        
+        pageArea.append(data.pageHTML);
+    }
+
+    function makeGalleryBox(data) {
+        const rootDiv = $('<div class="col-lg-2 col-md-4 col-sm-6 col-12"></div>');
+        const checkbox = $(`<input type="checkbox" name="imgChk" value="${data.nums}"/>`);
+        const imgBox = $('<div class="img-box"></div>');
+        const img = $(`<img class="thumbnail img-responsive" src="/static/imgs/thumb/${data.fileThumbName}" alt="${data.title}">`);
+        const titleSpan = $('<span style="font-size:20px"></span>');
+        const dateSpan = $('<span></span>');
+        const link = $('<a href="javascript:void(0)"></a>');
+
+        link.text(data.title);
+        titleSpan.append(link);
+        dateSpan.text(data.writer + ' | ' + data.lastModifiedDate);
+
+        imgBox.append(img);
+
+        rootDiv.append(checkbox);
+        rootDiv.append(imgBox);
+        rootDiv.append(titleSpan);
+        rootDiv.append(dateSpan);
+
+        return rootDiv;
+    }
+
+    async function deleteGal() {
+        const checked = $('input[name="imgChk"]:checked');
+
+        if (checked.length === 0) {
+            alert("삭제할 이미지를 선택하세요.");
+            return;
+        }
+
+        const numsList = checked.map(function() {
+            return $(this).val();
+        }).get();
+
+        const confirmDelete = confirm(`${numsList.length}개의 이미지를 삭제하시겠습니까?`);
+        if (!confirmDelete) return;
+
+        try {
+            const response = await axios.delete('/api/v1/gal', {
+                data: numsList,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.data.resultCode === 200) {
+                alert("이미지가 성공적으로 삭제되었습니다.");
+                getData();
+            } else {
+                alert("삭제에 실패했습니다.");
+            }
+        } catch (error) {
+            alert("서버 요청 중 오류가 발생했습니다: " + error);
+        }
+    }
+
+    // 선택된 항목 수정 함수
+    async function editSelectedGallery() {
+        const checked = $('input[name="imgChk"]:checked');
+
+        if (checked.length === 0) {
+            alert("수정할 이미지를 선택하세요.");
+            return;
+        }
+
+        if (checked.length > 1) {
+            alert("수정은 한 개의 이미지만 선택 가능합니다.");
+            return;
+        }
+
+        const nums = checked.val();
+
+        try {
+            const response = await axios.get(`/api/v1/gal/${nums}`);
+
+            if (response.data.resultCode === 200) {
+                const galleryData = response.data.data;
+                
+                // 모달 타입을 수정으로 설정
+                modalType = 'update';
+                
+                // 수정 모달 열기
+                openModal('update');
+                
+                // 폼에 기존 데이터 설정
+                populateEditForm(galleryData);
+                
+                // 모달 표시
+                $('#gallModal').modal('show');
+
+            } else {
+                alert("이미지 정보를 불러오는데 실패했습니다.");
+            }
+        } catch (error) {
+            alert("서버 요청 중 오류가 발생했습니다: " + error);
+        }
+    }
+
+    // 수정 폼에 데이터 채우기
+    function populateEditForm(data) {
+        $('#nums').val(data.nums);
+        $('#title').val(data.title);
+
+        // 현재 이미지 미리보기 표시
+        if (data.fileThumbName) {
+            const thumbUrl = `/static/imgs/thumb/${data.fileThumbName}`;
+            $('#currentImage').attr('src', thumbUrl);
+            $('#currentImageContainer').show();
+        }
+    }
+
+</script>
+
+</div>
+</html>
