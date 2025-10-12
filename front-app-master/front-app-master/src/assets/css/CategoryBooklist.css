@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+/* 하위 메뉴 */
+.fside-menu-bg {
+  
+  width: 100%;      
+  /* background-color: rgb(255, 255, 255); */
+  border-bottom: 1px solid rgb(214, 214, 214);
+  height: 150px;
+}
+.fside-menu-wrap {
+position: relative;
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  /* background-color: #3F3131; */
+}
+
+.side-menu-label{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0%, -50%);
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.fsub-menu-list {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  font-weight: 600;
+}
+
+.fsub-menu-item {
+  position: relative; /* 부모 기준 */
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: background-color 0.2s;
+  z-index: 1; /* 텍스트가 위로 오게 */
+  color: rgb(0, 0, 0);
+}
+.fitem-circle{
+    display: none;
+}
+.flabel-circle{
+    position: absolute;
+    top: 45%;
+    left: 80%;
+    width: 50px;
+    height: 50px;
+    background-color: #a8c4a4;
+    clip-path: circle(50%);             
+    transform: translate(-50%, -50%);
+    z-index: -1; /* 배경으로 보이게 */
+}
+
+.fsub-menu-item:hover .fitem-circle{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #FFE373;
+    clip-path: circle(50%);             
+    transform: translate(-50%, -50%);
+    z-index: -1; /* 배경으로 보이게 */
+
+}

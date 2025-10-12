@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../font/ZEN-SERIF-TTF-Regular.ttf') format('truetype');
+  
+  font-style: normal;
+}
+
+body {
+  font-family: 'MyFont', sans-serif;
+}
+
+
+/* 헤더 전체 영역: 사이드 메뉴가 이 바로 아래에 붙게 */
+.bg-body {
+  position: relative;
+  background-color: #d6c5ab !important;
+  padding: 50px 0 0;
+  height: 200px;
+  z-index: 10;
+}
+.body-wrap{
+    max-width: 1128px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #3F3131; */
+}
+
+.logo-body{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 15px; */
+    font-weight: 600;
+}
+.logo-font{
+  font-size: 2.5rem;
+}
+
+.menu-contanier{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    
+}
+.center{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 450px;
+    
+}
+.center input{
+    width: 100%;
+    border-radius: 25px;
+    height: 46px;
+    border: 1px solid #C9C9C9;
+    padding-left: 25px;
+}
+:focus-visible {
+    outline: #978358 solid 0.2px;
+}
+.center button{
+    border: 0px solid #C9C9C9;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0, -50%);
+    color: #3F3131;
+}
+
+.r-menu{
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
+}
+.l-menu{
+   
+    display: flex;
+    gap: 20px;
+    
+}
+
+
+
+/* 하위 메뉴 */
+.side-menu-bg {
+  position: absolute;
+  top: 100%;         
+  left: 0;
+  width: 100%;      
+  background-color: white;
+  border-bottom: 1px solid rgb(214, 214, 214);
+  height: 150px;
+}
+.side-menu-wrap {
+position: relative;
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  /* background-color: #3F3131; */
+}
+
+.hovered-label{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0%, -50%);
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.sub-menu-list {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  font-weight: 600;
+}
+
+.sub-menu-item {
+  position: relative; /* 부모 기준 */
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: background-color 0.2s;
+  z-index: 1; /* 텍스트가 위로 오게 */
+  color: rgb(0, 0, 0);
+}
+.item-circle{
+    display: none;
+}
+
+.sub-menu-item:hover .item-circle{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: #FFE373;
+  clip-path: circle(50%);
+  transform: translate(-50%, -50%);
+  z-index: -1; /* 배경으로 보이게 */
+
+}
+
+
+
+@media (max-width: 768px) {  /* lg보다 작을 때 */ 
+
+}
+

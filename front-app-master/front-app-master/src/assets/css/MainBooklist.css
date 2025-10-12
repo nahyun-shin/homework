@@ -1,0 +1,244 @@
+@charset "UTF-8";
+
+
+/*슬라이드영역*/
+.banner-slider {
+  position: relative;
+  margin: 50px auto ;
+}
+.banner-bg {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* background-color: #a8c4a4; */
+}
+.banner-slide-content{
+  position: relative;
+  display: flex;
+  width: 980px;
+  max-width: 100%;
+  aspect-ratio: 980 / 350;
+  height: auto;
+  background-color: #e0dec3;
+}
+.title{
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  cursor: default;
+}
+
+.banner-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  
+}
+
+.banner-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+.banner-slide-left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6%;
+  background-color: white;
+}
+
+.banner-slide-left img {
+  width: 100%;
+  height: 100%;
+  /* max-height: 300px; */
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.banner-slide-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+  color: #333;
+  cursor: default;
+}
+
+.banner-slide-right h2 {
+  margin: 0 0 60px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.banner-slide-right p {
+  font-size: 16px;
+  line-height: 32px;
+}
+
+/* 책갈피 버튼 (오른쪽 위) */
+.bookmark-btn {
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  height: 35px;
+  width: 120px;
+  padding-left: 25px;
+  border: none;
+  background-color: #f7c500;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+  clip-path: polygon(
+    0px 0%,   /* 위 왼쪽 들어간 부분 시작 */
+    100% 0%,   /* 오른쪽 위 */
+    100% 100%, /* 오른쪽 아래 */
+    0px 100%, /* 아래 왼쪽 들어간 부분 */
+    20px 50%     /* 가운데로 잘라들어간 부분 */
+  );
+}
+
+
+
+/* 인디케이터 점 (오른쪽 아래) */
+.indicator-container {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: flex;
+  gap: 8px;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator-dot.active {
+  width: 22px;
+  background-color: #a8c4a4;
+}
+
+
+/*북리스트*/
+.best-books .title-wrap, .new-books .title-wrap{
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #caad07; */
+  margin-bottom: 32px;
+}
+.title-wrap span:first-of-type{
+  font-size: 26px;
+  font-weight: 600;
+  z-index: 1;
+  cursor: default;
+}
+.title-wrap span:nth-of-type(2){
+  cursor: pointer;
+}
+.circle {
+  position: absolute;
+  left: 16px;
+  width: 45px;
+  height: 45px;
+  background-color: #a8c4a4;
+
+  /* 원 모양 만들기 */
+  clip-path: circle(50%);
+}
+.best-books,.new-books{
+  /* background-color: #a8c4a4; */
+  width: 984px;
+  margin: 0px auto;
+  padding: 64px 0 43px;
+  border-top: 1px solid rgb(209, 209, 209);
+  /* background-color: #caad07; */
+}
+
+.book-list{
+  display: flex;
+}
+.book-wrap{
+  display: flex;
+  flex-direction: column;
+  margin-left:24px;
+}
+.img-wrap{
+  width: 168px;
+  height: 210px;
+  border: 1px solid rgb(212, 212, 212);
+  cursor: pointer;
+}
+.book-wrap span:nth-of-type(1){
+  margin-top: 24px;
+  font-size: 14px;
+  color: gray;
+  cursor: pointer;
+}
+.book-wrap span:nth-of-type(2){
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.book-wrap span:nth-of-type(3){
+  font-size: 20px;
+  font-weight: 600;
+}
+.img-wrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .banner-slide {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+  }
+  .banner-slide-left, .banner-slide-right {
+    flex: unset;
+    width: 100%;
+    padding: 0;
+  }
+  .banner-slide-left img {
+    max-height: 200px;
+  }
+  .banner-slide-right h2 {
+    font-size: 20px;
+  }
+  .banner-slide-right p {
+    font-size: 14px;
+  }
+  .bookmark-btn {
+    right: 15px;
+  }
+  
+}

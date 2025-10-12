@@ -1,0 +1,61 @@
+import { createBrowserRouter } from "react-router";
+import Layout from "../pages/Layout";
+
+import LoginForm from "../pages/login/LoginForm";
+
+import MainBookList from "../pages/books/MainBooklist";
+import CategoryBooklist from "../pages/books/CategoryBooklist";
+import BestBookList from "../pages/books/BestBooklist";
+import NewBookList from "../pages/books/NewBookList";
+
+export const router = createBrowserRouter([
+    {
+        path:'/',
+        Component : Layout,
+        children:[
+            {
+                index : true, Component : MainBookList
+            },
+            {
+                path: 'main',
+                children:[
+                    {
+                        index: true ,
+                        Component : MainBookList
+                    }
+                ]
+            },
+            {
+                path : 'books',
+                children:[
+                    {
+                        index: true ,
+                        Component : CategoryBooklist
+                    }
+                ]
+            },
+            {
+                path: 'best',
+                children: [
+                    {
+                        index: true,
+                        Component: BestBookList
+                    }
+                ]
+            },
+            {
+                path: 'new',
+                children: [
+                    {
+                        index: true,
+                        Component: NewBookList
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        path : '/login',
+        Component : LoginForm
+    }
+]);
