@@ -26,12 +26,11 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path : 'books',
-                children:[
-                    {
-                        index: true ,
-                        Component : CategoryBooklist
-                    }
+                path: 'books',
+                children: [
+                    { index: true, Component: CategoryBooklist },       // /books
+                    { path: 'all', Component: CategoryBooklist },      // /books/all
+                    { path: 'category/:categoryId', Component: CategoryBooklist } // /books/category/:categoryId
                 ]
             },
             {

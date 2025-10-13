@@ -1,5 +1,6 @@
 package it.back.back_app.book.entity;
 
+import it.back.back_app.common.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "book_category")
-public class BookCategoryEntity {
+public class BookCategoryEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

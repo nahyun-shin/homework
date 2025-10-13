@@ -10,14 +10,29 @@ export const bookAPI = {
     if (query) params.set('query', query);
 
     const response = await api.get(`/api/v1/books?${params.toString()}`);
-    return response.data; // 서버가 {response: {content:[], total:xx}} 형태로 리턴한다고 가정
-},
+    return response.data;
+    },
 
 
     getBooksByType: async (type) => {
-  const response = await api.get('/api/v1/main', { params: { type } });
-  return response.data.response;
-},
+    const response = await api.get('/api/v1/main', { params: { type } });
+    return response.data.response;
+    },
+
+   getCategoryMenus: async () => {
+    const response = await api.get('/api/v1/categories');
+    const categories = response.data;
+
+    // 전체보기는 카테고리 메뉴에서만 포함 (중복 방지)
+    return [
+      { name: '전체보기', path: '/books/all', categoryId: 0 },
+      ...categories.map((cat) => ({
+        name: cat.categoryName,
+        path: `/books/category/${cat.categoryId}`,
+        categoryId: cat.categoryId,
+      })),
+    ];
+  },
 
 
     get: async (bookId) => {

@@ -14,8 +14,12 @@ function Layout() {
     useEffect(() => {
         const fixedMenuKey = getFixedMenuKey(location.pathname);
         const shouldFix = !!fixedMenuKey;
-        setIsFixedSubMenu(shouldFix);
-        setShowSideMenu(shouldFix);
+        if (shouldFix) {
+        setIsFixedSubMenu(true);
+        } else {
+        setIsFixedSubMenu(false);
+        setShowSideMenu(false);
+        }
     }, [location]);
 
     return (

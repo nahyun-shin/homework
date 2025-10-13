@@ -1,5 +1,6 @@
 package it.back.back_app.book.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -16,9 +17,15 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
     // Best: 구매수 기준 5권
     List<BookEntity> findTop5ByShowYnOrderBySalesCountDesc(String showYn);
 
+    // Best: 구매수 기준 정렬
+    List<BookEntity> findByShowYnOrderBySalesCountDesc(String showYn);
+    
     // New: 생성일 기준 5권
     List<BookEntity> findTop5ByShowYnOrderByCreateDateDesc(String showYn);
-
+    
+    // New: 생성일 기준 정렬
+    List<BookEntity> findByShowYnAndCreateDateAfterOrderByCreateDateDesc(String showYn, LocalDate date);
+    
     // Banner: 배너 노출 설정된 책들
     List<BookEntity> findByShowYnAndBannerYn(String showYn, String bannerYn);
 
@@ -46,6 +53,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
             LOWER(b.publisher) LIKE LOWER(CONCAT('%', :query, '%'))
         )
     """)
+
     Page<BookEntity> findByCategoryAndQuery(
         @Param("category") BookCategoryEntity category,
         @Param("query") String query,

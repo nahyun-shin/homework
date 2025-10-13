@@ -1,9 +1,11 @@
 package it.back.back_app.book.service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.back.back_app.book.dto.BookCategoryDTO;
 import it.back.back_app.book.dto.BookMainDTO;
+import it.back.back_app.book.dto.CategoryMenuDTO;
 import it.back.back_app.book.entity.BookCategoryEntity;
 import it.back.back_app.book.entity.BookEntity;
 import it.back.back_app.book.repository.BookCategoryRepository;
@@ -26,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class BookService {
 
     private final BookRepository bookRepository;
+    
     private final BookImageRepository bookImageRepository;
     private final BookCategoryRepository bookCategoryRepository;
 
@@ -69,13 +73,54 @@ public class BookService {
     }
 
     /**
+     * 베스트 도서 - 판매순 전체
+     */
+    @Transactional(readOnly = true)
+    public List<BookMainDTO> getBestBooksAll() {
+        List<BookEntity> books = bookRepository.findByShowYnOrderBySalesCountDesc("Y");
+        return books.stream()
+                .map(book -> BookMainDTO.of(book, baseImageUrl))
+                .toList();
+    }
+
+    /**
+     * 신상품 도서 - 이번 주
+     */
+    @Transactional(readOnly = true)
+    public List<BookMainDTO> getNewBooksWeek() {
+        LocalDate weekAgo = LocalDate.now().minusWeeks(1);
+        List<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", weekAgo);
+        return books.stream()
+                .map(book -> BookMainDTO.of(book, baseImageUrl))
+                .toList();
+    }
+
+    /**
+     * 신상품 도서 - 이번 달
+     */
+    @Transactional(readOnly = true)
+    public List<BookMainDTO> getNewBooksMonth() {
+        LocalDate monthAgo = LocalDate.now().minusMonths(1);
+        List<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", monthAgo);
+        return books.stream()
+                .map(book -> BookMainDTO.of(book, baseImageUrl))
+                .toList();
+    }
+
+
+
+
+
+
+
+    /**
      * 카테고리 + 검색어 필터링 조회
      */
     @Transactional(readOnly = true)
 public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pageable pageable) {
 
     BookCategoryEntity category = null;
-    if (categoryId != null && categoryId !=0) {
+    if (categoryId != null) {
         category = bookCategoryRepository.findById(categoryId).orElse(null);
     }
 
@@ -94,6 +139,13 @@ public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pa
     return resultMap;
 }
 
+// 모든 카테고리 조회
+    @Transactional(readOnly = true)
+    public List<CategoryMenuDTO> getCategoryMenu() {
+        return bookCategoryRepository.findAll().stream()
+                .map(entity -> new CategoryMenuDTO(entity.getCategoryId(), entity.getCategoryName()))
+                .toList();
+    }
 
 
 

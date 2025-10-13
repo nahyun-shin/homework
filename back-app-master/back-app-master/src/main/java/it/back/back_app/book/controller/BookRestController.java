@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.back.back_app.book.dto.BookCategoryDTO;
 import it.back.back_app.book.dto.BookMainDTO;
+import it.back.back_app.book.dto.CategoryMenuDTO;
 import it.back.back_app.book.entity.BookCategoryEntity;
 import it.back.back_app.book.repository.BookCategoryRepository;
 import it.back.back_app.book.service.BookService;
@@ -77,6 +78,24 @@ public class BookRestController {
         return ResponseEntity.ok(ApiResponse.ok(books));
     }
 
+    // 베스트 전체보기
+    @GetMapping("/best")
+    public ResponseEntity<List<BookMainDTO>> getBestBooksAll() {
+        return ResponseEntity.ok(bookService.getBestBooksAll());
+    }
+
+    // 신상품 - 이번 주
+    @GetMapping("/new/week")
+    public ResponseEntity<List<BookMainDTO>> getNewBooksWeek() {
+        return ResponseEntity.ok(bookService.getNewBooksWeek());
+    }
+
+    // 신상품 - 이번 달
+    @GetMapping("/new/month")
+    public ResponseEntity<List<BookMainDTO>> getNewBooksMonth() {
+        return ResponseEntity.ok(bookService.getNewBooksMonth());
+    }
+
     //이미지불러오기
     @GetMapping("/image/{filename}")
     public ResponseEntity<Resource> getBookImage(@PathVariable String filename) {
@@ -114,6 +133,14 @@ Pageable pageable) {
 
         Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
         return ResponseEntity.ok(result);
+    }
+
+    //카테고리정보
+    // 모든 카테고리 메뉴 조회
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryMenuDTO>> getCategoryMenu() {
+        List<CategoryMenuDTO> categories = bookService.getCategoryMenu();
+        return ResponseEntity.ok(categories);
     }
 
 
