@@ -6,6 +6,16 @@ import "../../assets/css/MainBooklist.css";
 function MainBookList() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  function insertLineBreaks(str, maxChars = 13) {
+  if (!str) return '';
+  let result = '';
+  for (let i = 0; i < str.length; i += maxChars) {
+    result += str.slice(i, i + maxChars) + '\n';
+  }
+  return result.trim();
+}
+
+
   const { data: bestBooks, isLoading: loadingBest, error: errorBest } = useQuery({
     queryKey: ['main', 'best'],
     queryFn: () => bookAPI.getBooksByType('best'),
@@ -96,7 +106,10 @@ function MainBookList() {
                 <img src={book.mainImageUrl} alt={book.title} />
               </div>
               <span>{book.publisher}</span>
-              <span>{book.title}</span>
+              <span style={{ whiteSpace: 'pre-line' }}>
+                {insertLineBreaks(book.title, 14)}
+              </span>
+
               <span>
                 {book.price}
                 <span>원</span>
@@ -121,7 +134,10 @@ function MainBookList() {
                 <img src={book.mainImageUrl} alt={book.title} />
             </div>
             <span>{book.publisher}</span>
-            <span>{book.title}</span>
+            <span style={{ whiteSpace: 'pre-line' }}>
+              {insertLineBreaks(book.title, 14)}
+            </span>
+
             <span>
               {book.price}
               <span>원</span>

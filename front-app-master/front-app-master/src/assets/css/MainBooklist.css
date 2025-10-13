@@ -11,16 +11,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  /* background-color: #a8c4a4; */
 }
 .banner-slide-content{
   position: relative;
   display: flex;
   width: 980px;
   max-width: 100%;
-  aspect-ratio: 980 / 350;
+  aspect-ratio: 980 / 500;
   height: auto;
-  background-color: #e0dec3;
+  background-color: #ffffff;
 }
 .title{
   font-size: 32px;
@@ -55,8 +54,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6%;
-  background-color: white;
+  padding: 2%;
+  background-color: rgb(145, 134, 134);
 }
 
 .banner-slide-left img {
@@ -76,6 +75,7 @@
   padding: 3%;
   color: #333;
   cursor: default;
+  background-color: rgb(240, 234, 234);
 }
 
 .banner-slide-right h2 {
@@ -213,10 +213,16 @@
 }
 
 
+.book-wrap span {
+  word-break: break-word;
+}
+
+
 
 
 
 /* 반응형 */
+
 @media (max-width: 768px) {
   .banner-slide {
     flex-direction: column;

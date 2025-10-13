@@ -76,3 +76,17 @@ position: relative;
     z-index: -1; /* 배경으로 보이게 */
 
 }
+/* .fsub-menu-item.selected .fitem-circle {
+  display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45px;
+    height: 45px;
+    background-color: #FFE373;
+    clip-path: circle(50%);             
+    transform: translate(-50%, -50%);
+    z-index: -1;
+} */
+
+/*컨텐츠 영역*/

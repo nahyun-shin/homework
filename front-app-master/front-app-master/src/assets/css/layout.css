@@ -1,1 +1,17 @@
 @charset "UTF-8";
+
+/*폰트*/
+@font-face {
+  font-family: 'MyFont';
+  src: url('../font/ZEN-SERIF-TTF-Regular.ttf') format('truetype');
+  
+  font-style: normal;
+}
+
+body {
+  font-family: 'MyFont', sans-serif;
+}
+
+.content-area.with-sidemenu {
+  margin-top: 150px;
+}

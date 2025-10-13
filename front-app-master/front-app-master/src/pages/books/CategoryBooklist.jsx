@@ -6,8 +6,9 @@ import Pagination from "../../compoents/Pagination";
 import '../../assets/css/CategoryBooklist.css';
 import { bookAPI } from "../../service/bookService";
 
-function CategoryBooklist() {
+function CategoryBooklist({showSideMenu}) {
   const categories = subMenus['카테고리'];
+  const [selectedMenu, setSelectedMenu]= useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -55,10 +56,12 @@ const { data, isLoading, error } = useQuery({
   // 카테고리 클릭
   const handleSubMenuClick = (item) => {
     const params = new URLSearchParams();
-    if (item.categoryId) params.set('categoryId', item.categoryId);
+    if (item.categoryId != null) params.set('categoryId', item.categoryId);
     navigate(`/books?${params.toString()}`);
     setPage(0);
   };
+
+  
 
   // 정렬 변경
   const handleSortChange = (e) => {
@@ -74,8 +77,8 @@ const { data, isLoading, error } = useQuery({
   if (error) return <div>Error occurred</div>;
 
   return (
-    <div>
-      <div className="fside-menu-bg">
+    <div className={`content ${showSideMenu ? 'with-sidebar':'full-height'}`}>
+      {/* <div className="fside-menu-bg">
         <div className="fside-menu-wrap">
           <div className="side-menu-label">
               카테고리
@@ -85,8 +88,8 @@ const { data, isLoading, error } = useQuery({
             {categories?.map((item, index) => (
               <li
                 key={index}
-                className="fsub-menu-item"
-                onClick={() => handleSubMenuClick(item)}
+                className={`fsub-menu-item ${selectedMenu === index ? 'selected' : ''}`}
+                onClick={() => {handleSubMenuClick(item); setSelectedMenu(index);}}
               >
                 {item.name}
                 <div className="fitem-circle" />
@@ -94,7 +97,7 @@ const { data, isLoading, error } = useQuery({
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
 
       <h2>책 목록</h2>
 

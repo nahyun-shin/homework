@@ -5,22 +5,36 @@ import { authStore } from '../store/authStore';
 import { mainMenus, menuPathMap, subMenus } from '../hooks/menuData';
 import '../assets/css/MenuBar.css';
 
-function MenuBar() {
-  const [showSideMenu, setShowSideMenu] = useState(false);
-  const [hoveredMenu, setHoveredMenu] = useState('');
+function MenuBar({showSideMenu, setShowSideMenu}) {
+  
+  const [hoveredMenu, setHoveredMenu] = useState(null);
   const [searchTxt, setSearchTxt] = useState('');
 
   const { isAuthenticated, clearAuth, getUserRole } = authStore();
   const userName = authStore((state) => state.userName);
   const navigate = useNavigate();
   const location = useLocation();
+  const rawCategoryId = new URLSearchParams(location.search).get('categoryId');
+  const currentCategoryId = rawCategoryId === null ? 0 :Number(rawCategoryId);
 
-  // 하위 메뉴 표시 여부
-  const blockedPath = menuPathMap[hoveredMenu];
-  const isSubMenuVisible =
-    showSideMenu &&
-    hoveredMenu &&
-    !(blockedPath && location.pathname.startsWith(blockedPath));
+
+// 실제 URL 기준으로 고정될 메뉴 결정
+  const fixedMenu = Object.keys(menuPathMap).find((key) =>
+    location.pathname.startsWith(menuPathMap[key])
+  );
+  const isFixed = !!fixedMenu;
+
+
+  // 마우스를 올렸을 때만 일시적으로 보여줄 메뉴
+  const visibleMenu = hoveredMenu || fixedMenu;
+
+  
+
+
+
+  
+
+
 
   // 로그아웃
   const handleLogout = () => {
@@ -50,11 +64,9 @@ function MenuBar() {
   // 하위 메뉴 클릭 시: 검색어 초기화 + 해당 카테고리로 이동
   const handleSubMenuClick = (item) => {
     const params = new URLSearchParams();
-    if (item.categoryId) params.set('categoryId', item.categoryId);
+    if (item.categoryId!=null) params.set('categoryId', item.categoryId);
 
     navigate(`/books?${params.toString()}`);
-    setSearchTxt('');
-    setShowSideMenu(false);
     setHoveredMenu('');
   };
 
@@ -67,15 +79,19 @@ function MenuBar() {
             <span className="logo-font">책 밤</span>
           </Navbar.Brand>
         </section>
-
+        
         {/* 전체 메뉴 */}
         <Container
           fluid
           className="menu-contanier"
-          onMouseEnter={() => setShowSideMenu(true)}
+          onMouseEnter={() => {
+            if (!isFixed) setShowSideMenu(true);
+          }}
           onMouseLeave={() => {
-            setShowSideMenu(false);
-            setHoveredMenu('');
+             if (!isFixed) {
+              setShowSideMenu(false);
+              setHoveredMenu(null);
+            }
           }}
         >
           {/* 왼쪽 메뉴 */}
@@ -93,18 +109,20 @@ function MenuBar() {
           </Nav>
 
           {/* 하위 메뉴 */}
-          {isSubMenuVisible && (
+          {visibleMenu && (
             <div className="side-menu-bg">
               <div className="side-menu-wrap">
                 <div className="hovered-label">
-                  {hoveredMenu}
+                  {visibleMenu}
                   <div className="label-circle" />
                 </div>
                 <ul className="sub-menu-list">
-                  {subMenus[hoveredMenu]?.map((item, index) => (
+                  {subMenus[visibleMenu]?.map((item, index) => (
                     <li
                       key={index}
-                      className="sub-menu-item"
+                      className={`sub-menu-item ${
+                        Number(item.categoryId) === Number(currentCategoryId) ? 'selected' : ''
+                      }`}
                       onClick={() => handleSubMenuClick(item)}
                     >
                       {item.name}

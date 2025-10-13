@@ -75,14 +75,12 @@ public class BookService {
 public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pageable pageable) {
 
     BookCategoryEntity category = null;
-    if (categoryId != null) {
+    if (categoryId != null && categoryId !=0) {
         category = bookCategoryRepository.findById(categoryId).orElse(null);
     }
 
     Page<BookEntity> bookList = bookRepository.findByCategoryAndQuery(category, query, pageable);
 
-    // 로그 확인
-    System.out.println("검색 결과 건수: " + bookList.getTotalElements());
 
     Map<String, Object> resultMap = new HashMap<>();
     List<BookCategoryDTO> list = bookList.getContent().stream()
