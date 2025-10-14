@@ -1,17 +1,42 @@
 import api from '../api/axiosApi';
 
 export const bookAPI = {
-    getList: async ({ page = 0, size = 6, categoryId, query, sort = 'createDate,asc' }) => {
+    getList: async ({
+    page = 0,
+    size = 6,
+    categoryId,
+    query,
+    sort = 'createDate,desc',
+    type,         // best, new, 등
+    dateRange     // week, month 등
+    } = {}) => {
+        const params = new URLSearchParams();
+
+        params.set('page', page);
+        params.set('size', size);
+        params.set('sort', sort);
+
+        if (categoryId) params.set('categoryId', categoryId);
+        if (query) params.set('query', query);
+        if (type) params.set('type', type);          // 예: best, new
+        if (dateRange) params.set('range', dateRange); // 예: week, month
+
+        const response = await api.get(`/api/v1/books?${params.toString()}`);
+        return response.data;
+    },
+    getBestList: async ({
+        page = 0,
+        size = 6,
+        sort = 'salesCount,desc' 
+    }) => {
     const params = new URLSearchParams();
     params.set('page', page);
     params.set('size', size);
     params.set('sort', sort);
-    if (categoryId) params.set('categoryId', categoryId);
-    if (query) params.set('query', query);
 
-    const response = await api.get(`/api/v1/books?${params.toString()}`);
+    const response = await api.get(`/api/v1/best?${params.toString()}`);
     return response.data;
-    },
+  },
 
 
     getBooksByType: async (type) => {
@@ -19,20 +44,20 @@ export const bookAPI = {
     return response.data.response;
     },
 
-   getCategoryMenus: async () => {
-    const response = await api.get('/api/v1/categories');
-    const categories = response.data;
+    getCategoryMenus: async () => {
+        const response = await api.get('/api/v1/categories');
+        const categories = response.data;
 
-    // 전체보기는 카테고리 메뉴에서만 포함 (중복 방지)
+    
     return [
-      { name: '전체보기', path: '/books/all', categoryId: 0 },
-      ...categories.map((cat) => ({
-        name: cat.categoryName,
-        path: `/books/category/${cat.categoryId}`,
-        categoryId: cat.categoryId,
-      })),
-    ];
-  },
+            { name: '전체보기', path: '/books/all', categoryId: 0 },
+            ...categories.map((cat) => ({
+                name: cat.categoryName,
+                path: `/books/category/${cat.categoryId}`,
+                categoryId: cat.categoryId,
+            })),
+        ];
+    },
 
 
     get: async (bookId) => {

@@ -5,8 +5,8 @@ import LoginForm from "../pages/login/LoginForm";
 
 import MainBookList from "../pages/books/MainBooklist";
 import CategoryBooklist from "../pages/books/CategoryBooklist";
-import BestBookList from "../pages/books/BestBooklist";
 import NewBookList from "../pages/books/NewBookList";
+import BestBookList from "../pages/books/BestBookList";
 
 export const router = createBrowserRouter([
     {

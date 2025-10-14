@@ -42,6 +42,7 @@ public class BookRestController {
     
     private final BookService bookService;
 
+
     //이미지경로
     @Value("${server.file.upload.path}")
     private String uploadPath;
@@ -50,7 +51,7 @@ public class BookRestController {
     @GetMapping("/main")
     public ResponseEntity<ApiResponse<List<BookMainDTO>>> getMainBookList(
         @RequestParam String type,
-        @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.DESC) Pageable pageable) throws Exception {
+        @PageableDefault(size = 6, page = 0)Pageable pageable)throws Exception {
 
         log.info("----- 메인페이지 최근 6권 도서 목록 가져오기 -------");
 
@@ -80,20 +81,33 @@ public class BookRestController {
 
     // 베스트 전체보기
     @GetMapping("/best")
-    public ResponseEntity<List<BookMainDTO>> getBestBooksAll() {
-        return ResponseEntity.ok(bookService.getBestBooksAll());
+    public ResponseEntity<Map<String, Object>> getBestBooksAll(
+        @PageableDefault(size = 10, page = 0 , sort = "salesCount",
+        direction = Direction.DESC) Pageable pageable){
+
+        Map<String, Object> result = bookService.getBestBooksAll(pageable);
+        return ResponseEntity.ok(result);
     }
 
     // 신상품 - 이번 주
     @GetMapping("/new/week")
-    public ResponseEntity<List<BookMainDTO>> getNewBooksWeek() {
-        return ResponseEntity.ok(bookService.getNewBooksWeek());
+    public ResponseEntity<Map<String, Object>> getNewBooksWeek(
+        @PageableDefault(size = 10, page = 0, sort = "createDate",
+        direction = Direction.DESC) Pageable pageable) {
+    
+    Map<String, Object> result = bookService.getNewBooksWeek(pageable);
+    return ResponseEntity.ok(result);
     }
+
 
     // 신상품 - 이번 달
     @GetMapping("/new/month")
-    public ResponseEntity<List<BookMainDTO>> getNewBooksMonth() {
-        return ResponseEntity.ok(bookService.getNewBooksMonth());
+    public ResponseEntity<Map<String, Object>> getNewBooksMonth(
+        @PageableDefault(size = 10, page = 0, sort = "createDate",
+        direction = Direction.DESC) Pageable pageable) {
+
+        Map<String, Object> result = bookService.getNewBooksMonth(pageable);
+        return ResponseEntity.ok(result);
     }
 
     //이미지불러오기
@@ -130,7 +144,7 @@ public class BookRestController {
             @RequestParam(required = false) String query,
             @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC)
 Pageable pageable) {
-
+        // log.info("요청된 정렬 정보: {}", pageable.getSort());
         Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
         return ResponseEntity.ok(result);
     }

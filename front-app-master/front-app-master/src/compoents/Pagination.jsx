@@ -1,6 +1,12 @@
 import React, {useMemo } from 'react';
 
-function Pagination({page, totalRows, movePage, pagePerRows=10, blockPerCount=10}) {
+function Pagination({page, totalRows, movePage,
+                    pagePerRows=10,
+                    blockPerCount=10,
+                    wrapperClass = 'pagination justify-content-center',
+                    itemClass = 'page-item',
+                    linkClass = 'page-link',
+                }) {
 
     const calculatePageData = useMemo(()=>{
          if (!totalRows || totalRows <= 0 || !pagePerRows || pagePerRows <= 0) {

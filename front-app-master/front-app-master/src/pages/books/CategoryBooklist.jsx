@@ -7,6 +7,7 @@ import '../../assets/css/CategoryBooklist.css';
 import { bookAPI } from "../../service/bookService";
 
 function CategoryBooklist({showSideMenu}) {
+
   const { categoryId: paramCategoryId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,14 +15,12 @@ function CategoryBooklist({showSideMenu}) {
   const [bookList, setBookList] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(0);
-  const [size] = useState(6);
-  const [sort, setSort] = useState('createDate');
 
   // URL query 기반으로 카테고리, 검색어, 정렬 가져오기
   const queryParams = new URLSearchParams(location.search);
   const queryCategoryId = queryParams.get('categoryId') ?? null;
   const searchQuery = queryParams.get('query') ?? '';
-  const currentSort = queryParams.get('sort') ?? sort;
+  const currentSort = queryParams.get('sort') ?? 'createDate';
 
   const currentCategoryId = paramCategoryId ?? queryCategoryId;
 
@@ -30,13 +29,12 @@ function CategoryBooklist({showSideMenu}) {
   // 책 데이터 가져오기
   // -------------------------
 const { data, isLoading, error } = useQuery({
-  queryKey: ['books', page, sort, currentCategoryId, searchQuery],
+  queryKey: ['books', page, currentSort, currentCategoryId, searchQuery],
   queryFn: () => bookAPI.getList({
     page,
-    size,
     categoryId: currentCategoryId ?? 0,
     query: searchQuery,
-    sort,
+    sort: currentSort || 'createDate,desc',
   }),
   keepPreviousData: true,
 });
@@ -53,6 +51,7 @@ const { data, isLoading, error } = useQuery({
     setBookList([]);
     setTotalRows(0);
   }
+  console.log(data);
 }, [data]);
 
   
@@ -60,9 +59,10 @@ const { data, isLoading, error } = useQuery({
   // 정렬 변경
   const handleSortChange = (e) => {
   const newSort = e.target.value;
-  setSort(newSort);
+  
   const params = new URLSearchParams(location.search);
   params.set('sort', newSort);
+
   navigate(`/books?${params.toString()}`);
   setPage(0);
 };
@@ -77,12 +77,14 @@ const { data, isLoading, error } = useQuery({
 
       <div>
         <label>정렬: </label>
-        <select value={sort} onChange={handleSortChange}>
-          <option value="title">제목순</option>
-          <option value="writer">작가순</option>
-          <option value="publisher">출판사순</option>
-          <option value="price,asc">가격 낮은순</option>
-          <option value="price,desc">가격 높은순</option>
+        <select value={currentSort} onChange={handleSortChange}>
+          <option value="title">제목 순</option>
+          <option value="writer">작가 순</option>
+          <option value="publisher">출판사 순</option>
+          <option value="price,asc">가격 낮은 순</option>
+          <option value="price,desc">가격 높은 순</option>
+          <option value="pubDate">출판등록 최신 순 </option>
+          <option value="pubDate,asc">출판등록 과거 순 </option>
         </select>
       </div>
 

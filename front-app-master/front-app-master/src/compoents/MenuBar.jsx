@@ -39,12 +39,7 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
     { name: '카테고리', path: '/books', sub: categoryMenus },
     {
       name: '베스트',
-      path: '/best',
-      sub: [
-        { name: '전체보기', path: '/best/all' },
-        { name: '인기상품1', path: '/best/popular1' },
-        { name: '인기상품2', path: '/best/popular2' },
-      ],
+      path: '/best'
     },
     {
       name: '신상품',

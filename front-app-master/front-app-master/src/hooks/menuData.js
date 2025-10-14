@@ -7,19 +7,11 @@ export const mainMenus = [
 
 
 
-// 베스트 메뉴
+
 export const subMenus = {
-  '홈': [],
   '카테고리': [], // 위에서 fetch
-  '베스트': [
-    { name: '전체보기', path: '/best/all' },
-    { name: '인기 상품 1', path: '/best/item1' },
-    { name: '인기 상품 2', path: '/best/item2' },
-  ],
-  '신상품': [
-    { name: '이번 주 신상', path: '/new/week' },
-    { name: '이번 달 신상', path: '/new/month' },
-  ],
+  '베스트': [],
+  '신상품': [],
 };
 
 export const menuPathMap = {
