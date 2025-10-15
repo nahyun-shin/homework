@@ -155,8 +155,9 @@
   z-index: 1;
   cursor: default;
 }
-.title-wrap span:nth-of-type(2){
-  cursor: pointer;
+.title-wrap .more-link{
+  text-decoration: none;
+  color: black;
 }
 .circle {
   position: absolute;

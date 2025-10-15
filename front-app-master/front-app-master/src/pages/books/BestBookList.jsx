@@ -6,13 +6,10 @@ import { bookAPI } from "../../service/bookService";
 import '../../assets/css/CategoryBooklist.css'; // 스타일 공유
 
 function BestBookList() {
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const [bookList, setBookList] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(0);
-  const queryParams = new URLSearchParams(location.search);
 
   const { data, isLoading, error } = useQuery({
   queryKey: ['bestBooks', page],
@@ -34,13 +31,7 @@ useEffect(() => {
   console.log(data);
 }, [data]);
 
-  const handleSortChange = (e) => {
-    const newSort = e.target.value;
-    
-    queryParams.set('sort', newSort);
-    navigate(`/best?${queryParams.toString()}`);
-    setPage(0);
-  };
+  
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred</div>;

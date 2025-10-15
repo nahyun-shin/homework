@@ -1,6 +1,7 @@
 package it.back.back_app.book.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -88,8 +89,8 @@ public class BookService {
     public Map<String, Object> getBestBooksAll(Pageable pageable) {
         Page<BookEntity> books = bookRepository.findByShowYnOrderBySalesCountDesc("Y", pageable);
         
-        List<BookMainDTO> list = books.getContent().stream()
-        .map(book -> BookMainDTO.of(book, baseImageUrl))
+        List<BookCategoryDTO> list = books.getContent().stream()
+        .map(book -> BookCategoryDTO.of(book, baseImageUrl))
         .toList();
 
         Map<String, Object> result = new HashMap<>();
@@ -106,11 +107,11 @@ public class BookService {
     @Transactional(readOnly = true)
     public Map<String, Object> getNewBooksWeek(Pageable pageable) {
 
-        LocalDate weekAgo = LocalDate.now().minusWeeks(1);
+        LocalDateTime  weekAgo = LocalDateTime.now().minusWeeks(1);
         Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", weekAgo, pageable);
         
-        List<BookMainDTO> list = books.getContent().stream()
-        .map(book -> BookMainDTO.of(book, baseImageUrl))
+        List<BookCategoryDTO> list = books.getContent().stream()
+        .map(book -> BookCategoryDTO.of(book, baseImageUrl))
         .toList();
 
         Map<String, Object> result = new HashMap<>();
@@ -127,11 +128,11 @@ public class BookService {
     @Transactional(readOnly = true)
     public Map<String, Object> getNewBooksMonth(Pageable pageable) {
 
-        LocalDate monthAgo = LocalDate.now().minusMonths(1);
+        LocalDateTime monthAgo = LocalDateTime.now().minusMonths(1);
         Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", monthAgo, pageable);
 
-        List<BookMainDTO> list = books.getContent().stream()
-        .map(book -> BookMainDTO.of(book, baseImageUrl))
+        List<BookCategoryDTO> list = books.getContent().stream()
+        .map(book -> BookCategoryDTO.of(book, baseImageUrl))
         .toList();
 
         Map<String, Object> result = new HashMap<>();
@@ -164,8 +165,8 @@ public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pa
 
     Map<String, Object> resultMap = new HashMap<>();
     List<BookCategoryDTO> list = bookList.getContent().stream()
-            .map(BookCategoryDTO::of)
-            .toList();
+        .map(bookEntity -> BookCategoryDTO.of(bookEntity, baseImageUrl))
+        .toList();
 
     resultMap.put("total", bookList.getTotalElements());
     resultMap.put("page", bookList.getNumber());

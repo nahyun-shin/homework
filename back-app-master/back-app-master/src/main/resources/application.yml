@@ -15,7 +15,6 @@ server:
       path: C:\\files\\upload\\gallery\\
     
 
-
 spring:
   main:
     allow-bean-definition-overriding: true

@@ -78,6 +78,25 @@ public class BookRestController {
 
         return ResponseEntity.ok(ApiResponse.ok(books));
     }
+    //카테고리페이지
+    @GetMapping("/books")
+    public ResponseEntity<Map<String, Object>> getBooks(
+            @RequestParam(required = false) Integer categoryId,
+            @RequestParam(required = false) String query,
+            @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC)
+Pageable pageable) {
+        // log.info("요청된 정렬 정보: {}", pageable.getSort());
+        Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
+        return ResponseEntity.ok(result);
+    }
+
+    //카테고리정보
+    // 모든 카테고리 메뉴 조회
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryMenuDTO>> getCategoryMenu() {
+        List<CategoryMenuDTO> categories = bookService.getCategoryMenu();
+        return ResponseEntity.ok(categories);
+    }
 
     // 베스트 전체보기
     @GetMapping("/best")
@@ -137,25 +156,7 @@ public class BookRestController {
         
     }
 
-    //카테고리페이지
-    @GetMapping("/books")
-    public ResponseEntity<Map<String, Object>> getBooks(
-            @RequestParam(required = false) Integer categoryId,
-            @RequestParam(required = false) String query,
-            @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC)
-Pageable pageable) {
-        // log.info("요청된 정렬 정보: {}", pageable.getSort());
-        Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
-        return ResponseEntity.ok(result);
-    }
-
-    //카테고리정보
-    // 모든 카테고리 메뉴 조회
-    @GetMapping("/categories")
-    public ResponseEntity<List<CategoryMenuDTO>> getCategoryMenu() {
-        List<CategoryMenuDTO> categories = bookService.getCategoryMenu();
-        return ResponseEntity.ok(categories);
-    }
+    
 
 
 

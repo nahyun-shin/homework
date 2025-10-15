@@ -1,6 +1,7 @@
 package it.back.back_app.book.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -22,19 +23,23 @@ public class BookCategoryDTO {
     private String writer;
     private String publisher;
     private LocalDate pubDate;
+    private LocalDateTime createDate;
     private int categoryId;       // int로 변경
     private String categoryName;  // 카테고리 이름 추가
     private String content;
     private int price;
     private Boolean stockYn;
-    private List<BookImageDTO> fileList;
+    private String mainImageUrl;
 
     // Entity → DTO 변환
-    public static BookCategoryDTO of(BookEntity entity) {
-    List<BookImageDTO> fileList =
-            entity.getFileList().stream()
-                    .map(BookImageDTO::of)
-                    .toList();
+    public static BookCategoryDTO of(BookEntity entity, String baseImageUrl) {
+        
+        //대표 이미지DTO를 찾아서 URL 생성
+     String mainImage = entity.getFileList().stream()
+        .filter(BookImageEntity::getMainYn)
+        .findFirst()
+        .map(img -> baseImageUrl + img.getStoredName())
+        .orElse(baseImageUrl + "default_book.jpg");   
 
     return BookCategoryDTO.builder()
             .bookId(entity.getBookId())
@@ -42,12 +47,13 @@ public class BookCategoryDTO {
             .writer(entity.getWriter())
             .publisher(entity.getPublisher())
             .pubDate(entity.getPubDate())
+            .createDate(entity.getCreateDate())
             .categoryId(entity.getCategory() != null ? entity.getCategory().getCategoryId() : 0)
             .categoryName(entity.getCategory() != null ? entity.getCategory().getCategoryName() : null)
             .content(entity.getContent())
             .price(entity.getPrice())
             .stockYn("Y".equalsIgnoreCase(entity.getStockYn()))
-            .fileList(fileList)
+            .mainImageUrl(mainImage)
             .build();
 }
 

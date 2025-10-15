@@ -1,6 +1,7 @@
 package it.back.back_app.book.repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
     Page<BookEntity> findByShowYnOrderBySalesCountDesc(String showYn, Pageable pageable);
 
     // New: 생성일 기준 정렬
-    Page<BookEntity> findByShowYnAndCreateDateAfterOrderByCreateDateDesc(String showYn, LocalDate date, Pageable pageable);
+    Page<BookEntity> findByShowYnAndCreateDateAfterOrderByCreateDateDesc(String showYn, LocalDateTime date, Pageable pageable);
     
     // Banner: 배너 노출 설정된 책들
     List<BookEntity> findByShowYnAndBannerYn(String showYn, String bannerYn);

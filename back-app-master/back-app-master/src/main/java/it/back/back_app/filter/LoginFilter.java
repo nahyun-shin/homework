@@ -30,7 +30,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter{
     private final AuthenticationManager  authenticationManager;
     private final JWTUtils jwtUtils;
     
-    public static final long ACCESS_TOKEN_EXPIRE_TIME = 86400L;   // 24시간
+    public static final long ACCESS_TOKEN_EXPIRE_TIME = 86400L;   //24시간 
     public static final long REFRESH_TOKEN_EXPIRE_TIME = 86400L; //24시간
     
     //인증시도
@@ -129,7 +129,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter{
     private Cookie createCookie(String name, Object value) {
         Cookie cookie = new Cookie(name, String.valueOf(value));
         cookie.setPath("/");
-        cookie.setMaxAge(30*60);
+        cookie.setMaxAge((int)REFRESH_TOKEN_EXPIRE_TIME);
         cookie.setHttpOnly(true); // 자바스크립트에서 접근 금지 
 
         return cookie;

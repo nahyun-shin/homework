@@ -1,9 +1,32 @@
 import api from '../api/axiosApi';
 
 export const bookAPI = {
+    //메인페이지 북리스트
+    getBooksByType: async (type) => {
+    const response = await api.get('/api/v1/main', { params: { type } });
+    return response.data.response;
+    },
+
+    //메뉴카테고리 리스트
+    getCategoryMenus: async () => {
+        const response = await api.get('/api/v1/categories');
+        const categories = response.data;
+
+    
+    return [
+            { name: '전체보기', path: '/books/all', categoryId: 0 },
+            ...categories.map((cat) => ({
+                name: cat.categoryName,
+                path: `/books/category/${cat.categoryId}`,
+                categoryId: cat.categoryId,
+            })),
+        ];
+    },
+
+    //카테고리메뉴 북리스트
     getList: async ({
     page = 0,
-    size = 6,
+    size = 8,
     categoryId,
     query,
     sort = 'createDate,desc',
@@ -24,9 +47,11 @@ export const bookAPI = {
         const response = await api.get(`/api/v1/books?${params.toString()}`);
         return response.data;
     },
+
+    //베스트메뉴 북리스트
     getBestList: async ({
         page = 0,
-        size = 6,
+        size = 8,
         sort = 'salesCount,desc' 
     }) => {
     const params = new URLSearchParams();
@@ -38,26 +63,36 @@ export const bookAPI = {
     return response.data;
   },
 
+  
+    getNewWeekList:async({
+        page = 0,
+        size = 8,
+        sort = 'createDate,desc'
+    }) =>{
+        const params = new URLSearchParams();
+        params.set('page', page);
+        params.set('size', size);
+        params.set('sort', sort);
 
-    getBooksByType: async (type) => {
-    const response = await api.get('/api/v1/main', { params: { type } });
-    return response.data.response;
+        const response = await api.get(`/api/v1/new/week?${params.toString()}`);
+        return response.data;
     },
 
-    getCategoryMenus: async () => {
-        const response = await api.get('/api/v1/categories');
-        const categories = response.data;
+    getNewMonthList:async({
+        page = 0,
+        size = 8,
+        sort = 'createDate,desc'
+    }) =>{
+        const params = new URLSearchParams();
+        params.set('page', page);
+        params.set('size', size);
+        params.set('sort', sort);
+
+        const response = await api.get(`/api/v1/new/month?${params.toString()}`);
+        return response.data;
+    },
 
     
-    return [
-            { name: '전체보기', path: '/books/all', categoryId: 0 },
-            ...categories.map((cat) => ({
-                name: cat.categoryName,
-                path: `/books/category/${cat.categoryId}`,
-                categoryId: cat.categoryId,
-            })),
-        ];
-    },
 
 
     get: async (bookId) => {

@@ -71,12 +71,12 @@ public class SecurityConfig {
             .authorizeHttpRequests(
                 auth -> 
                     auth
-                        // .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        // .requestMatchers("/api/v1/login/**").permitAll()
-                        // .requestMatchers("/api/v1/logout/**").permitAll()
-                        // .requestMatchers("/api/v1/refresh").permitAll()
-                        // .requestMatchers("/api/v1/book/**").permitAll()
-                        // .requestMatchers("/static/imgs/**").permitAll() // ✅ 정적 자원 허용
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                        .requestMatchers("/api/v1/login/**").permitAll()
+                        .requestMatchers("/api/v1/logout/**").permitAll()
+                        .requestMatchers("/api/v1/refresh").permitAll()
+                        .requestMatchers("/api/v1/book/**").permitAll()
+                        .requestMatchers("/static/imgs/**").permitAll() // ✅ 정적 자원 허용
                         // .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // ✅ spring boot 기본 static 경로 허용
                         // .anyRequest().authenticated()
                         .anyRequest().permitAll()  // 🔓 모든 요청 허용

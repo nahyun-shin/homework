@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { bookAPI } from "../../service/bookService";
 import "../../assets/css/MainBooklist.css";
+import { Link } from "react-router";
 
 function MainBookList() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -97,7 +98,9 @@ function MainBookList() {
         <div className="title-wrap">
           <div className="circle"></div>
           <span>BEST</span>
-          <span>더보기 &gt;</span>
+          <Link to="/best" className="more-link" aria-label="베스트 도서 더보기">
+            더보기 &gt;
+          </Link>
         </div >
         <div className="book-list">
           {bestBooks?.map((book) => (
@@ -124,7 +127,9 @@ function MainBookList() {
         <div className="title-wrap">
           <div className="circle"></div>
           <span>NEW</span>
-          <span>더보기 &gt;</span>
+          <Link to="/new/week" className="more-link" aria-label="베스트 도서 더보기">
+            더보기 &gt;
+          </Link>
         </div>
         <div className="book-list">
 

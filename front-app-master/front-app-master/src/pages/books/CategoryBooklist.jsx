@@ -83,8 +83,8 @@ const { data, isLoading, error } = useQuery({
           <option value="publisher">출판사 순</option>
           <option value="price,asc">가격 낮은 순</option>
           <option value="price,desc">가격 높은 순</option>
-          <option value="pubDate">출판등록 최신 순 </option>
-          <option value="pubDate,asc">출판등록 과거 순 </option>
+          <option value="createDate,desc">최신 등록 순 </option>
+          <option value="createDate,asc">과거 등록 순 </option>
         </select>
       </div>
 

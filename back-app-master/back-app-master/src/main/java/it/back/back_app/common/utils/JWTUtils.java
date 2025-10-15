@@ -92,7 +92,7 @@ public class JWTUtils {
 
 
      //권한 추출
-     public String gertUserRole(String token) {
+     public String getUserRole(String token) {
         
         return Jwts.parser().verifyWith(secretKey)
             .build().parseSignedClaims(token)

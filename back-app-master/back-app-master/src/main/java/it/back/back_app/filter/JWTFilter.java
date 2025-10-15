@@ -3,6 +3,7 @@ package it.back.back_app.filter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.json.JSONObject;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,16 +62,18 @@ public class JWTFilter  extends OncePerRequestFilter{
 
         }catch(Exception e) {
             //response 한다! 
+            response.setContentType("application/json");
             PrintWriter writer = response.getWriter();
-            writer.println("토큰이 유효하지 않습니다.");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            JSONObject message = this.getErrorMessage(e.getMessage(), HttpServletResponse.SC_NOT_ACCEPTABLE);
+            writer.write(message.toString());
+            response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
             return;  // 함수 종료 
         }
 
         // 인증 성공
         String userId = jwtUtils.getUserId(acessToken);
         String userName = jwtUtils.getUserName(acessToken);
-        String userRole = jwtUtils.gertUserRole(acessToken);
+        String userRole = jwtUtils.getUserRole(acessToken);
        
 
         UserSecureDTO dto = new UserSecureDTO(userId, userName, userName, userRole);
@@ -84,6 +87,14 @@ public class JWTFilter  extends OncePerRequestFilter{
         //다음으로 이동
         filterChain.doFilter(request, response);
         
+    }
+    private JSONObject getErrorMessage(String message, int status){
+        JSONObject jObj = new JSONObject();
+            jObj.put("resultMsg", message == null ? "InvalidToken" :message);
+            jObj.put("status", status);
+
+            return jObj;
+
     }
 
     

@@ -48,6 +48,10 @@ export const router = createBrowserRouter([
                     {
                         index: true,
                         Component: NewBookList
+                    },
+                    {
+                        path: ':type',
+                        Component: NewBookList
                     }
                 ]
             }

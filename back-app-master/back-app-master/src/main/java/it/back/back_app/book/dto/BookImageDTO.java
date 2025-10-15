@@ -18,15 +18,17 @@ public class BookImageDTO {
     private String storedName;     // 저장 파일명
     private String filePath;       // 파일 경로
     private Boolean mainYn;         // 대표 이미지 여부
+    private String imageUrl;        //이미지url
     private LocalDateTime createDate;
 
-    public static BookImageDTO of(BookImageEntity entity){
+    public static BookImageDTO of(BookImageEntity entity, String baseImageUrl){
         return BookImageDTO.builder()
                 .imgId(entity.getImgId())
                 .fileName(entity.getFileName())
                 .storedName(entity.getStoredName())
                 .filePath(entity.getFilePath())
                 .mainYn(entity.getMainYn())
+                .imageUrl(baseImageUrl + entity.getStoredName())
                 .createDate(entity.getCreateDate())
                 .build();
     }

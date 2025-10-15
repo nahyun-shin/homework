@@ -31,8 +31,6 @@ public class BookMainDTO {
                 .map(img -> baseImageUrl + img.getStoredName())
                 .orElse(baseImageUrl + "default_book.jpg");
 
-        System.out.println("mainImageUrl 생성: " + mainImage);
-
         return BookMainDTO.builder()
                 .bookId(entity.getBookId())
                 .publisher(entity.getPublisher())
