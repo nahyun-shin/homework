@@ -48,8 +48,8 @@ export const bookAPI = {
         return response.data;
     },
 
-    //베스트메뉴 북리스트
-    getBestList: async ({
+    //베스트 - 일간
+    getBestDayList: async ({
         page = 0,
         size = 8,
         sort = 'salesCount,desc' 
@@ -59,39 +59,56 @@ export const bookAPI = {
     params.set('size', size);
     params.set('sort', sort);
 
-    const response = await api.get(`/api/v1/best?${params.toString()}`);
+    const response = await api.get(`/api/v1/best/day?${params.toString()}`);
+    return response.data;
+  },
+  //베스트 주간
+    getBestWeekList: async ({
+        page = 0,
+        size = 8,
+        sort = 'salesCount,desc' 
+    }) => {
+    const params = new URLSearchParams();
+    params.set('page', page);
+    params.set('size', size);
+    params.set('sort', sort);
+
+    const response = await api.get(`/api/v1/best/week?${params.toString()}`);
+    return response.data;
+  },
+  //베스트 월간
+    getBestMonthList: async ({
+        page = 0,
+        size = 8,
+        sort = 'salesCount,desc' 
+    }) => {
+    const params = new URLSearchParams();
+    params.set('page', page);
+    params.set('size', size);
+    params.set('sort', sort);
+
+    const response = await api.get(`/api/v1/best/month?${params.toString()}`);
     return response.data;
   },
 
-  
-    getNewWeekList:async({
+    //신상품 리스트
+    getNewList:async({
+        period = 'daily',
         page = 0,
         size = 8,
         sort = 'createDate,desc'
     }) =>{
         const params = new URLSearchParams();
+        params.set('period', period);
         params.set('page', page);
         params.set('size', size);
         params.set('sort', sort);
 
-        const response = await api.get(`/api/v1/new/week?${params.toString()}`);
+        const response = await api.get(`/api/v1/new?${params.toString()}`);
         return response.data;
     },
 
-    getNewMonthList:async({
-        page = 0,
-        size = 8,
-        sort = 'createDate,desc'
-    }) =>{
-        const params = new URLSearchParams();
-        params.set('page', page);
-        params.set('size', size);
-        params.set('sort', sort);
-
-        const response = await api.get(`/api/v1/new/month?${params.toString()}`);
-        return response.data;
-    },
-
+    //디테일 페이지 정보
     getBook: async (bookId) => {
         const response = await api.get(`/api/v1/detail/${bookId}`);
         return response.data;

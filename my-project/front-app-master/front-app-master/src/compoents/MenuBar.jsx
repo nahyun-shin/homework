@@ -39,15 +39,17 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
     { name: '카테고리', path: '/books', sub: categoryMenus },
     {
       name: '베스트',
-      path: '/best'
+      path: '/best',
+      sub: [
+        { name: '오늘의 베스트 ', path: '/best/day' },
+        { name: '이번주 베스트', path: '/best/week' },
+        { name: '이번달 베스트', path: '/best/month' },
+      ],
     },
     {
       name: '신상품',
       path: '/new',
-      sub: [
-        { name: '이번주신상', path: '/new/week' },
-        { name: '이번달신상', path: '/new/month' },
-      ],
+      
     },
   ];
 

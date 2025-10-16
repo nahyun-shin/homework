@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*폰트*/
+/*기본폰트*/
 @font-face {
   font-family: 'MyFont';
   src: url('../font/ZEN-SERIF-TTF-Regular.ttf') format('truetype');
@@ -15,3 +15,109 @@ body {
 .content-area.with-sidemenu {
   margin-top: 150px;
 }
+
+
+.contents-container{
+  width: 50%;
+  min-width: 1000px;
+  margin: 0 auto;
+  /* background-color: aqua; */
+}
+.sort-bg{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+}
+.sort-bg label{
+  margin-right: 8px;
+}
+.sort-box{
+  height: 2.2rem;
+  width: 10rem;
+  border-radius: 5px;
+  border: 1px solid #C9C9C9;
+}
+
+img{
+  cursor: pointer;
+}
+
+.container-list-bg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:1px solid #c9c9c9 ;
+  padding: 20px 25px;
+}
+.content-list-lmg-bg{
+  /* width: 200px; */
+  height: 300px;
+  border: 1px solid #c9c9c9;
+}
+.content-list-lmg-bg img{
+  width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/*리스트 텍스트 영역*/
+.content-list-text-bg{
+display: flex;
+flex-direction: column;
+width: 55%;
+/* background-color: aquamarine; */
+}
+.list-pub, .list-price-won{
+  margin-top: 24px;
+  font-size: 14px;
+  color: gray;
+  cursor: pointer;
+}
+.list-title{
+  
+  font-size: 18px;
+  line-height:36px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.list-price{
+  font-size: 16px;
+  line-height:2rem;
+  font-weight: 600;
+}
+.list-content{
+  margin-top: 20px;
+  font-size: 16px;
+  line-height:2rem;
+  /* background-color: aquamarine; */
+  cursor: pointer;
+}
+
+
+
+
+
+/*리스트 버튼*/
+.content-list-button-bg{
+}
+.list{
+  height: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.content-list-button-bg button{
+  height: 40px;
+  width: 100px;
+  border-radius: 7px;
+  border: 1px solid #c9c9c9;
+}
+#buy-btn{
+  background-color: #FFE373;
+}
+#cart-btn{
+
+}
+

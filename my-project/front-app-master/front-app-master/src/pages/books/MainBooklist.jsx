@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { bookAPI } from "../../service/bookService";
 import "../../assets/css/MainBooklist.css";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { goDetail } from '../../hooks/menuData.js';
 
 function MainBookList() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   function insertLineBreaks(str, maxChars = 13) {
   if (!str) return '';
@@ -52,9 +53,6 @@ function MainBookList() {
   // 안전한 currentIndex 계산
   const validIndex = currentIndex % bannerBooks.length;
 
-  const goDetail=(bookId)=>{
-    navigate(`/detail/${bookId}`);
-  }
 
   return (
     <div className="main-container">
@@ -75,7 +73,7 @@ function MainBookList() {
                   <p>{book.content}</p>
                   <button
                     className="bookmark-btn"
-                    onClick={() => goDetail(book.bookId)}
+                    onClick={() => goDetail(navigate, book.bookId)}
                     aria-label="책갈피 버튼"
                     >
                     둘러보기
@@ -110,19 +108,20 @@ function MainBookList() {
         <div className="book-list">
           {bestBooks?.map((book) => (
             <div key={book.bookId} className="book-wrap">
-              <div className="img-wrap" onClick={() => goDetail(book.bookId)}
+              <div className="img-wrap" onClick={() => goDetail(navigate, book.bookId)}
                style={{ cursor: 'pointer' }}>
                 <img src={book.mainImageUrl} alt={book.title} />
               </div>
-              <span>{book.publisher}</span>
-              <span onClick={() => goDetail(book.bookId)}
-               style={{ whiteSpace: 'pre-line' }}>
-                {insertLineBreaks(book.title, 14)}
+              <span className='list-pub' >
+                {book.publisher}
+              </span>
+              <span className='list-title' onClick={() => goDetail(navigate, book.bookId)}>
+                {book.title}
               </span>
 
-              <span>
+              <span className='list-price'>
                 {book.price}
-                <span>원</span>
+                <span className='list-price-won'> 원</span>
               </span>
             </div>
           ))}
@@ -142,17 +141,19 @@ function MainBookList() {
 
         {newBooks?.map((book) => (
           <div key={book.bookId} className="book-wrap">
-            <div className="img-wrap">
+            <div className="img-wrap" onClick={() => goDetail(book.bookId)}>
                 <img src={book.mainImageUrl} alt={book.title} />
             </div>
-            <span>{book.publisher}</span>
-            <span style={{ whiteSpace: 'pre-line' }}>
-              {insertLineBreaks(book.title, 14)}
+            <span className='list-pub'>
+              {book.publisher}
+            </span>
+            <span className='list-title' onClick={() => goDetail(book.bookId)}>
+              {book.title}
             </span>
 
-            <span>
+            <span className='list-price'>
               {book.price}
-              <span>원</span>
+              <span className='list-price-won'> 원</span>
             </span>
           </div>
         ))}

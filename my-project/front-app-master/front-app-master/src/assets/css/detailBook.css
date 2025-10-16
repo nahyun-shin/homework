@@ -1,14 +1,6 @@
 @charset "UTF-8";
 
-.content-bg{
-    width: 1200px;
-    margin: 0 auto;
-    /* background-color: brown; */
-}
-.img-body{
-
-}
-
+/*메인타이틀 영역*/
 .detail-title-bg{
     height: 150px;
     border-bottom: 1px solid rgb(214, 214, 214);
@@ -27,20 +19,68 @@
     font-size: 30px;
     font-weight: 600;
 }
-.img-bg{
-    width: 500px;
-    height: 600px;
-    border: none;
-    /* background-color: aqua; */
-    
-}
-.detail-img-wrap{
-    width: 100%;
+/*컨텐츠 영역*/
+.content-bg{
+    width: 60%;
+    min-width: 800px;
     height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/*이미지 영역*/
+.left-body{
+    width: 50%;
+}
+
+.detail-img-wrap{
+    height: 600px;
 }
 .detail-img-wrap img{
+    /* border: 1px solid black; */
     width: 100%;
     height: 100%;
     object-fit: contain;
+    
+
+}
+
+/*텍스트 영역*/
+.right-body{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+.right-bg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+}
+.detail-text-wrap{
+    display: flex;
+    flex-direction: column;
+}
+.detail-text-wrap span{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.detail-sTitle{
+  font-size: 18px;
+  font-weight:600;
+}
+.detail-pub{
+  
+}
+.detail-price{
+  font-size: 24px;
+  font-weight: 600;
+  
+}
+.count-bg{
     
 }

@@ -8,6 +8,7 @@ function DetailBook() {
   const { bookId } = useParams();
   const id = parseInt(bookId, 10);
   const navigate = useNavigate();
+  const [countNum,setCountNum] = useState(0);
 
   const {
     data: book,
@@ -18,7 +19,7 @@ function DetailBook() {
     queryFn: () => bookAPI.getBook(id),
   });
 
-  console.log(book);
+
 
   if (isLoading) return <div>로딩중...</div>;
   if (error) return <div>책 정보를 불러오지 못했습니다.</div>;
@@ -31,21 +32,52 @@ function DetailBook() {
         </div>
       </div>
       <div className="content-bg">
-          <div className="img-body">
-            <div className="img-bg">
+          <div className="left-body">
+            
               {book.fileList?.map((img) => (
                 <div key={img.imgId} className="detail-img-wrap">
                   <img src={img.imageUrl} alt={img.fileName} />
                 </div>
               ))}
+            
+          </div>
+          <div className="right-body">
+            <div className="right-bg">
+
+            <div className="detail-text-wrap">
+              {/* <span>
+                {book.stockYn}
+              </span> */}
+              <span>
+                카테고리 : {book.categoryName}
+              </span>
+              <span className="detail-sTitle">
+                {book.subTitle}
+              </span>
+              <span className="detail-pub">
+                {book.writer} · {book.publisher} · {book.pubDate}
+              </span>
+              <span className="detail-price">
+                {book.price}
+                <span> 원</span>
+              </span>
             </div>
+
+            <div className="count-bg">
+              <button onClick={() => setCountNum(prev => Math.max(0, prev - 1))}>-</button>
+              {countNum}
+              <button onClick={() => setCountNum(prev => prev + 1)}>+</button>
+            </div>
+
+            <div className="content-list-button-bg dt">
+                <button type="button" id="buy-btn">구매하기</button>
+                <button type="button" id="cart-btn">장바구니</button>
+            </div>
+            </div>
+              <span>
+                {book.content}
+              </span>
           </div>
-          <div>{book.categoryName}</div>
-          <div>
-            {book.subTitle}|{book.writer}|{book.publisher}|{book.pubDate}|
-            {book.content}|{book.price}|{book.stockYn}
-          </div>
-        
       </div>
     </div>
   );

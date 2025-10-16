@@ -4,61 +4,104 @@ import { useQuery } from "@tanstack/react-query";
 import Pagination from "../../compoents/Pagination";
 import { bookAPI } from "../../service/bookService";
 import '../../assets/css/CategoryBooklist.css';
+import { goDetail } from '../../hooks/menuData.js';
 
 function NewBookList() {
-  const location = useLocation();
-  const { type } = useParams();  // week or month
+  const navigate = useNavigate();
+  const { type } = useParams();
   const [bookList, setBookList] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
+  const [loading, setLoading] = useState(true);
+  
+  const periods = ['daily', 'weekly', 'monthly', 'all'];
   const [page, setPage] = useState(0);
+  const size=8;
+  const sort='createDate,desc';
+  
+
 
   useEffect(() => {
-    setPage(0);
+    if (!periods.includes(type)) {
+      navigate('/new/daily', { replace: true });
+    }
+    setPage(0); // 페이지 초기화
   }, [type]);
-  console.log(type);
 
-  const queryFn = async () => {
-    if (type === 'week') {
-      return await bookAPI.getNewWeekList({ page });
-    }
-    if (type === 'month') {
-      return await bookAPI.getNewMonthList({ page });
-    }
-     return Promise.reject(new Error('Invalid type'));
+  useEffect(() => {
+    if (!type || !periods.includes(type)) return;
+
+    const fetchNewBooks = async () => {
+      setLoading(true);
+      try {
+
+        const res = await bookAPI.getNewList({
+          period: type,
+          page, 
+          size, 
+          sort, 
+        });
+
+        setBookList(res.content);
+        setTotalRows(res.totalElements);
+      
+      } catch (err) {
+        console.error('신상품 API 호출 오류:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNewBooks();
+  }, [type, page]);
+
+  const handleClick = (p) => {
+    navigate(`/new/${p}`);
   };
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['newBooks', page, type],
-    queryFn,
-    enabled: type === 'week' || type === 'month',
-    onError: (err) => console.error('Query Error:', err),
-  });
-
-  console.log(data);
-  useEffect(() => {
-    if (data) {
-      setBookList(data.content ?? []);
-      setTotalRows(data.total ?? 0);
-    } else {
-      setBookList([]);
-      setTotalRows(0);
-    }
-  }, [data]);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error occurred</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>신상품 도서</h2>
-
-      <ul>
-        {bookList.map(book => (
-          <li key={book.bookId}>
-            {book.title} | {book.writer} | {book.publisher} | {book.pubDate} | {book.price}
-          </li>
+    <div className="contents-container">
+       {/* 기간 선택 탭 */}
+      {/* 기간 선택 셀렉트 박스 */}
+<div className="period-selector sort-bg">
+  <label>정렬 : </label>
+  <select className="sort-box" value={type} onChange={(e) => handleClick(e.target.value)}>
+    {periods.map((p) => (
+      <option key={p} value={p}>
+        {p.toUpperCase()}
+      </option>
+    ))}
+  </select>
+</div>
+      <div>
+        {bookList?.map(book => (
+          <div key={book.bookId} className="container-list-bg" >
+            <div className="content-list-lmg-bg" onClick={() => goDetail(navigate, book.bookId)}>
+              <img src={book.mainImageUrl} alt={book.title} />
+            </div>
+            <div className="content-list-text-bg">
+              <span className='list-title' onClick={() => goDetail(navigate, book.bookId)}>
+                {book.title} 
+              </span>
+              <span>
+                {book.writer} · {book.publisher} · {book.pubDate}
+              </span>
+              <span className='list-price'>
+                {book.price}
+                <span className='list-price-won'> 원</span>
+              </span>
+              <span className='list-content' onClick={() => goDetail(navigate, book.bookId)}>
+                {book.content}
+              </span>
+            </div>
+            <div className="content-list-button-bg list">
+              <button type="button" id="cart-btn">장바구니</button>
+              <button type="button" id="buy-btn">구매하기</button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <Pagination page={page} totalRows={totalRows} movePage={setPage} />
     </div>

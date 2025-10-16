@@ -22,11 +22,15 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
     // New: 생성일 기준 5권
     List<BookEntity> findTop5ByShowYnOrderByCreateDateDesc(String showYn);
     
-    // Best: 구매수 기준 정렬
-    Page<BookEntity> findByShowYnOrderBySalesCountDesc(String showYn, Pageable pageable);
+    // Best: 구매수 기준 기간정렬
+    Page<BookEntity> findByShowYnAndCreateDateAfterOrderBySalesCountDesc(String showYn, LocalDateTime date, Pageable pageable);
 
-    // New: 생성일 기준 정렬
+    // New: 생성일 기준 전체 정렬
+    Page<BookEntity> findByShowYnOrderByCreateDateDesc(String showYn, Pageable pageable);
+    
+    //New: 생성일 기준 기간 정렬
     Page<BookEntity> findByShowYnAndCreateDateAfterOrderByCreateDateDesc(String showYn, LocalDateTime date, Pageable pageable);
+
     
     // Banner: 배너 노출 설정된 책들
     List<BookEntity> findByShowYnAndBannerYn(String showYn, String bannerYn);

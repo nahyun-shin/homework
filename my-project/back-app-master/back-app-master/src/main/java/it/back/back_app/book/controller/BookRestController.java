@@ -127,37 +127,49 @@ Pageable pageable) {
         return ResponseEntity.ok(categories);
     }
 
-    // 베스트 전체보기
-    @GetMapping("/best")
-    public ResponseEntity<Map<String, Object>> getBestBooksAll(
+    // 베스트 - 일간
+    @GetMapping("/best/day")
+    public ResponseEntity<Map<String, Object>> getBestBooksDay(
         @PageableDefault(size = 10, page = 0 , sort = "salesCount",
         direction = Direction.DESC) Pageable pageable){
 
-        Map<String, Object> result = bookService.getBestBooksAll(pageable);
+        Map<String, Object> result = bookService.getBestBooksDay(pageable);
         return ResponseEntity.ok(result);
     }
 
-    // 신상품 - 이번 주
-    @GetMapping("/new/week")
-    public ResponseEntity<Map<String, Object>> getNewBooksWeek(
-        @PageableDefault(size = 10, page = 0, sort = "createDate",
+    // 베스트 - 이번 주
+    @GetMapping("/best/week")
+    public ResponseEntity<Map<String, Object>> getBestBooksWeek(
+        @PageableDefault(size = 10, page = 0, sort = "salesCount",
         direction = Direction.DESC) Pageable pageable) {
     
-    Map<String, Object> result = bookService.getNewBooksWeek(pageable);
+    Map<String, Object> result = bookService.getBestBooksWeek(pageable);
     return ResponseEntity.ok(result);
     }
 
 
-    // 신상품 - 이번 달
-    @GetMapping("/new/month")
-    public ResponseEntity<Map<String, Object>> getNewBooksMonth(
-        @PageableDefault(size = 10, page = 0, sort = "createDate",
+    // 베스트 - 이번 달
+    @GetMapping("/best/month")
+    public ResponseEntity<Map<String, Object>> getBestBooksMonth(
+        @PageableDefault(size = 10, page = 0, sort = "salesCount",
         direction = Direction.DESC) Pageable pageable) {
 
-        Map<String, Object> result = bookService.getNewBooksMonth(pageable);
+        Map<String, Object> result = bookService.getBestBooksMonth(pageable);
         return ResponseEntity.ok(result);
     }
 
+    // 신상품 조회 (일간/주간/월간/전체)
+    @GetMapping("/new")
+    public ResponseEntity<Page<BookCategoryDTO>> getNewBooks(
+        @RequestParam(defaultValue = "all") String period,
+        @PageableDefault(size = 10, page = 0, sort = "createDate", direction = Direction.DESC) Pageable pageable
+    ) {
+        Page<BookCategoryDTO> result = bookService.getBooksByPeriod(period, pageable);
+        return ResponseEntity.ok(result);
+    }
+
+
+    //디테일페이지
     @GetMapping("/detail/{bookId}")
     public ResponseEntity<BookDetailDTO> getBook(@PathVariable Integer bookId){
         BookDetailDTO dto = bookService.getDetailBook(bookId);

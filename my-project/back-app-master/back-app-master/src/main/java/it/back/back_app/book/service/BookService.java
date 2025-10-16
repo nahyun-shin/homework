@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,11 +85,13 @@ public class BookService {
     }
 
     /**
-     * 베스트 도서 - 판매순 전체
+     * 베스트 도서 - 일 간
      */
     @Transactional(readOnly = true)
-    public Map<String, Object> getBestBooksAll(Pageable pageable) {
-        Page<BookEntity> books = bookRepository.findByShowYnOrderBySalesCountDesc("Y", pageable);
+    public Map<String, Object> getBestBooksDay(Pageable pageable) {
+
+        LocalDateTime  weekAgo = LocalDateTime.now().minusDays(1);
+        Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderBySalesCountDesc("Y",weekAgo, pageable);
         
         List<BookCategoryDTO> list = books.getContent().stream()
         .map(book -> BookCategoryDTO.of(book, baseImageUrl))
@@ -103,13 +106,13 @@ public class BookService {
     }
 
     /**
-     * 신상품 도서 - 이번 주
+     * 베스트 도서 - 이번 주
      */
     @Transactional(readOnly = true)
-    public Map<String, Object> getNewBooksWeek(Pageable pageable) {
+    public Map<String, Object> getBestBooksWeek(Pageable pageable) {
 
         LocalDateTime  weekAgo = LocalDateTime.now().minusWeeks(1);
-        Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", weekAgo, pageable);
+        Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderBySalesCountDesc("Y", weekAgo, pageable);
         
         List<BookCategoryDTO> list = books.getContent().stream()
         .map(book -> BookCategoryDTO.of(book, baseImageUrl))
@@ -124,13 +127,13 @@ public class BookService {
     }
 
     /**
-     * 신상품 도서 - 이번 달
+     * 베스트 도서 - 이번 달
      */
     @Transactional(readOnly = true)
-    public Map<String, Object> getNewBooksMonth(Pageable pageable) {
+    public Map<String, Object> getBestBooksMonth(Pageable pageable) {
 
         LocalDateTime monthAgo = LocalDateTime.now().minusMonths(1);
-        Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", monthAgo, pageable);
+        Page<BookEntity> books = bookRepository.findByShowYnAndCreateDateAfterOrderBySalesCountDesc("Y", monthAgo, pageable);
 
         List<BookCategoryDTO> list = books.getContent().stream()
         .map(book -> BookCategoryDTO.of(book, baseImageUrl))
@@ -143,13 +146,51 @@ public class BookService {
 
         return result;
     }
+
+    /**
+     * 신상품 도서 - 전체 및 기간 조회
+     * @param categoryId
+     * @param query
+     * @param pageable
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Page<BookCategoryDTO> getBooksByPeriod(String period, Pageable pageable) {
+    LocalDateTime now = LocalDateTime.now();
+    Page<BookEntity> bookPage;
+
+    switch (period.toLowerCase()) {
+        case "daily":
+            bookPage = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", now.minusDays(1), pageable);
+            break;
+        case "weekly":
+            bookPage = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", now.minusWeeks(1), pageable);
+            break;
+        case "monthly":
+            bookPage = bookRepository.findByShowYnAndCreateDateAfterOrderByCreateDateDesc("Y", now.minusMonths(1), pageable);
+            break;
+        case "all":
+        default:
+            bookPage = bookRepository.findByShowYnOrderByCreateDateDesc("Y", pageable);
+            break;
+    }
+
+        return bookPage.map(entity -> BookCategoryDTO.of(entity, baseImageUrl));
+    }
+
+
+
+
+
+     
+
 
 
     /**
      * 카테고리 + 검색어 필터링 조회
      */
     @Transactional(readOnly = true)
-public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pageable pageable) {
+    public Map<String, Object> getBooksFiltered(Integer categoryId, String query, Pageable pageable) {
 
     BookCategoryEntity category = null;
     if (categoryId != null && categoryId != 0) {

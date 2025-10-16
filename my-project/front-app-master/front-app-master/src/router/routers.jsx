@@ -29,7 +29,7 @@ export const routers = createBrowserRouter([
             {
                 path: 'books',
                 children: [
-                    { index: true, element: <Navigate to="all" replace /> },       // /books
+                    { index: true, element: <CategoryBooklist /> },       // /books
                     { path: 'all', element: <CategoryBooklist/> },      // /books/all
                     { path: 'category/:categoryId', element: <CategoryBooklist/> }, // /books/category/:categoryId
                     // { path: ':bookId', element: <DetailBook/> } 
@@ -40,6 +40,11 @@ export const routers = createBrowserRouter([
                 children: [
                     {
                         index: true,
+                        element: <Navigate to="day" replace />
+                    }
+                    ,
+                    {
+                        path: ':type',
                         element: <BestBookList/>
                     }
                 ]
@@ -49,12 +54,13 @@ export const routers = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <Navigate to="week" replace />
+                        element: <Navigate to="daily" replace />
                     },
                     {
-                        path: ':type',
-                        element: <NewBookList/>
+                        path: ':type',   // daily, weekly, monthly, all
+                        element: <NewBookList />
                     }
+                    
                 ]
             },
             {

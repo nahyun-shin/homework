@@ -1,3 +1,5 @@
+import { Navigate } from "react-router";
+
 export const mainMenus = [
   { name: '홈', hover: '', path: '/main' },
   { name: '카테고리', hover: '카테고리', path: '/books' },
@@ -32,6 +34,12 @@ export const getFixedMenuKey = (pathname) => {
 //메인메뉴 키찾을때
 export const getActiveMenuKeyFromPath = (pathname) => {
   return Object.keys(menuPathMap).find((key) => pathname.startsWith(menuPathMap[key]));
+};
+
+
+//디테일페이지로 이동
+export const goDetail = (navigate, bookId) => {
+  navigate(`/detail/${bookId}`);
 };
 
 

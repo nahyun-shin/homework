@@ -11,7 +11,8 @@
   z-index: 10;
 }
 .body-wrap{
-  width: 1128px;
+  min-width: 1150px;
+  width: 60%;
   height: 100%;
   margin: 50px auto 0;
   display: flex;

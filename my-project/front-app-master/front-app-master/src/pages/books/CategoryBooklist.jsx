@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { subMenus } from '../../hooks/menuData';
 import Pagination from "../../compoents/Pagination";
 import '../../assets/css/CategoryBooklist.css';
 import { bookAPI } from "../../service/bookService";
+import { goDetail } from '../../hooks/menuData.js';
 
 function CategoryBooklist({showSideMenu}) {
 
@@ -20,7 +20,7 @@ function CategoryBooklist({showSideMenu}) {
   const queryParams = new URLSearchParams(location.search);
   const queryCategoryId = queryParams.get('categoryId') ?? null;
   const searchQuery = queryParams.get('query') ?? '';
-  const currentSort = queryParams.get('sort') ?? 'createDate';
+  const currentSort = queryParams.get('sort') ?? 'createDate,desc';
 
   const currentCategoryId = paramCategoryId ?? queryCategoryId;
 
@@ -68,30 +68,50 @@ const { data, isLoading, error } = useQuery({
   if (error) return <div>Error occurred</div>;
 
   return (
-    <div >
+    <div className="contents-container">
 
-      <h2>책 목록</h2>
-
-      <div>
-        <label>정렬: </label>
-        <select value={currentSort} onChange={handleSortChange}>
-          <option value="title">제목 순</option>
-          <option value="writer">작가 순</option>
-          <option value="publisher">출판사 순</option>
-          <option value="price,asc">가격 낮은 순</option>
-          <option value="price,desc">가격 높은 순</option>
-          <option value="createDate,desc">최신 등록 순 </option>
-          <option value="createDate,asc">과거 등록 순 </option>
-        </select>
+      <div className="sort-bg">
+          <label>정렬 : </label>
+          <select className="sort-box" value={currentSort} onChange={handleSortChange}>
+            <option value="createDate,desc">최신 등록 순 </option>
+            <option value="createDate,asc">과거 등록 순 </option>
+            <option value="title">제목 순</option>
+            <option value="writer">작가 순</option>
+            <option value="publisher">출판사 순</option>
+            <option value="price,asc">가격 낮은 순</option>
+            <option value="price,desc">가격 높은 순</option>
+          </select>
+        
       </div>
 
-      <ul>
+      <div>
         {bookList?.map(book => (
-          <li key={book.bookId}>
-            {book.title} | {book.writer} | {book.publisher} | {book.pubDate} | {book.price}
-          </li>
+          <div key={book.bookId} className="container-list-bg">
+            <div className="content-list-lmg-bg" onClick={() => goDetail(navigate, book.bookId)}>
+              <img src={book.mainImageUrl} alt={book.title} />
+            </div>
+            <div className="content-list-text-bg" >
+              <span className='list-title' onClick={() => goDetail(navigate, book.bookId)}>
+                {book.title} 
+              </span>
+              <span>
+                {book.writer} · {book.publisher} · {book.pubDate}
+              </span>
+              <span className='list-price'>
+                {book.price}
+                <span className='list-price-won'> 원</span>
+              </span>
+              <span className='list-content' onClick={() => goDetail(navigate, book.bookId)}>
+                {book.content}
+              </span>
+            </div>
+            <div className="content-list-button-bg list">
+              <button type="button" id="cart-btn">장바구니</button>
+              <button type="button" id="buy-btn">구매하기</button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <Pagination page={page} totalRows={totalRows} movePage={setPage} />
     </div>

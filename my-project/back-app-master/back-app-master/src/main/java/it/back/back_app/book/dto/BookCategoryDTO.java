@@ -27,6 +27,7 @@ public class BookCategoryDTO {
     private int categoryId;       // int로 변경
     private String categoryName;  // 카테고리 이름 추가
     private String content;
+    private int salesCount;
     private int price;
     private Boolean stockYn;
     private String mainImageUrl;
@@ -51,6 +52,7 @@ public class BookCategoryDTO {
             .categoryId(entity.getCategory() != null ? entity.getCategory().getCategoryId() : 0)
             .categoryName(entity.getCategory() != null ? entity.getCategory().getCategoryName() : null)
             .content(entity.getContent())
+            .salesCount(entity.getSalesCount())
             .price(entity.getPrice())
             .stockYn("Y".equalsIgnoreCase(entity.getStockYn()))
             .mainImageUrl(mainImage)
