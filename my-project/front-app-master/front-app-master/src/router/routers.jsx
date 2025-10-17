@@ -8,6 +8,7 @@ import CategoryBooklist from "../pages/books/CategoryBooklist";
 import NewBookList from "../pages/books/NewBookList";
 import BestBookList from "../pages/books/BestBookList";
 import DetailBook from "../pages/books/DetailBook";
+import AdminBookList from "../pages/admin/AdminBookList";
 
 export const routers = createBrowserRouter([
     {
@@ -29,9 +30,9 @@ export const routers = createBrowserRouter([
             {
                 path: 'books',
                 children: [
-                    { index: true, element: <CategoryBooklist /> },       // /books
-                    { path: 'all', element: <CategoryBooklist/> },      // /books/all
-                    { path: 'category/:categoryId', element: <CategoryBooklist/> }, // /books/category/:categoryId
+                    { index: true, element: <Navigate to="all" replace /> },       // /books
+                    { path: 'all', element: <CategoryBooklist key={window.location.search}/> },      // /books/all
+                    { path: 'category/:categoryId', element: <CategoryBooklist key={window.location.search}/> }, // /books/category/:categoryId
                     // { path: ':bookId', element: <DetailBook/> } 
                 ]
             },
@@ -70,6 +71,20 @@ export const routers = createBrowserRouter([
                         index: true,
                         element: <DetailBook/>
                     }
+                ]
+            },
+            {
+                path: 'admin',
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to="books" replace />
+                    },
+                    {
+                        path: 'books',   // daily, weekly, monthly, all
+                        element: <AdminBookList />
+                    }
+                    
                 ]
             }
         ]

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink, useLocation, useNavigate } from 'react-router';
 import { authStore } from '../store/authStore';
@@ -15,6 +15,9 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
   const userName = authStore((state) => state.userName);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // 이전 카테고리 추적용 ref
+  const prevCategoryRef = useRef(null);
 
   // -------------------------
   // DB 기반 카테고리 메뉴 로드
@@ -46,11 +49,7 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
         { name: '이번달 베스트', path: '/best/month' },
       ],
     },
-    {
-      name: '신상품',
-      path: '/new',
-      
-    },
+    { name: '신상품', path: '/new' },
   ];
 
   // -------------------------
@@ -58,8 +57,6 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
   // -------------------------
   useEffect(() => {
     const path = location.pathname;
-
-    // 메인페이지라면 하이라이트 초기화
     if (path === '/main') {
       setSelectedMenu({});
       return;
@@ -67,16 +64,25 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
 
     mainMenus.forEach((menu) => {
       if (!menu.sub || menu.sub.length === 0) return;
-
-      // 하위 메뉴 URL과 일치하는 경우
       const idx = menu.sub.findIndex((sub) => path.startsWith(sub.path));
-
-      if (idx >= 0) {
-        setSelectedMenu((prev) => ({ ...prev, [menu.name]: idx }));
-        return;
-      }
+      if (idx >= 0) setSelectedMenu((prev) => ({ ...prev, [menu.name]: idx }));
     });
   }, [location.pathname, categoryMenus]);
+
+  // -------------------------
+  // 검색창 초기화 로직
+  // -------------------------
+  useEffect(() => {
+    const currentCategoryId = selectedMenu['카테고리'] !== undefined
+      ? categoryMenus[selectedMenu['카테고리']]?.categoryId ?? 0
+      : null;
+
+    if (prevCategoryRef.current !== currentCategoryId) {
+      // 카테고리/메뉴 변경 시 검색 초기화
+      setSearchTxt('');
+      prevCategoryRef.current = currentCategoryId;
+    }
+  }, [selectedMenu, categoryMenus]);
 
   const fixedMenu = (() => {
     if (location.pathname.startsWith('/books')) return '카테고리';
@@ -85,13 +91,7 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
     return null;
   })();
 
-  const visibleMenu = (() => {
-   if (!hoveredMenu) return isFixed ? fixedMenu : null;
-   if (hoveredMenu === '홈') return fixedMenu;
-  
-  return hoveredMenu;
-})();
-
+  const visibleMenu = hoveredMenu || (isFixed ? fixedMenu : null);
 
   const handleLogout = () => {
     clearAuth();
@@ -101,29 +101,61 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
 
   const inputChange = (e) => setSearchTxt(e.target.value);
 
+  // -------------------------
+  // 검색 처리
+  // -------------------------
   const handleSearch = () => {
+    if (!location.pathname.startsWith('/books')) return; // 카테고리 페이지 외에서는 무시
+
     const params = new URLSearchParams();
-    if (location.pathname.startsWith('/books')) {
-      params.set('categoryId', categoryMenus[selectedMenu['카테고리']]?.categoryId || 0);
-    }
+
     if (searchTxt.trim()) params.set('query', searchTxt.trim());
-    navigate(`/books?${params.toString()}`);
+
+    // 현재 선택된 카테고리
+    const selectedCategoryId = selectedMenu['카테고리'] !== undefined
+      ? categoryMenus[selectedMenu['카테고리']]?.categoryId ?? 0
+      : 0;
+
+    params.set('categoryId', selectedCategoryId);
+
+    // sort 유지, 없으면 기본값
+    if (!params.has('sort')) params.set('sort', 'createDate,desc');
+
+    // 현재 카테고리 경로
+    const path = selectedCategoryId === 0 ? '/books/all' : `/books/category/${selectedCategoryId}`;
+
+    navigate(`${path}?${params.toString()}`);
   };
 
-  // -------------------------
-  // 하위 메뉴 클릭
-  // -------------------------
-  const handleSubMenuClick = (item, menuName, idx) => {
-    let path = '';
-    if (item.categoryId !== undefined) {
-      path = item.categoryId === 0 ? '/books/all' : `/books/category/${item.categoryId}`;
-    } else if (item.path) {
-      path = item.path;
-    }
-    navigate(path);
-    setSelectedMenu((prev) => ({ ...prev, [menuName]: idx }));
-    setHoveredMenu(null);
-  };
+// -------------------------
+// 하위 메뉴 클릭 (메뉴 타입 최소 분기)
+// -------------------------
+const handleSubMenuClick = (item, menuName, idx) => {
+  let path = '';
+  const params = new URLSearchParams();
+
+  if (menuName === '카테고리') {
+    // 카테고리 메뉴
+    const categoryId = item.categoryId ?? 0;
+    path = categoryId === 0 ? '/books/all' : `/books/category/${categoryId}`;
+    params.set('categoryId', categoryId);
+    params.set('sort', 'createDate,desc');
+  } else if (menuName === '베스트' || menuName === '신상품') {
+    // 베스트 / 신상품 메뉴
+    path = item.path; // path 그대로 사용
+    // categoryId는 넣지 않음 → undefined 방지
+  } else {
+    // 기타 메뉴
+    path = item.path;
+  }
+
+  navigate(`${path}?${params.toString()}`);
+  setSelectedMenu((prev) => ({ ...prev, [menuName]: idx }));
+  setHoveredMenu(null);
+  setSearchTxt('');
+};
+
+
 
   return (
     <Navbar expand="lg" className="bg-body">

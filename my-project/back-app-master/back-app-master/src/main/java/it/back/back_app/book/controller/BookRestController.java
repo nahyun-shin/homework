@@ -14,18 +14,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import it.back.back_app.book.dto.BookCategoryDTO;
-import it.back.back_app.book.dto.BookDetailDTO;
-import it.back.back_app.book.dto.BookMainDTO;
-import it.back.back_app.book.dto.CategoryMenuDTO;
-import it.back.back_app.book.entity.BookCategoryEntity;
-import it.back.back_app.book.repository.BookCategoryRepository;
+import it.back.back_app.book.dto.*;
 import it.back.back_app.book.service.BookService;
 import it.back.back_app.common.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -39,17 +30,16 @@ import org.springframework.beans.factory.annotation.Value;
 @RequestMapping("/api/v1")
 public class BookRestController {
 
-    private final BookCategoryRepository bookCategoryRepository;
-    
     private final BookService bookService;
 
-    //이미지경로
     @Value("${server.file.upload.path}")
     private String uploadPath;
 
-    //이미지불러오기
+    // ------------------------------
+    // 1️⃣ 이미지 불러오기
+    // ------------------------------
     @GetMapping("/image/{filename}")
-    public ResponseEntity<Resource> getBookImage(@PathVariable String filename) {
+    public ResponseEntity<Resource> getBookImage(@PathVariable("filename") String filename) {
         try {
             Path filePath = Paths.get(uploadPath).resolve(filename).normalize();
             log.info("Serving image from path: {}", filePath.toString());
@@ -59,10 +49,7 @@ public class BookRestController {
                 return ResponseEntity.notFound().build();
             }
 
-            String contentType = "image/jpeg";
-            if (filename.endsWith(".png")) {
-                contentType = "image/png";
-            }
+            String contentType = filename.endsWith(".png") ? "image/png" : "image/jpeg";
 
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(contentType))
@@ -72,99 +59,104 @@ public class BookRestController {
             log.error("Error while serving image file: " + filename, e);
             return ResponseEntity.internalServerError().build();
         }
-        
     }
 
-    //메인페이지
+    // ------------------------------
+    // 2️⃣ 메인 페이지 도서 목록
+    // ------------------------------
     @GetMapping("/main")
     public ResponseEntity<ApiResponse<List<BookMainDTO>>> getMainBookList(
-        @RequestParam("type") String type,
-        @PageableDefault(size = 6, page = 0) Pageable pageable) throws Exception {
+            @RequestParam("type") String type,
+            @PageableDefault(size = 6, page = 0) Pageable pageable) {
 
-        log.info("----- 메인페이지 최근 6권 도서 목록 가져오기 -------");
+        log.info("메인페이지 도서 목록 조회, type={}", type);
 
         List<BookMainDTO> books;
 
         switch (type.toLowerCase()) {
             case "best":
-                books = bookService.getBestBooks(); // 구매순
+                books = bookService.getBestBooks();
                 break;
             case "new":
-                books = bookService.getNewBooks();  // 생성일 기준
+                books = bookService.getNewBooks();
                 break;
             case "banner":
-                books = bookService.getBannerBooks(); // 관리자 지정
+                books = bookService.getBannerBooks();
                 break;
             default:
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .body(ApiResponse.error("Invalid type parameter."));
         }
-        log.info("응답 데이터: {}", books);
 
+        log.info("응답 데이터: {}", books);
         return ResponseEntity.ok(ApiResponse.ok(books));
     }
 
-    //카테고리페이지
+    // ------------------------------
+    // 3️⃣ 카테고리 페이지
+    // ------------------------------
     @GetMapping("/books")
-    public ResponseEntity<Map<String, Object>> getBooks(
+    public ResponseEntity<Map<String, Object>> getBookList(
             @RequestParam(value = "categoryId", required = false) Integer categoryId,
             @RequestParam(value = "query", required = false) String query,
             @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC) Pageable pageable) {
+
         Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
         return ResponseEntity.ok(result);
     }
 
-    //카테고리정보
-    // 모든 카테고리 메뉴 조회
+    // ------------------------------
+    // 4️⃣ 카테고리 메뉴
+    // ------------------------------
     @GetMapping("/categories")
     public ResponseEntity<List<CategoryMenuDTO>> getCategoryMenu() {
         List<CategoryMenuDTO> categories = bookService.getCategoryMenu();
         return ResponseEntity.ok(categories);
     }
 
-    // 베스트 - 일간
+    // ------------------------------
+    // 5️⃣ 베스트 도서 조회
+    // ------------------------------
     @GetMapping("/best/day")
     public ResponseEntity<Map<String, Object>> getBestBooksDay(
-        @PageableDefault(size = 10, page = 0 , sort = "salesCount", direction = Direction.DESC) Pageable pageable){
-
+            @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
         Map<String, Object> result = bookService.getBestBooksDay(pageable);
         return ResponseEntity.ok(result);
     }
 
-    // 베스트 - 이번 주
     @GetMapping("/best/week")
     public ResponseEntity<Map<String, Object>> getBestBooksWeek(
-        @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
-    
+            @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
         Map<String, Object> result = bookService.getBestBooksWeek(pageable);
         return ResponseEntity.ok(result);
     }
 
-    // 베스트 - 이번 달
     @GetMapping("/best/month")
     public ResponseEntity<Map<String, Object>> getBestBooksMonth(
-        @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
-
+            @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
         Map<String, Object> result = bookService.getBestBooksMonth(pageable);
         return ResponseEntity.ok(result);
     }
 
-    // 신상품 조회 (일간/주간/월간/전체)
+    // ------------------------------
+    // 6️⃣ 신상품 조회
+    // ------------------------------
     @GetMapping("/new")
     public ResponseEntity<Page<BookCategoryDTO>> getNewBooks(
-        @RequestParam(value = "period", defaultValue = "all") String period,
-        @PageableDefault(size = 10, page = 0, sort = "createDate", direction = Direction.DESC) Pageable pageable
-    ) {
+            @RequestParam(value = "period", defaultValue = "all") String period,
+            @PageableDefault(size = 10, page = 0, sort = "createDate", direction = Direction.DESC) Pageable pageable) {
+
         Page<BookCategoryDTO> result = bookService.getBooksByPeriod(period, pageable);
         return ResponseEntity.ok(result);
     }
 
-    //디테일페이지
+    // ------------------------------
+    // 7️⃣ 도서 상세 페이지
+    // ------------------------------
     @GetMapping("/detail/{bookId}")
-    public ResponseEntity<BookDetailDTO> getBook(@PathVariable Integer bookId){
+    public ResponseEntity<BookDetailDTO> getBook(@PathVariable("bookId") Integer bookId) {
         BookDetailDTO dto = bookService.getDetailBook(bookId);
         return ResponseEntity.ok(dto);
     }
-
 }

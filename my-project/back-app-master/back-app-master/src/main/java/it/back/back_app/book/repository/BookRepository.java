@@ -58,7 +58,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 
 
     // 단일 책 조회 (책 ID 기준)
-    Optional<BookEntity> findByBookIdAndStockYn(Integer bookId, String stockYn);
+    Optional<BookEntity> findByBookIdAndShowYn(Integer bookId, String showYn);
 
 
 

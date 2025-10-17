@@ -114,6 +114,30 @@ export const bookAPI = {
         return response.data;
     },
 
+    getAdminBookList: async ({
+    page = 0,
+    size = 8,
+    categoryId,
+    query,
+    sort = 'createDate,desc',
+    type,         // best, new, 등
+    dateRange     // week, month 등
+    } = {}) => {
+        const params = new URLSearchParams();
+
+        params.set('page', page);
+        params.set('size', size);
+        params.set('sort', sort);
+
+        if (categoryId) params.set('categoryId', categoryId);
+        if (query) params.set('query', query);
+        if (type) params.set('type', type);          // 예: best, new
+        if (dateRange) params.set('range', dateRange); // 예: week, month
+
+        const response = await api.get(`/api/v1/books?${params.toString()}`);
+        return response.data;
+    },
+
     create: async (formData) => {
         const response = await api.post(`/api/v1/main`, formData, {
             headers: {

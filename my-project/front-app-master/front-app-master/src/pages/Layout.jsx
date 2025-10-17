@@ -24,6 +24,7 @@ function Layout() {
 
     return (
         <div>
+            
             <MenuBar
                 showSideMenu={showSideMenu}
                 setShowSideMenu={setShowSideMenu}

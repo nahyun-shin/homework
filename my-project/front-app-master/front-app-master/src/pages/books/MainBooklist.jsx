@@ -141,13 +141,13 @@ function MainBookList() {
 
         {newBooks?.map((book) => (
           <div key={book.bookId} className="book-wrap">
-            <div className="img-wrap" onClick={() => goDetail(book.bookId)}>
+            <div className="img-wrap" onClick={() => goDetail(navigate, book.bookId)}>
                 <img src={book.mainImageUrl} alt={book.title} />
             </div>
             <span className='list-pub'>
               {book.publisher}
             </span>
-            <span className='list-title' onClick={() => goDetail(book.bookId)}>
+            <span className='list-title' onClick={() => goDetail(navigate, book.bookId)}>
               {book.title}
             </span>
 
