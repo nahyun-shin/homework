@@ -43,7 +43,6 @@ public class BookRestController {
     
     private final BookService bookService;
 
-
     //이미지경로
     @Value("${server.file.upload.path}")
     private String uploadPath;
@@ -53,6 +52,7 @@ public class BookRestController {
     public ResponseEntity<Resource> getBookImage(@PathVariable String filename) {
         try {
             Path filePath = Paths.get(uploadPath).resolve(filename).normalize();
+            log.info("Serving image from path: {}", filePath.toString());
             Resource resource = new UrlResource(filePath.toUri());
 
             if (!resource.exists()) {
@@ -78,13 +78,12 @@ public class BookRestController {
     //메인페이지
     @GetMapping("/main")
     public ResponseEntity<ApiResponse<List<BookMainDTO>>> getMainBookList(
-        @RequestParam String type,
-        @PageableDefault(size = 6, page = 0)Pageable pageable)throws Exception {
+        @RequestParam("type") String type,
+        @PageableDefault(size = 6, page = 0) Pageable pageable) throws Exception {
 
         log.info("----- 메인페이지 최근 6권 도서 목록 가져오기 -------");
 
         List<BookMainDTO> books;
-        
 
         switch (type.toLowerCase()) {
             case "best":
@@ -103,18 +102,15 @@ public class BookRestController {
         }
         log.info("응답 데이터: {}", books);
 
-
         return ResponseEntity.ok(ApiResponse.ok(books));
     }
 
     //카테고리페이지
     @GetMapping("/books")
     public ResponseEntity<Map<String, Object>> getBooks(
-            @RequestParam(required = false) Integer categoryId,
-            @RequestParam(required = false) String query,
-            @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC)
-Pageable pageable) {
-        // log.info("요청된 정렬 정보: {}", pageable.getSort());
+            @RequestParam(value = "categoryId", required = false) Integer categoryId,
+            @RequestParam(value = "query", required = false) String query,
+            @PageableDefault(size = 6, page = 0, sort = "createDate", direction = Direction.ASC) Pageable pageable) {
         Map<String, Object> result = bookService.getBooksFiltered(categoryId, query, pageable);
         return ResponseEntity.ok(result);
     }
@@ -130,8 +126,7 @@ Pageable pageable) {
     // 베스트 - 일간
     @GetMapping("/best/day")
     public ResponseEntity<Map<String, Object>> getBestBooksDay(
-        @PageableDefault(size = 10, page = 0 , sort = "salesCount",
-        direction = Direction.DESC) Pageable pageable){
+        @PageableDefault(size = 10, page = 0 , sort = "salesCount", direction = Direction.DESC) Pageable pageable){
 
         Map<String, Object> result = bookService.getBestBooksDay(pageable);
         return ResponseEntity.ok(result);
@@ -140,19 +135,16 @@ Pageable pageable) {
     // 베스트 - 이번 주
     @GetMapping("/best/week")
     public ResponseEntity<Map<String, Object>> getBestBooksWeek(
-        @PageableDefault(size = 10, page = 0, sort = "salesCount",
-        direction = Direction.DESC) Pageable pageable) {
+        @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
     
-    Map<String, Object> result = bookService.getBestBooksWeek(pageable);
-    return ResponseEntity.ok(result);
+        Map<String, Object> result = bookService.getBestBooksWeek(pageable);
+        return ResponseEntity.ok(result);
     }
-
 
     // 베스트 - 이번 달
     @GetMapping("/best/month")
     public ResponseEntity<Map<String, Object>> getBestBooksMonth(
-        @PageableDefault(size = 10, page = 0, sort = "salesCount",
-        direction = Direction.DESC) Pageable pageable) {
+        @PageableDefault(size = 10, page = 0, sort = "salesCount", direction = Direction.DESC) Pageable pageable) {
 
         Map<String, Object> result = bookService.getBestBooksMonth(pageable);
         return ResponseEntity.ok(result);
@@ -161,13 +153,12 @@ Pageable pageable) {
     // 신상품 조회 (일간/주간/월간/전체)
     @GetMapping("/new")
     public ResponseEntity<Page<BookCategoryDTO>> getNewBooks(
-        @RequestParam(defaultValue = "all") String period,
+        @RequestParam(value = "period", defaultValue = "all") String period,
         @PageableDefault(size = 10, page = 0, sort = "createDate", direction = Direction.DESC) Pageable pageable
     ) {
         Page<BookCategoryDTO> result = bookService.getBooksByPeriod(period, pageable);
         return ResponseEntity.ok(result);
     }
-
 
     //디테일페이지
     @GetMapping("/detail/{bookId}")
@@ -175,11 +166,5 @@ Pageable pageable) {
         BookDetailDTO dto = bookService.getDetailBook(bookId);
         return ResponseEntity.ok(dto);
     }
-
-    
-
-
-
-    
 
 }
