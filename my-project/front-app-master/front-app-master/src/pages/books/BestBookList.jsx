@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../../compoents/Pagination";
 import { bookAPI } from "../../service/bookService";
-import '../../assets/css/CategoryBooklist.css'; // 스타일 공유
 import { goDetail } from '../../hooks/menuData.js';
 
 function BestBookList() {
@@ -47,7 +46,7 @@ useEffect(() => {
     setBookList([]);
     setTotalRows(0);
   }
-  console.log(data);
+  
 }, [data]);
 
 
@@ -82,8 +81,8 @@ useEffect(() => {
               </span>
             </div>
             <div className="content-list-button-bg list">
-              <button type="button" id="cart-btn">장바구니</button>
-              <button type="button" id="buy-btn">구매하기</button>
+              <button type="button" className="cart-btn">장바구니</button>
+              <button type="button" className="yellow-btn">구매하기</button>
             </div>
           </div>
         ))}

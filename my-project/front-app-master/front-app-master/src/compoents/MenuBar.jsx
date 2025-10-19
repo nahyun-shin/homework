@@ -19,13 +19,23 @@ function MenuBar({ showSideMenu, setShowSideMenu, isFixed }) {
   // 이전 카테고리 추적용 ref
   const prevCategoryRef = useRef(null);
 
+  const handleMouseEnter = (menuName) => {
+  if (menuName === '홈') {
+    // 홈에 마우스를 올리면 열린 메뉴 닫기
+    setHoveredMenu(null);
+  } else {
+    // 다른 메뉴에 마우스를 올리면 해당 메뉴 오픈
+    setHoveredMenu(menuName);
+  }
+};
+
   // -------------------------
   // DB 기반 카테고리 메뉴 로드
   // -------------------------
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await bookAPI.getCategoryMenus();
+        const data = await bookAPI.getCategoryMenus(true);
         setCategoryMenus(data);
       } catch (err) {
         console.error('카테고리 메뉴 불러오기 실패:', err);
@@ -177,11 +187,12 @@ const handleSubMenuClick = (item, menuName, idx) => {
         >
           <Nav className="l-menu">
             {mainMenus.map((menu) => (
+              
               <Nav.Link
                 key={menu.name}
                 as={NavLink}
                 to={menu.path}
-                onMouseEnter={() => setHoveredMenu(menu.name)}
+                onMouseEnter={() => handleMouseEnter(menu.name)}
               >
                 {menu.name}
               </Nav.Link>
@@ -218,9 +229,10 @@ const handleSubMenuClick = (item, menuName, idx) => {
               placeholder="검색어를 입력해주세요."
               value={searchTxt}
               onChange={inputChange}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={(e) => {if (e.key === "Enter") handleSearch();}}
+              className='search-input'
             />
-            <button type="button" onClick={handleSearch}>
+            <button type="button" onClick={handleSearch} className='search-button'>
               검색
             </button>
           </div>

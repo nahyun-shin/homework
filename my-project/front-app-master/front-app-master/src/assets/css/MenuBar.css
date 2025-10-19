@@ -48,26 +48,7 @@
     width: 100%;
     max-width: 450px;
     
-}
-.center input{
-    width: 100%;
-    border-radius: 25px;
-    height: 46px;
-    border: 1px solid #C9C9C9;
-    padding-left: 25px;
-}
-:focus-visible {
-    outline: #978358 solid 0.2px;
-}
-.center button{
-    border: 0px solid #C9C9C9;
-    background-color: transparent;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translate(0, -50%);
-    color: #3F3131;
-}
+  }
 
 .r-menu{
     display: flex;

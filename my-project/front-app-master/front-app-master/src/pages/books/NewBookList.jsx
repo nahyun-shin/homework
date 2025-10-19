@@ -3,7 +3,6 @@ import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from "
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../../compoents/Pagination";
 import { bookAPI } from "../../service/bookService";
-import '../../assets/css/CategoryBooklist.css';
 import { goDetail } from '../../hooks/menuData.js';
 
 function NewBookList() {
@@ -26,6 +25,8 @@ function NewBookList() {
     }
     setPage(0); // 페이지 초기화
   }, [type]);
+
+  
 
   useEffect(() => {
     if (!type || !periods.includes(type)) return;
@@ -96,8 +97,8 @@ function NewBookList() {
               </span>
             </div>
             <div className="content-list-button-bg list">
-              <button type="button" id="cart-btn">장바구니</button>
-              <button type="button" id="buy-btn">구매하기</button>
+              <button type="button" className="cart-btn">장바구니</button>
+              <button type="button" className="yellow-btn">구매하기</button>
             </div>
           </div>
         ))}

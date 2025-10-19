@@ -37,7 +37,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 
     
     
-    // 카테고리 + 검색어 + 페이징
+    // user 노출도서만 카테고리 + 검색어 + 페이징
     @Query("""
         SELECT b FROM BookEntity b
         WHERE b.showYn = 'Y'
@@ -55,11 +55,28 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
         Pageable pageable
     );
 
+    //admin 모든 도서 카테고리 + 검색어 + 페이징
+    @Query("""
+        SELECT b FROM BookEntity b
+        WHERE(:category IS NULL OR b.category = :category)
+        AND (:query IS NULL OR 
+            LOWER(b.title) LIKE LOWER(CONCAT('%', :query, '%')) OR
+            LOWER(b.writer) LIKE LOWER(CONCAT('%', :query, '%')) OR
+            LOWER(b.publisher) LIKE LOWER(CONCAT('%', :query, '%'))
+        )
+    """)
+
+    Page<BookEntity> findByCategoryAndQueryAndShowYn(
+        @Param("category") BookCategoryEntity category,
+        @Param("query") String query,
+        Pageable pageable
+    );
+
 
 
     // 단일 책 조회 (책 ID 기준)
     Optional<BookEntity> findByBookIdAndShowYn(Integer bookId, String showYn);
-
+    
 
 
 }

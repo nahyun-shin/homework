@@ -8,19 +8,28 @@ export const bookAPI = {
     },
 
     //메뉴카테고리 리스트
-    getCategoryMenus: async () => {
+    getCategoryMenus: async (includeAll = false) => {
         const response = await api.get('/api/v1/categories');
-        const categories = response.data;
+        const categories = response.data; // response 구조에 따라 수정 (data.response면 그대로)
+        
+        // includeAll === true면 '전체보기' 메뉴 추가
+        if (includeAll) {
+            return [
+                { name: '전체보기', path: '/books/all', categoryId: 0 },
+                ...categories.map(cat => ({
+                    name: cat.categoryName,
+                    path: `/books/category/${cat.categoryId}`,
+                    categoryId: cat.categoryId,
+                })),
+            ];
+        }
 
-    
-    return [
-            { name: '전체보기', path: '/books/all', categoryId: 0 },
-            ...categories.map((cat) => ({
-                name: cat.categoryName,
-                path: `/books/category/${cat.categoryId}`,
-                categoryId: cat.categoryId,
-            })),
-        ];
+        // includeAll === false면 그대로 반환
+        return categories.map(cat => ({
+            name: cat.categoryName,
+            path: `/books/category/${cat.categoryId}`,
+            categoryId: cat.categoryId,
+        }));
     },
 
     //카테고리메뉴 북리스트
@@ -110,7 +119,18 @@ export const bookAPI = {
 
     //디테일 페이지 정보
     getBook: async (bookId) => {
-        const response = await api.get(`/api/v1/detail/${bookId}`);
+        const response = await api.get(`/api/v1/books/${bookId}`);
+        return response.data;
+    },
+
+
+
+
+
+
+
+    getAdminBook: async (bookId) => {
+        const response = await api.get(`/api/v1/admin/books/${bookId}`);
         return response.data;
     },
 
@@ -119,9 +139,7 @@ export const bookAPI = {
     size = 8,
     categoryId,
     query,
-    sort = 'createDate,desc',
-    type,         // best, new, 등
-    dateRange     // week, month 등
+    sort = 'createDate,desc'
     } = {}) => {
         const params = new URLSearchParams();
 
@@ -131,23 +149,21 @@ export const bookAPI = {
 
         if (categoryId) params.set('categoryId', categoryId);
         if (query) params.set('query', query);
-        if (type) params.set('type', type);          // 예: best, new
-        if (dateRange) params.set('range', dateRange); // 예: week, month
 
-        const response = await api.get(`/api/v1/books?${params.toString()}`);
+        const response = await api.get(`/api/v1/admin/books?${params.toString()}`);
         return response.data;
     },
 
-    create: async (formData) => {
-        const response = await api.post(`/api/v1/main`, formData, {
+    createBook: async (formData) => {
+        const response = await api.post(`/api/v1/admin/books`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        return response.data.response;
+        return response.data;
     },
 
-    update: async (formData) => {
+    updateBook: async (formData) => {
         const response = await api.put(`/api/v1/main`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -166,3 +182,5 @@ export const bookAPI = {
         return response.data.response;
     }
 };
+
+

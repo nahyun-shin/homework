@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../../compoents/Pagination";
-import '../../assets/css/CategoryBooklist.css';
 import { bookAPI } from "../../service/bookService";
 import { goDetail } from '../../hooks/menuData.js';
 
@@ -47,7 +46,7 @@ function CategoryBooklist({ showSideMenu }) {
       setBookList(data.content ?? []);
       setTotalRows(data.total ?? 0);
     }
-     console.log(data);
+     
   }, [data]);
 
   // -------------------------
@@ -75,9 +74,9 @@ function CategoryBooklist({ showSideMenu }) {
 
   return (
     <div className="contents-container">
-      <div className="sort-bg">
+      <div className="select-bg sort-bg">
         <label>정렬 : </label>
-        <select className="sort-box" value={currentSort} onChange={handleSortChange}>
+        <select className="select-box sort-box" value={currentSort} onChange={handleSortChange}>
           <option value="createDate,desc">최신 등록 순</option>
           <option value="createDate,asc">과거 등록 순</option>
           <option value="title">제목 순</option>
@@ -105,8 +104,8 @@ function CategoryBooklist({ showSideMenu }) {
               </span>
             </div>
             <div className="content-list-button-bg list">
-              <button type="button" id="cart-btn">장바구니</button>
-              <button type="button" id="buy-btn">구매하기</button>
+              <button type="button" className="cart-btn">장바구니</button>
+              <button type="button" className="yellow-btn">구매하기</button>
             </div>
           </div>
         ))}

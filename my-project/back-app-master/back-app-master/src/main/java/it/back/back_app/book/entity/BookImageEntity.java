@@ -2,9 +2,6 @@ package it.back.back_app.book.entity;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.ColumnDefault;
-
-import it.back.back_app.common.domain.BaseEntity;
 import it.back.back_app.common.utils.YesNoToBooleanConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -18,20 +15,23 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor // JPA 필수
+@AllArgsConstructor // 빌더용 생성자
 @Entity
+@Builder
 @Table(name = "book_image")
 public class BookImageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "img_id")
     private Integer imgId;
 
     @Column(name = "file_name", nullable = false)
@@ -43,25 +43,21 @@ public class BookImageEntity {
     @Column(name = "file_path", nullable = false)
     private String filePath;
 
-    // 대표 이미지 여부 Y/N → Boolean으로 변환
     @Column(name = "main_yn", columnDefinition = "CHAR(1)")
     @Convert(converter = YesNoToBooleanConverter.class)
     private Boolean mainYn = false;
 
-    // 생성일
     @Column(name = "create_date", updatable = false)
     private LocalDateTime createDate;
 
-    // 수정일
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    // 책과 N:1 관계
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
-    private BookEntity book;
+    private BookEntity book; // 어떤 책에 속하는 이미지인지
 
-    // 자동으로 createDate/ updateDate 설정
+    // 자동 날짜 세팅
     @PrePersist
     protected void onCreate() {
         this.createDate = LocalDateTime.now();

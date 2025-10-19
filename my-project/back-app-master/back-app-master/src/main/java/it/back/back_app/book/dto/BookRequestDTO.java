@@ -2,22 +2,33 @@ package it.back.back_app.book.dto;
 
 import java.time.LocalDate;
 import java.util.List;
-import lombok.Data;
 
-@Data
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class BookRequestDTO {
-    private int bookId;
+
     private String publisher;
     private LocalDate pubDate;
+    private int categoryId;
     private String title;
     private String subTitle;
     private String writer;
     private String content;
     private int bookQty;
     private int price;
-    private int salesCount;        // 판매량
-    private Boolean showYn; // 'Y'/'N' 대신 boolean으로 받을 수도 있음
-    private Boolean stockYn;
-    private Boolean bannerYn;
-    private List<BookImageRequestDTO> fileList;  // 이미지 업로드용 DTO
+
+    private Boolean showYn;      // 표시여부
+    private Boolean stockYn;     // 품절여부
+    private Boolean bannerYn;    // 배너 여부
+
+    // --------------------------
+    // 이미지 관련
+    // --------------------------
+    private List<MultipartFile> files;       // 실제 업로드 파일
+    private List<Boolean> mainImageFlags;    // 각 파일별 대표 이미지 여부
 }
