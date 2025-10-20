@@ -75,8 +75,14 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/login/**").permitAll()
                         .requestMatchers("/api/v1/logout/**").permitAll()
                         .requestMatchers("/api/v1/refresh").permitAll()
-                        .requestMatchers("/api/v1/book/**").permitAll()
-                        .requestMatchers("/static/imgs/**").permitAll() // ✅ 정적 자원 허용
+                        .requestMatchers("/api/v1/books/**").permitAll()
+                        .requestMatchers("/api/v1/main/**").permitAll()
+                        .requestMatchers("/api/v1/categories/**").permitAll()
+                        .requestMatchers("/api/v1/best/**").permitAll()
+                        .requestMatchers("/api/v1/new/**").permitAll()
+                        .requestMatchers("/api/v1/image/**").permitAll()
+                        .requestMatchers("/static/imgs/**").permitAll()
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN") // ✅ 정적 자원 허용
                         // .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // ✅ spring boot 기본 static 경로 허용
                         // .anyRequest().authenticated()
                         .anyRequest().permitAll()  // 🔓 모든 요청 허용

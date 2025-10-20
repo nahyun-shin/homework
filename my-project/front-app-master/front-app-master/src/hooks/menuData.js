@@ -38,8 +38,8 @@ export const getActiveMenuKeyFromPath = (pathname) => {
 
 
 //디테일페이지로 이동
-export const goDetail = (navigate, bookId) => {
-  navigate(`/books/${bookId}`);
+export const goDetail = (navigate, categoryId, bookId) => {
+  navigate(`/books/category/${categoryId}/detail/${bookId}`);
 };
 export const goAdminBookDetail = (navigate, bookId) => {
   navigate(`/admin/books/${bookId}`);

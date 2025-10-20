@@ -199,6 +199,7 @@ const handleSubMenuClick = (item, menuName, idx) => {
             ))}
           </Nav>
 
+          {/* 하위메뉴 */}
           {visibleMenu && (
             <div className="side-menu-bg">
               <div className="side-menu-wrap">

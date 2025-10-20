@@ -246,8 +246,8 @@ public class BookService {
      * user 도서 상세페이지
      */
     @Transactional(readOnly = true)
-    public BookDetailDTO getDetailBook(Integer bookId) {
-        BookEntity book = bookRepository.findByBookIdAndShowYn(bookId, "Y")
+    public BookDetailDTO getDetailBook(Integer bookId,Integer categoryId) {
+        BookEntity book = bookRepository.findByBookIdAndCategoryCategoryIdAndShowYn(bookId,categoryId, "Y")
                 .orElseThrow(() -> new RuntimeException("해당 책을 찾을 수 없습니다."));
 
         return BookDetailDTO.of(book, baseImageUrl);

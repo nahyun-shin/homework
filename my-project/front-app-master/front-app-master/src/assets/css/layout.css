@@ -76,13 +76,7 @@ width: 55%;
   line-height:2rem;
   font-weight: 600;
 }
-.list-content{
-  margin-top: 20px;
-  font-size: 16px;
-  line-height:2rem;
-  /* background-color: aquamarine; */
-  cursor: pointer;
-}
+
 
 
 
@@ -90,12 +84,16 @@ width: 55%;
 
 /*리스트 버튼*/
 .content-list-button-bg{
+  display: flex;
 }
 .list{
   height: 100%;
   gap: 20px;
-  display: flex;
   flex-direction: column;
+}
+.dt{
+  justify-content: center;
+  gap: 15px;
 }
 .content-list-button-bg button{
   height: 40px;

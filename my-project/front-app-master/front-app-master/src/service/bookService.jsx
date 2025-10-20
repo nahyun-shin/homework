@@ -9,7 +9,7 @@ export const bookAPI = {
 
     //메뉴카테고리 리스트
     getCategoryMenus: async (includeAll = false) => {
-        const response = await api.get('/api/v1/categories');
+        const response = await api.get(`/api/v1/categories`);
         const categories = response.data; // response 구조에 따라 수정 (data.response면 그대로)
         
         // includeAll === true면 '전체보기' 메뉴 추가
@@ -118,8 +118,8 @@ export const bookAPI = {
     },
 
     //디테일 페이지 정보
-    getBook: async (bookId) => {
-        const response = await api.get(`/api/v1/books/${bookId}`);
+    getBook: async (categoryId,bookId) => {
+        const response = await api.get(`/api/v1/books/category/${categoryId}/detail/${bookId}`);
         return response.data;
     },
 
@@ -127,13 +127,16 @@ export const bookAPI = {
 
 
 
+    //---------------------------------------------------------
+    //                          admin
+    //---------------------------------------------------------
 
-
+    //관리자페이지 북디테일 페이지
     getAdminBook: async (bookId) => {
         const response = await api.get(`/api/v1/admin/books/${bookId}`);
         return response.data;
     },
-
+    //관리자 페이지 북리스트
     getAdminBookList: async ({
     page = 0,
     size = 8,
@@ -153,7 +156,7 @@ export const bookAPI = {
         const response = await api.get(`/api/v1/admin/books?${params.toString()}`);
         return response.data;
     },
-
+    //도서 등록
     createBook: async (formData) => {
         const response = await api.post(`/api/v1/admin/books`, formData, {
             headers: {
@@ -162,21 +165,21 @@ export const bookAPI = {
         });
         return response.data;
     },
-
-    updateBook: async (formData) => {
-        const response = await api.put(`/api/v1/main`, formData, {
+    //도서 수정
+    updateBook: async (bookId,formData) => {
+        const response = await api.put(`/api/v1/admin/books/${bookId}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
         return response.data.response;
     },
-
+    //도서 삭제
     delete: async (bookId) => {
         const response = await api.delete(`/api/v1/main/${bookId}`);
         return response.data.response;
     },
-
+    //이미지 삭제
     deleteFile: async (fileId) => {
         const response = await api.delete(`/api/v1/main/file/${fileId}`);
         return response.data.response;

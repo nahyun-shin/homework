@@ -258,7 +258,7 @@ const { data, isLoading, error, refetch } = useQuery({
                   {book.price}
                   <span className="list-price-won"> 원</span>
                 </span>
-                <span className="list-content">{book.content}</span>
+                
               </div>
               <div className="content-list-button-bg list">
                 <button type="button" className="cart-btn">

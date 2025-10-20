@@ -62,11 +62,11 @@ useEffect(() => {
       <div>
         {bookList?.map(book => (
           <div key={book.bookId} className="container-list-bg">
-            <div className="content-list-lmg-bg" onClick={() => goDetail(navigate, book.bookId)}>
+            <div className="content-list-lmg-bg" onClick={() => goDetail(navigate, book.categoryId,book.bookId)}>
               <img src={book.mainImageUrl} alt={book.title} />
             </div>
             <div className="content-list-text-bg">
-              <span className='list-title' onClick={() => goDetail(navigate, book.bookId)}>
+              <span className='list-title' onClick={() => goDetail(navigate, book.categoryId,book.bookId)}>
                 {book.title} 
               </span>
               <span>
@@ -76,9 +76,7 @@ useEffect(() => {
                 {book.price}
                 <span className='list-price-won'> 원</span>
               </span>
-              <span className='list-content' onClick={() => goDetail(navigate, book.bookId)}>
-                {book.content}
-              </span>
+              
             </div>
             <div className="content-list-button-bg list">
               <button type="button" className="cart-btn">장바구니</button>

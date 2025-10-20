@@ -34,23 +34,19 @@ public class BookImageEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer imgId;
 
-    @Column(name = "file_name", nullable = false)
     private String fileName;
 
-    @Column(name = "stored_name", nullable = false)
     private String storedName;
 
-    @Column(name = "file_path", nullable = false)
     private String filePath;
 
     @Column(name = "main_yn", columnDefinition = "CHAR(1)")
     @Convert(converter = YesNoToBooleanConverter.class)
+    @Builder.Default
     private Boolean mainYn = false;
 
-    @Column(name = "create_date", updatable = false)
     private LocalDateTime createDate;
 
-    @Column(name = "update_date")
     private LocalDateTime updateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

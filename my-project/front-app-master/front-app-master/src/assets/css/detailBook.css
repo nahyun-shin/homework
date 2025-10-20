@@ -3,7 +3,6 @@
 /*메인타이틀 영역*/
 .detail-title-bg{
     height: 150px;
-    border-bottom: 1px solid rgb(214, 214, 214);
 }
 .title-wrap{
     position: relative;
@@ -12,10 +11,16 @@
     margin: 0 auto;
 }
 .title-label{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0%, -50%);
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 0; */
+    /* transform: translate(0%, -50%); */
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     font-size: 30px;
     font-weight: 600;
 }
@@ -24,7 +29,7 @@
     width: 60%;
     min-width: 800px;
     height: 100%;
-    margin: 0 auto;
+    margin: 0 auto 150px;
     display: flex;
     justify-content: space-between;
 }
@@ -43,8 +48,20 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    
-
+}
+.detail-img-button-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    /* background-color: aqua; */
+}
+.detail-img-button-wrap button{
+    border: none;
+    border-radius: 7px;
+    margin: 0px 10px;
+    height: 35px;
+    width: 50px;
 }
 
 /*텍스트 영역*/
@@ -64,23 +81,43 @@
     display: flex;
     flex-direction: column;
 }
-.detail-text-wrap span{
+.detail-text-wrap p{
+    margin: 0;
     height: 60px;
     line-height: 60px;
     border-bottom: 1px solid #e6e6e6;
 }
+.sold-out{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(228, 43, 19);
+}
 .detail-sTitle{
   font-size: 18px;
   font-weight:600;
-}
-.detail-pub{
-  
 }
 .detail-price{
   font-size: 24px;
   font-weight: 600;
   
 }
+.detail-price-won{
+    border: none;
+    font-size: 1rem;
+}
+.detail-text-wrap p:last-child{
+    margin-bottom: 50px;
+}
 .count-bg{
-    
+    display: flex;
+    justify-content: center;
+   height: 60px;
+   align-items: center;
+}
+.count-bg button{
+    border: none;
+    height: 35px;
+    width: 35px;
+    border-radius: 7px;
+    margin: 0px 10px;
 }

@@ -14,99 +14,112 @@ import CreateBook from "../pages/admin/CreateBook";
 import AdminUserList from "../pages/admin/AdminUserList";
 
 export const routers = createBrowserRouter([
-    {
-        path:'/',
-        element : <Layout/>,
-        children:[
-            {
-                index : true, element : <MainBookList/>
-            },
-            {
-                path: 'main',
-                children:[
-                    {
-                        index: true ,
-                        element : <MainBookList/>
-                    }
-                ]
-            },
-            {
-                path: 'books',
-                children: [
-                    { index: true, element: <Navigate to="all" replace /> },       
-                    { path: 'all', element: <CategoryBooklist key={window.location.search}/> },      
-                    { path: 'category/:categoryId', element: <CategoryBooklist key={window.location.search}/> }, 
-                    { path: ':bookId', element: <DetailBook/> } 
-                ]
-            },
-            {
-                path: 'best',
-                children: [
-                    {
-                        index: true,
-                        element: <Navigate to="day" replace />
-                    }
-                    ,
-                    {
-                        path: ':type',
-                        element: <BestBookList/>
-                    }
-                ]
-            },
-            {
-                path: 'new',
-                children: [
-                    {
-                        index: true,
-                        element: <Navigate to="daily" replace />
-                    },
-                    {
-                        path: ':type',  
-                        element: <NewBookList />
-                    }
-                    
-                ]
-            },
-            {
-                path: 'admin',
-                children: [
-                    {
-                        index: true,
-                        element: <Navigate to="books" replace />
-                    },
-                    {
-                        path: 'books',
-                        children:[
-                            {
-                                index: true,
-                                element: <AdminBookList />
-                            },
-                            {
-                                path:':bookId',
-                                element: <AdminDetailBook />
-                            },
-                            {
-                                path: 'create',
-                                element: <CreateBook />
-                            }
-                        ]
-                    },
-                    {
-                        path: 'users',
-                        children:[
-                            {
-                                index: true,
-                                element : <AdminUserList/>
-                            }
-                        ]
-                    }
-                    
-                ]
-            }
-        ]
-    },
-    {
-        path : '/login',
-        element : <LoginForm/>
-    }
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <MainBookList />,
+      },
+      {
+        path: "main",
+        children: [
+          {
+            index: true,
+            element: <MainBookList />,
+          },
+        ],
+      },
+      {
+        path: "books",
+        children: [
+          { index: true, element: <Navigate to="all" replace /> },
+          {
+            path: "all",
+            element: <CategoryBooklist key={window.location.search} />,
+          },
+          {
+            path: "category/:categoryId",
+            children: [
+              {
+                index: true,
+                element: <CategoryBooklist key={window.location.search} />,
+              },
+              {
+                path: 'detail/:bookId',
+                element: <DetailBook/>
+              }
+            ],
+          },
+        //   { path: ":categoryId/:bookId", element: <DetailBook /> },
+        ],
+      },
+      {
+        path: "best",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="day" replace />,
+          },
+          {
+            path: ":type",
+            element: <BestBookList />,
+          },
+        ],
+      },
+      {
+        path: "new",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="daily" replace />,
+          },
+          {
+            path: ":type",
+            element: <NewBookList />,
+          },
+        ],
+      },
+      {
+        path: "admin",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="books" replace />,
+          },
+          {
+            path: "books",
+            children: [
+              {
+                index: true,
+                element: <AdminBookList />,
+              },
+              {
+                path: ":bookId",
+                element: <AdminDetailBook />,
+              },
+              {
+                path: "create",
+                element: <CreateBook />,
+              },
+            ],
+          },
+          {
+            path: "users",
+            children: [
+              {
+                index: true,
+                element: <AdminUserList />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginForm />,
+  },
 ]);

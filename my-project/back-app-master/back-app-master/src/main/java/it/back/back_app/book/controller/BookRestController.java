@@ -154,9 +154,11 @@ public class BookRestController {
     // ------------------------------
     // 7️⃣ 도서 상세 페이지
     // ------------------------------
-    @GetMapping("/books/{bookId}")
-    public ResponseEntity<BookDetailDTO> getBook(@PathVariable("bookId") Integer bookId) {
-        BookDetailDTO dto = bookService.getDetailBook(bookId);
+    @GetMapping("/books/category/{categoryId}/detail/{bookId}")
+    public ResponseEntity<BookDetailDTO> getBook(
+        @PathVariable("categoryId") Integer categoryId,
+        @PathVariable("bookId") Integer bookId) {
+        BookDetailDTO dto = bookService.getDetailBook(bookId,categoryId);
         return ResponseEntity.ok(dto);
     }
 }

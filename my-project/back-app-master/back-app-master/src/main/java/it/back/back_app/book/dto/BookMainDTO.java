@@ -23,6 +23,7 @@ public class BookMainDTO {
     private String content;
     private int price;
     private String mainImageUrl;
+    private int categoryId;
 
      public static BookMainDTO of(BookEntity entity, String baseImageUrl) {
         String mainImage = entity.getFileList().stream()
@@ -38,6 +39,7 @@ public class BookMainDTO {
                 .subTitle(entity.getSubTitle())
                 .content(entity.getContent())
                 .price(entity.getPrice())
+                .categoryId(entity.getCategory().getCategoryId())
                 .mainImageUrl(mainImage)
                 .build();
     }

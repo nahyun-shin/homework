@@ -51,6 +51,7 @@ public class BookEntity extends BaseEntity {
     private BookCategoryEntity category;
 
     @Column(name = "sales_count", nullable = false)
+    @Builder.Default
     private int salesCount = 0;        // 판매량
 
     @Column(columnDefinition = "CHAR(1)")
@@ -69,6 +70,7 @@ public class BookEntity extends BaseEntity {
     // 이미지와 1:N 관계
     // -------------------------
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private Set<BookImageEntity> fileList = new HashSet<>();
 
     /**
