@@ -246,8 +246,8 @@ public class BookService {
      * user 도서 상세페이지
      */
     @Transactional(readOnly = true)
-    public BookDetailDTO getDetailBook(Integer bookId,Integer categoryId) {
-        BookEntity book = bookRepository.findByBookIdAndCategoryCategoryIdAndShowYn(bookId,categoryId, "Y")
+    public BookDetailDTO getDetailBook(Integer bookId, Integer categoryId) {
+        BookEntity book = bookRepository.findByBookIdAndCategoryCategoryIdAndShowYn(bookId, categoryId, "Y")
                 .orElseThrow(() -> new RuntimeException("해당 책을 찾을 수 없습니다."));
 
         return BookDetailDTO.of(book, baseImageUrl);
@@ -285,6 +285,9 @@ public class BookService {
                 .bannerYn(dto.getBannerYn() != null ? (dto.getBannerYn() ? "Y" : "N") : "N")
                 .build();
 
+        // ✅ 재고 수량 및 품절 상태 자동 설정 (핵심)
+        book.updateBookQty(dto.getBookQty());
+
         saveBookImages(dto, book);
         return bookRepository.save(book);
     }
@@ -314,10 +317,15 @@ public class BookService {
         book.setStockYn(toYn(dto.getStockYn(), book.getStockYn()));
         book.setBannerYn(toYn(dto.getBannerYn(), book.getBannerYn()));
 
+        // ✅ 수량 변경 시 자동으로 stockYn 동기화
+        if (dto.getBookQty() != null) {
+            book.updateBookQty(dto.getBookQty());
+        }
+
         // 이미지 수정 (기존 삭제 + 새로 업로드)
         if (dto.getFiles() != null && !dto.getFiles().isEmpty()) {
-            deleteBookImages(book);     // 기존 이미지 삭제
-            saveBookImages(dto, book);  // 새 이미지 업로드
+            deleteBookImages(book); // 기존 이미지 삭제
+            saveBookImages(dto, book); // 새 이미지 업로드
         }
 
         return bookRepository.save(book);
@@ -329,7 +337,7 @@ public class BookService {
         BookEntity book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 책입니다."));
 
-        deleteBookImages(book);  // 이미지 삭제
+        deleteBookImages(book); // 이미지 삭제
         bookRepository.delete(book);
     }
 
@@ -339,7 +347,8 @@ public class BookService {
         List<MultipartFile> files = dto.getFiles();
         List<Boolean> flags = dto.getMainImageFlags();
 
-        if (files == null || files.isEmpty()) return;
+        if (files == null || files.isEmpty())
+            return;
 
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
@@ -375,7 +384,8 @@ public class BookService {
 
     /* -------------------- 이미지 삭제 -------------------- */
     private void deleteBookImages(BookEntity book) {
-        if (book.getFileList() == null || book.getFileList().isEmpty()) return;
+        if (book.getFileList() == null || book.getFileList().isEmpty())
+            return;
 
         for (BookImageEntity image : book.getFileList()) {
             try {

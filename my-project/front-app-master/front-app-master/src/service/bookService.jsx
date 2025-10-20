@@ -1,4 +1,5 @@
 import api from '../api/axiosApi';
+import { authStore } from '../store/authStore';
 
 export const bookAPI = {
     //메인페이지 북리스트
@@ -159,6 +160,7 @@ export const bookAPI = {
     //도서 등록
     createBook: async (formData) => {
         const response = await api.post(`/api/v1/admin/books`, formData, {
+            
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -168,6 +170,7 @@ export const bookAPI = {
     //도서 수정
     updateBook: async (bookId,formData) => {
         const response = await api.put(`/api/v1/admin/books/${bookId}`, formData, {
+            
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

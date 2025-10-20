@@ -44,5 +44,8 @@ export const goDetail = (navigate, categoryId, bookId) => {
 export const goAdminBookDetail = (navigate, bookId) => {
   navigate(`/admin/books/${bookId}`);
 };
+export const goUpdate = (navigate, bookId) => {
+  navigate(`/admin/books/${bookId}/update`);
+};
 
 

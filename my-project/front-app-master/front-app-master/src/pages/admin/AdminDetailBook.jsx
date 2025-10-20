@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { bookAPI } from "../../service/bookService";
 import { useNavigate, useParams } from "react-router";
 import "../../assets/css/detailBook.css";
+import { goUpdate } from "../../hooks/menuData";
 
 function DetailBook() {
   const { bookId } = useParams();
@@ -21,9 +22,7 @@ function DetailBook() {
   });
   console.log(book);
 
-  const goUpdateBook = () => {
-    navigate(`/admin/books/update/${id}`);
-  };
+  
 
   const goBookList = () => {
     navigate(`/admin/books`);
@@ -89,7 +88,7 @@ function DetailBook() {
               <button
                 type="button"
                 className="yellow-btn"
-                onClick={goUpdateBook}
+                onClick={()=>goUpdate(navigate,book.bookId)}
               >
                 수정하기
               </button>

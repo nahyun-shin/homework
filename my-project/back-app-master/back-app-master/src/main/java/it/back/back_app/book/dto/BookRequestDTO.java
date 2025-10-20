@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,13 +15,14 @@ import lombok.Setter;
 public class BookRequestDTO {
 
     private String publisher;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate pubDate;
     private int categoryId;
     private String title;
     private String subTitle;
     private String writer;
     private String content;
-    private int bookQty;
+    private Integer bookQty;
     private int price;
 
     private Boolean showYn;      // 표시여부

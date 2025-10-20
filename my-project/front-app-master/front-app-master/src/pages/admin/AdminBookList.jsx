@@ -5,6 +5,7 @@ import { bookAPI } from "../../service/bookService";
 import Pagination from "../../compoents/Pagination";
 import "../../assets/css/adminBookList.css";
 import { goAdminBookDetail } from "../../hooks/menuData.js";
+import { goUpdate } from '../../hooks/menuData.js';
 
 function AdminBookList() {
   const { categoryId: paramCategoryId } = useParams();
@@ -261,7 +262,7 @@ const { data, isLoading, error, refetch } = useQuery({
                 
               </div>
               <div className="content-list-button-bg list">
-                <button type="button" className="cart-btn">
+                <button type="button" className="cart-btn" onClick={()=>goUpdate(navigate,book.bookId)}>
                   수정하기
                 </button>
                 <button type="button" className="yellow-btn">

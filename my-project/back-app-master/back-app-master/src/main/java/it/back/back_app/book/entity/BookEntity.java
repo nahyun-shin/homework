@@ -60,7 +60,7 @@ public class BookEntity extends BaseEntity {
 
     @Column(columnDefinition = "CHAR(1)")
     @ColumnDefault("'N'")
-    private String stockYn;         // 품절여부 
+    private String stockYn;         // 재고여부 
 
     @Column(columnDefinition = "CHAR(1)")
     @ColumnDefault("'N'")
@@ -97,6 +97,24 @@ public class BookEntity extends BaseEntity {
      */
     public void increasePurchaseCount(int quantity) {
         this.salesCount += quantity;
+    }
+
+     /**
+     * 책 수량을 지정하고, 재고 상태 자동 갱신
+     */
+    public void updateBookQty(int qty) {
+        this.bookQty = qty;
+        this.stockYn = (qty > 0) ? "Y" : "N";
+    }
+
+    /**
+     * 책 판매 시 수량 차감 + 재고 여부 업데이트
+     */
+    public void decreaseBookQty(int amount) {
+        if (amount < 0) throw new IllegalArgumentException("감소 수량은 0 이상이어야 합니다.");
+        int newQty = Math.max(this.bookQty - amount, 0);
+        this.bookQty = newQty;
+        this.stockYn = (newQty > 0) ? "Y" : "N";
     }
 
     /**

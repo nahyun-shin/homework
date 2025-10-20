@@ -41,10 +41,14 @@
 }
 
 .detail-img-wrap{
-    height: 600px;
+    height: 650px;
+    width: 500px;
+    background-color: rgb(230, 230, 230);
+    padding: 40px;
+    margin: 0 auto;
 }
 .detail-img-wrap img{
-    /* border: 1px solid black; */
+   
     width: 100%;
     height: 100%;
     object-fit: contain;

@@ -12,6 +12,8 @@ import AdminBookList from "../pages/admin/AdminBookList";
 import AdminDetailBook from "../pages/admin/AdminDetailBook";
 import CreateBook from "../pages/admin/CreateBook";
 import AdminUserList from "../pages/admin/AdminUserList";
+import EditBook from "../pages/admin/EditBook";
+import BookForm from "../compoents/BookForm";
 
 export const routers = createBrowserRouter([
   {
@@ -47,12 +49,11 @@ export const routers = createBrowserRouter([
                 element: <CategoryBooklist key={window.location.search} />,
               },
               {
-                path: 'detail/:bookId',
-                element: <DetailBook/>
-              }
+                path: "detail/:bookId",
+                element: <DetailBook />,
+              },
             ],
           },
-        //   { path: ":categoryId/:bookId", element: <DetailBook /> },
         ],
       },
       {
@@ -98,6 +99,10 @@ export const routers = createBrowserRouter([
               {
                 path: ":bookId",
                 element: <AdminDetailBook />,
+              },
+              {
+                path: ":bookId/update",
+                element: <EditBook />,
               },
               {
                 path: "create",

@@ -77,6 +77,13 @@ public class BookAdminController {
             @ModelAttribute BookRequestDTO dto
     ) {
         try {
+              // 디버깅용 로그
+        System.out.println("=== 받은 데이터 ===");
+        System.out.println("Title: " + dto.getTitle());
+        System.out.println("Files: " + (dto.getFiles() != null ? dto.getFiles().size() : 0));
+        System.out.println("MainImageFlags: " + dto.getMainImageFlags());
+        System.out.println("ShowYn: " + dto.getShowYn());
+        System.out.println("PubDate: " + dto.getPubDate());
             BookEntity updatedBook = bookService.updateBook(bookId, dto);
             return ResponseEntity.ok(Map.of(
                 "message", "도서가 수정되었습니다.",
