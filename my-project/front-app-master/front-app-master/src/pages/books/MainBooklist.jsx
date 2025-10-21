@@ -141,8 +141,9 @@ function MainBookList() {
               <span
                 className="list-title"
                 onClick={() => goDetail(navigate, book.categoryId, book.bookId)}
+                style={{whiteSpace:"pre-line"}}
               >
-                {book.title}
+                {insertLineBreaks(book.title)}
               </span>
 
               <span className="list-price">
@@ -180,8 +181,9 @@ function MainBookList() {
               <span
                 className="list-title"
                 onClick={() => goDetail(navigate, book.categoryId, book.bookId)}
+                style={{whiteSpace:"pre-line"}}
               >
-                {book.title}
+                {insertLineBreaks(book.title)}
               </span>
 
               <span className="list-price">

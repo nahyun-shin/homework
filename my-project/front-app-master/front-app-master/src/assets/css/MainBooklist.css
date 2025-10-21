@@ -190,15 +190,15 @@
 }
 
 .img-wrap{
-  /* width: 168px; */
   height: 210px;
-  border: 1px solid rgb(212, 212, 212);
   cursor: pointer;
+  /* background-color: #a8c4a4; */
 }
 
 .img-wrap img{
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
+  border: 1px solid rgb(212, 212, 212);
   object-fit: contain;
 }
 
