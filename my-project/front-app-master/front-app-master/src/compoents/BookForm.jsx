@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router";
 import { bookAPI } from "../service/bookService";
+import { useBook } from "../hooks/menuData";
 
 // ----------------- Yup 스키마 -----------------
 const schema = yup.object().shape({
@@ -22,6 +23,7 @@ const schema = yup.object().shape({
 
 function BookForm({ isEdit = false, bookId }) {
   const navigate = useNavigate();
+  const { createBookMutation, updateBookMutation } = useBook(); // 추가
   const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { showYn: true, stockYn: false, bannerYn: false },
@@ -100,7 +102,7 @@ function BookForm({ isEdit = false, bookId }) {
 
   // ----------------- submit -----------------
   const onSubmit = async (data) => {
-    try {
+    
       const formData = new FormData();
 
       // 기본 정보
@@ -134,18 +136,32 @@ function BookForm({ isEdit = false, bookId }) {
 
       // ----------------- 서버 요청 -----------------
       if (isEdit) {
-        await bookAPI.updateBook(bookId, formData);
-        alert("도서가 수정되었습니다!");
+        updateBookMutation.mutate(
+          { bookId, formData },
+          {
+            onSuccess: () => {
+              alert("도서가 수정되었습니다!");
+              navigate("/admin/books");
+            },
+            onError: (error) => {
+              console.error(error);
+              alert("도서 수정 중 오류가 발생했습니다.");
+            },
+          }
+        );
       } else {
-        await bookAPI.createBook(formData);
-        alert("도서가 등록되었습니다!");
+        createBookMutation.mutate(formData, {
+          onSuccess: () => {
+            alert("도서가 등록되었습니다!");
+            navigate("/admin/books");
+          },
+          onError: (error) => {
+            console.error(error);
+            alert("도서 등록 중 오류가 발생했습니다.");
+          },
+        });
       }
-
-      navigate("/admin/books");
-    } catch (err) {
-      console.error(err.response?.data || err);
-      alert(isEdit ? "도서 수정 중 오류가 발생했습니다." : "도서 등록 중 오류가 발생했습니다.");
-    }
+      
   };
 
   return (
@@ -154,46 +170,46 @@ function BookForm({ isEdit = false, bookId }) {
       <section className="book-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* 기본 정보 */}
-          <div className="mb-3">
+          <div className="inform">
             <label>도서명</label>
             <input type="text" {...register("title")} className="form-control" />
             {errors.title && <p className="error">{errors.title.message}</p>}
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>부제목</label>
             <input type="text" {...register("subTitle")} className="form-control" />
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>저자</label>
             <input type="text" {...register("writer")} className="form-control" />
             {errors.writer && <p className="error">{errors.writer.message}</p>}
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>출판사</label>
             <input type="text" {...register("publisher")} className="form-control" />
             {errors.publisher && <p className="error">{errors.publisher.message}</p>}
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>출판일</label>
             <input type="date" {...register("pubDate")} className="form-control" />
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>수량</label>
             <input type="number" {...register("bookQty")} className="form-control" />
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>가격</label>
             <input type="number" {...register("price")} className="form-control" />
             {errors.price && <p className="error">{errors.price.message}</p>}
           </div>
 
-          <div className="mb-3">
+          <div className="inform">
             <label>카테고리</label>
             <select {...register("categoryId", { valueAsNumber: true })} className="form-control">
               <option value="">카테고리를 선택하세요</option>
@@ -215,7 +231,7 @@ function BookForm({ isEdit = false, bookId }) {
           </div>
 
           {/* 이미지 추가 */}
-          <div className="mb-3">
+          <div className="inform">
             <label>이미지 추가</label>
             <input type="file" accept="image/*" onChange={handleFileChange} className="form-control" />
           </div>

@@ -178,9 +178,9 @@ export const bookAPI = {
         return response.data.response;
     },
     //도서 삭제
-    delete: async (bookId) => {
-        const response = await api.delete(`/api/v1/main/${bookId}`);
-        return response.data.response;
+    deleteBook: async (bookId) => {
+        const response = await api.delete(`/api/v1/admin/books/${bookId}`);
+        return response.data;
     },
     //이미지 삭제
     deleteFile: async (fileId) => {

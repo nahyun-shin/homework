@@ -1,20 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigate } from "react-router";
-
-export const mainMenus = [
-  { name: '홈', hover: '', path: '/main' },
-  { name: '카테고리', hover: '카테고리', path: '/books' },
-  { name: '베스트', hover: '베스트', path: '/best' },
-  { name: '신상품', hover: '신상품', path: '/new' },
-];
+import { bookAPI } from "../service/bookService";
 
 
-
-
-export const subMenus = {
-  '카테고리': [], // 위에서 fetch
-  '베스트': [],
-  '신상품': [],
-};
 
 export const menuPathMap = {
   '카테고리': '/books',
@@ -31,10 +19,6 @@ export const getFixedMenuKey = (pathname) => {
 };
 
 
-//메인메뉴 키찾을때
-export const getActiveMenuKeyFromPath = (pathname) => {
-  return Object.keys(menuPathMap).find((key) => pathname.startsWith(menuPathMap[key]));
-};
 
 
 //디테일페이지로 이동
@@ -48,4 +32,38 @@ export const goUpdate = (navigate, bookId) => {
   navigate(`/admin/books/${bookId}/update`);
 };
 
+
+
+export const useBook = () => {
+  const queryClient = useQueryClient();
+
+  const createBookMutation = useMutation({
+    mutationFn: (formData) => bookAPI.createBook(formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["books"] }); // 전체 리스트
+    },
+  });
+
+  const updateBookMutation = useMutation({
+    mutationFn: ({ bookId, formData }) => bookAPI.updateBook(bookId, formData),
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["books"] }); // 리스트
+      queryClient.invalidateQueries({ queryKey: ["books", variables.bookId] }); // 상세
+    },
+  });
+
+  const deleteBookMutation = useMutation({
+    mutationFn: (bookId) => bookAPI.deleteBook(bookId),
+    onSuccess: (data, bookId) => {
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+      queryClient.invalidateQueries({ queryKey: ["books", bookId] });
+    },
+  });
+
+  return {
+    createBookMutation,
+    updateBookMutation,
+    deleteBookMutation,
+  };
+};
 

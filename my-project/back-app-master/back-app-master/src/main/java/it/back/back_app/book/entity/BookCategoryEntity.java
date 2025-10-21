@@ -1,6 +1,5 @@
 package it.back.back_app.book.entity;
 
-import it.back.back_app.common.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

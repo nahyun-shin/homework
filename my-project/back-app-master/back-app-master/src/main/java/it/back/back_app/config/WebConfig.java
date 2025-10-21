@@ -1,20 +1,15 @@
 package it.back.back_app.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.util.unit.DataSize;
 import org.springframework.util.unit.DataUnit;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.MultipartConfigElement;
 
 @Configuration

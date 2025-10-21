@@ -6,11 +6,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +28,6 @@ import it.back.back_app.book.repository.BookCategoryRepository;
 import it.back.back_app.book.repository.BookImageRepository;
 import it.back.back_app.book.repository.BookRepository;
 import it.back.back_app.common.utils.FileUtils;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -332,13 +329,33 @@ public class BookService {
     }
 
     /* -------------------- 책 삭제 -------------------- */
-    @Transactional
-    public void deleteBook(Integer bookId) {
-        BookEntity book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 책입니다."));
 
-        deleteBookImages(book); // 이미지 삭제
-        bookRepository.delete(book);
+    @Transactional
+    public Map<String, Object> deleteBook(int bookId) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        BookEntity entity = bookRepository.getBook(bookId)
+                .orElseThrow(() -> new RuntimeException("찾는 게시글이 없음"));
+
+        BookResponseDTO detail = BookResponseDTO.of(entity, baseImageUrl);
+
+        // 게시글 삭제
+        bookRepository.delete(entity);
+
+        // 기존 파일 삭제 (기본 이미지는 삭제하지 않음)
+        if (detail.getFileList() != null && !detail.getFileList().isEmpty()) {
+            for (BookImageDTO file : detail.getFileList()) {
+                if (!"default_book.jpg".equals(file.getStoredName())) {
+                    String oldFilePath = filePath + file.getStoredName();
+                    fileUtils.deleteFile(oldFilePath);
+                }
+            }
+        }
+
+        resultMap.put("resultCode", 200);
+        resultMap.put("resultMsg", "OK");
+
+        return resultMap;
     }
 
     /* -------------------- 이미지 업로드 공통 -------------------- */

@@ -1,9 +1,6 @@
 package it.back.back_app.common.utils;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -11,11 +8,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mortennobel.imagescaling.AdvancedResizeOp;
-import com.mortennobel.imagescaling.MultiStepRescaleOp;
-
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 
 @Component
 public class FileUtils {

@@ -4,13 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { bookAPI } from "../../service/bookService";
 import Pagination from "../../compoents/Pagination";
 import "../../assets/css/adminBookList.css";
-import { goAdminBookDetail } from "../../hooks/menuData.js";
+import { goAdminBookDetail, useBook } from "../../hooks/menuData.js";
 import { goUpdate } from '../../hooks/menuData.js';
 
 function AdminBookList() {
   const { categoryId: paramCategoryId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { deleteBookMutation } = useBook();
   const queryParams = new URLSearchParams(location.search);
   
   const currentPage = parseInt(queryParams.get("page") ?? "0", 10);
@@ -40,7 +41,7 @@ function AdminBookList() {
   // --------------------------
   
 const { data, isLoading, error, refetch } = useQuery({
-  queryKey: ["adminBooks", currentPage, currentSort, selectedCategory],
+  queryKey: ["books", currentPage, currentSort, selectedCategory],
   queryFn: () =>
     bookAPI.getAdminBookList({
       page: currentPage,
@@ -50,6 +51,7 @@ const { data, isLoading, error, refetch } = useQuery({
     }),
   keepPreviousData: true,
 });
+console.log(data);
 
 
 
@@ -140,6 +142,24 @@ const { data, isLoading, error, refetch } = useQuery({
     params.set("page", "0");
     navigate(`${location.pathname}?${params.toString()}`);
     refetch();
+  };
+
+  const goDelete = async (bookId) => {
+    if (confirm("삭제하시겠습니까?")) {
+      try {
+        const result = await deleteBookMutation.mutateAsync(bookId);
+        
+        if (result.status === 200) {
+          alert("도서가 삭제되었습니다.");
+
+          navigate("/admin/books");
+        } else {
+          alert("도서 삭제에 실패하였습니다.");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   // --------------------------
@@ -262,10 +282,10 @@ const { data, isLoading, error, refetch } = useQuery({
                 
               </div>
               <div className="content-list-button-bg list">
-                <button type="button" className="cart-btn" onClick={()=>goUpdate(navigate,book.bookId)}>
+                <button type="button" className="yellow-btn" onClick={()=>goUpdate(navigate,book.bookId)}>
                   수정하기
                 </button>
-                <button type="button" className="yellow-btn">
+                <button type="button" className="del-btn" onClick={()=>goDelete(book.bookId)}>
                   삭제하기
                 </button>
               </div>

@@ -1,6 +1,5 @@
 package it.back.back_app.book.repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +77,12 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
     Optional<BookEntity> findByBookIdAndCategoryCategoryIdAndShowYn(Integer bookId,Integer categoryId, String showYn);
 
 
+    //리스트
+    @Query(value="""
+           select b from BookEntity b left join fetch b.fileList
+           where b.bookId = :bookId 
+           """)
+    Optional<BookEntity> getBook(@Param("bookId")int bookId);
     
 
 

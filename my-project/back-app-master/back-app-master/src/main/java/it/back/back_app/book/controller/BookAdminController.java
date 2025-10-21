@@ -1,21 +1,19 @@
 package it.back.back_app.book.controller;
 
-import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import it.back.back_app.book.dto.BookDetailDTO;
 import it.back.back_app.book.dto.BookRequestDTO;
 import it.back.back_app.book.dto.BookResponseDTO;
 import it.back.back_app.book.entity.BookEntity;
 import it.back.back_app.book.service.BookService;
+import it.back.back_app.common.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -71,9 +69,9 @@ public class BookAdminController {
     }
     
     //수정
-    @PutMapping("books/{bookId}")
+    @PutMapping("/books/{bookId}")
     public ResponseEntity<?> updateBook(
-            @PathVariable Integer bookId,
+            @PathVariable("bookId") Integer bookId,
             @ModelAttribute BookRequestDTO dto
     ) {
         try {
@@ -98,20 +96,13 @@ public class BookAdminController {
         }
     }
     //삭제
-    @DeleteMapping("books/{bookId}")
-    public ResponseEntity<?> deleteBook(@PathVariable Integer bookId) {
-        try {
-            bookService.deleteBook(bookId);
-            return ResponseEntity.ok(Map.of(
-                "message", "도서가 삭제되었습니다.",
-                "bookId", bookId
-            ));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(Map.of(
-                "message", "도서 삭제 중 오류가 발생했습니다.",
-                "error", e.getMessage()
-            ));
-        }
+    @DeleteMapping("/books/{bookId}")
+public ResponseEntity<ApiResponse<Map<String, Object>>> deleteBoard(@PathVariable("bookId") int bookId) throws Exception {
+
+        Map<String, Object> resultMap = bookService.deleteBook(bookId);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.ok(resultMap));
     }
+
+
+    
 }

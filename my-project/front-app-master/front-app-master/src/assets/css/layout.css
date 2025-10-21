@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
 /*기본폰트*/
-/* @font-face {
+@font-face {
   font-family: 'MyFont';
   src: url('../font/ZEN-SERIF-TTF-Regular.ttf') format('truetype');
   
   font-style: normal;
-} */
+}
 ul { 
   list-style: none; padding: 0; margin: 0; 
 }
