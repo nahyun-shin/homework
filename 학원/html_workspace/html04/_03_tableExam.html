@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #dfeeda;
+        }
+        .main-container{
+            margin: 0 auto;
+            width: 500px;
+            background-color: #ffffff;
+            border-radius: 5px;
+
+        }
+        .std-table{
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .std-table caption{
+            caption-side: top;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0px 20px;
+            color: #181818;
+        }
+        .std-table th, td{
+            height: 40px;
+        }
+        .std-table th{
+            background-color: #333333;
+            color: white;
+        }
+        .std-table td{
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #adadad;
+        }
+        .std-table tr:last-child td{
+            border-bottom: none; 
+        }
+        .std-table td:nth-child(3){
+            text-align: center;
+        }
+        .std-table tr:hover{
+            background-color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body>
+    <main class="main-container">
+        <table class="std-table">
+            <caption>학생 리스트</caption>
+            <colgroup>
+                <col style="width: 30%;"/>
+                <col style="width: 40%;"/>
+                <col style="width: 10%;"/>
+                <col style="width: 20%;"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>학번</th>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>성별</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>st101동</td>
+                    <td>홍길동</td>
+                    <td>50</td>
+                    <td>남자</td>
+                </tr>
+                <tr>
+                    <td>st102동</td>
+                    <td>김철수</td>
+                    <td>30</td>
+                    <td>남자</td>
+                </tr>
+                <tr>
+                    <td>st103동</td>
+                    <td>이민영</td>
+                    <td>29</td>
+                    <td>여자</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </main>
+</body>
+
+</html>

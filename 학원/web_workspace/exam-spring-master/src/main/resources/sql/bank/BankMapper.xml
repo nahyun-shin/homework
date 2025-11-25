@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.exam.springs.bank.mapper.BankMapper">
+
+	<resultMap type="bankDetail" id="bankDetailMap">
+
+		<id property="accNum" column="acc_num" />
+		<result property="accName" column="acc_name" />
+		<result property="balance" column="balance" />
+		<result property="createDate" column="create_date" />
+		<result property="updateDate" column="update_date" />
+		<result property="useYN" column="use_yn" />
+
+	</resultMap>
+
+	<select id="getBankTotal" resultType="int">
+
+		select count(*) cnt
+		from
+		board
+
+	</select>
+
+	<select id="getBankList" parameterType="map"
+		resultType="bankResp">
+		select acc_num,
+		acc_name,
+		balance,
+		create_date,
+		update_date,
+		use_yn
+		from bank
+		order by acc_name desc
+		limit #{offSet}, #{count}
+
+	</select>
+
+	<select id="getBank" parameterType="map"
+		resultMap="bankDetailMap">
+		select acc_num,
+		acc_name,
+		balance,
+		create_date,
+		update_date,
+		use_yn
+		from bank
+
+		where acc_num=#{accNum}
+
+	</select>
+	
+	
+	<update id="updateBank" parameterType="bankDetail">
+    UPDATE bank
+    <set>
+        <if test="balance != null">
+            balance = #{balance},
+        </if>
+
+        <if test="useYN != null and useYN != ''">
+            use_yn = #{useYN},
+        </if>
+
+        update_date = NOW()
+    </set>
+    WHERE acc_num = #{accNum}
+</update>
+
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

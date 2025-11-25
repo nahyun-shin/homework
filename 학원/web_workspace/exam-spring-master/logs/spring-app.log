@@ -1,0 +1,101 @@
+INFO  2025-09-03 16:12:19 [main] DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+INFO  2025-09-03 16:12:19 [main] DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@550dbc7a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@21282ed8, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@36916eb0, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7bab3f1a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@437da279, org.springframework.test.context.transaction.TransactionalTestExecutionListener@23c30a20, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1e1a0406, org.springframework.test.context.event.EventPublishingTestExecutionListener@3cebbb30]
+DEBUG 2025-09-03 16:12:19 [main] LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\HomController.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\controller\BankController.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\mapper\BankMapper.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\service\BankService.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\vo\Bank$Detail.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\vo\Bank$Request.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\vo\Bank$Response.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\bank\vo\Bank.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\common\page\PageVO.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\controller\UserController.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\mapper\UserMapper.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\service\UserService.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\vo\Users$LoginUser.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\vo\Users$UserInfo.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\kr\exam\springs\user\vo\Users.class]
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'bankMapper' and 'kr.exam.springs.bank.mapper.BankMapper' mapperInterface
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'bankMapper'.
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'userMapper' and 'kr.exam.springs.user.mapper.UserMapper' mapperInterface
+DEBUG 2025-09-03 16:12:19 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+DEBUG 2025-09-03 16:12:19 [main] debug - log4jdbc-logj2 properties initialization...
+DEBUG 2025-09-03 16:12:19 [main] debug - Using logger: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.debug.stack.prefix is not defined
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.sqltiming.warn.threshold is not defined
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.sqltiming.error.threshold is not defined
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+DEBUG 2025-09-03 16:12:19 [main] debug -   log4jdbc.dump.sql.maxlinelength = 0
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.statement.warn is not defined (using default value false)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.select is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.insert is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.update is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.delete is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.create is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug -   log4jdbc.drivers = org.mariadb.jdbc.Driver
+DEBUG 2025-09-03 16:12:19 [main] debug -     will look for specific driver org.mariadb.jdbc.Driver
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.trim.sql is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.trim.sql.extrablanklines is not defined (using default value true)
+DEBUG 2025-09-03 16:12:19 [main] debug - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+DEBUG 2025-09-03 16:12:19 [main] debug - log4jdbc-logj2 properties initialization done.
+DEBUG 2025-09-03 16:12:19 [main] debug - DriverSpy intialization...
+DEBUG 2025-09-03 16:12:19 [main] debug -   FOUND DRIVER org.mariadb.jdbc.Driver
+DEBUG 2025-09-03 16:12:19 [main] debug - DriverSpy intialization done.
+DEBUG 2025-09-03 16:12:19 [main] SqlSessionFactoryBean - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+DEBUG 2025-09-03 16:12:19 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\sql\bank\BankMapper.xml]'
+DEBUG 2025-09-03 16:12:19 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\exam-spring-master\target\classes\sql\user\UserMapper.xml]'
+DEBUG 2025-09-03 16:12:19 [main] Mappings - 
+	k.e.s.b.c.BankController:
+	{POST [/bank/update.do]}: updateBank(Request)
+	{ [/bank/list.do]}: bankListView(int)
+	{GET [/bank/list/data.do]}: getListData(int)
+	{GET [/bank/detail.do]}: getBankDetailView(String,int)
+DEBUG 2025-09-03 16:12:19 [main] Mappings - 
+	k.e.s.u.c.UserController:
+	{POST [/user/login.do]}: login(String,String,HttpServletRequest)
+	{POST [/user/add.do]}: addUser(UserInfo)
+	{GET [/user/list.do]}: userListView(int)
+	{GET [/user/search.do]}: searchUser(String,String)
+	{GET [/user/join.do]}: joinView()
+	{GET [/user/login.do]}: loginView()
+DEBUG 2025-09-03 16:12:20 [main] Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}
+DEBUG 2025-09-03 16:12:20 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/resources/**=ResourceHttpRequestHandler [classpath [resources/]]}
+DEBUG 2025-09-03 16:12:20 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]}
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: SELECT @@tx_isolation
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-09-03 16:12:20 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-09-03 16:12:20 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@169268a7 testClass = JavaTest, testInstance = JavaTest@285c6918, testMethod = testGetBoardList@JavaTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@78a0ff63 testClass = JavaTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@31e32ea2]; rollback [true]
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c]
+DEBUG 2025-09-03 16:12:20 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1865289764 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3b5c665c] will be managed by Spring
+DEBUG 2025-09-03 16:12:20 [main] getBankTotal - ==>  Preparing: select count(*) cnt from board
+DEBUG 2025-09-03 16:12:20 [main] getBankTotal - ==> Parameters: 
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: select count(*) cnt
+		from
+		board
+DEBUG 2025-09-03 16:12:20 [main] getBankTotal - <==      Total: 1
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c]
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c] from current transaction
+DEBUG 2025-09-03 16:12:20 [main] getBankList - ==>  Preparing: select acc_num, acc_name, balance, create_date, update_date, use_yn from bank order by acc_name desc limit ?, ?
+DEBUG 2025-09-03 16:12:20 [main] getBankList - ==> Parameters: 0(Integer), 10(Integer)
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: select acc_num,
+		acc_name,
+		balance,
+		create_date,
+		update_date,
+		use_yn
+		from bank
+		order by acc_name desc
+		limit ?, ?
+DEBUG 2025-09-03 16:12:20 [main] getBankList - <==      Total: 1
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c]
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c]
+DEBUG 2025-09-03 16:12:20 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@869d87c]
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-09-03 16:12:20 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-09-03 16:12:20 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-09-03 16:12:20 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@169268a7 testClass = JavaTest, testInstance = JavaTest@285c6918, testMethod = testGetBoardList@JavaTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@78a0ff63 testClass = JavaTest, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 600px;
+            overflow: auto;
+            border: 1px solid black;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: flex-start;
+            gap: 10px;
+        }
+
+        .item{
+            width: 70px;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" onclick="create();">생성</button>
+        <button type="button" onclick="delele();">삭제</button>
+    </div>
+    <div class="container" id="canvas"></div>
+</body>
+<script>
+
+    const create=()=>{
+        const canvas = document.querySelector('#canvas');//canvas라는 id를 가진요소를 가져옴
+        const itemDiv = document.createElement('div');//div라는 태그를 가진 요소를 가져옴
+        itemDiv.className = 'item';
+        itemDiv.style.backgroundColor = randColor();
+        canvas.appendChild(itemDiv);
+    }
+
+    const delele=()=>{
+        const canvas = document.querySelector('#canvas');
+        const itemDivs = canvas.querySelectorAll('div'); //배열값으로 리턴됨
+
+        //마지막요소 삭제
+        const lastDiv = itemDivs[itemDivs.length-1];
+
+        //객체 자체가 있는지 검사 없으면 undefinde가 나온다.
+        if(lastDiv){
+            canvas.removeChild(lastDiv);//자식node를 지운다.(태그, 엘리먼트, html객체 등 다양하게 부른다.)
+        }
+    }
+
+    //자주사용됨
+    function randColor(){
+        const colors = [];
+        let count=0;
+
+        while(count<3){
+            //255.
+            const randColor = Math.floor(Math.random()*256);
+
+            //10진수->16진수로바꿈
+            let hexColor = randColor.toString(16);
+
+            //==는 값만 비교/ ===는 값과 타입 둘다 비교
+            if(hexColor.length===1){ //00~09 0A 0B 0C 0D 0E 0F 10 11
+                hexColor ='0'+hexColor;
+            }
+            colors.push(hexColor);
+            count++;
+        }
+
+        
+        return'#'+colors.join('');
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,396 @@
+INFO  2025-08-29 16:52:48 [main] DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+INFO  2025-08-29 16:52:48 [main] DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3cebbb30, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@12aba8be, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@290222c1, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@67f639d3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6253c26, org.springframework.test.context.transaction.TransactionalTestExecutionListener@49049a04, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@71a8adcf, org.springframework.test.context.event.EventPublishingTestExecutionListener@27462a88]
+DEBUG 2025-08-29 16:52:48 [main] LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\test-classes\kr\exam\springs\TestBoardService.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\controller\BoardController.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\mapper\BoardMapper.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\service\BoardService.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$BoardFiles.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Detail.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Request.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Response.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\common\page\PageVO.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\controller\HomeController.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\interceptor\LoginInterceptor.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\service\TestService.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\controller\UserController.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\mapper\UserMapper.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\service\UserService.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users$LoginUser.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users$UserInfo.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users.class]
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'boardMapper' and 'kr.exam.springs.board.mapper.BoardMapper' mapperInterface
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'boardMapper'.
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'userMapper' and 'kr.exam.springs.user.mapper.UserMapper' mapperInterface
+DEBUG 2025-08-29 16:52:48 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+DEBUG 2025-08-29 16:52:48 [main] debug - log4jdbc-logj2 properties initialization...
+DEBUG 2025-08-29 16:52:48 [main] debug - Using logger: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.debug.stack.prefix is not defined
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.sqltiming.warn.threshold is not defined
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.sqltiming.error.threshold is not defined
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+DEBUG 2025-08-29 16:52:48 [main] debug -   log4jdbc.dump.sql.maxlinelength = 0
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.statement.warn is not defined (using default value false)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.select is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.insert is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.update is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.delete is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.create is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug -   log4jdbc.drivers = org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:52:48 [main] debug -     will look for specific driver org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.trim.sql is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.trim.sql.extrablanklines is not defined (using default value true)
+DEBUG 2025-08-29 16:52:48 [main] debug - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+DEBUG 2025-08-29 16:52:48 [main] debug - log4jdbc-logj2 properties initialization done.
+DEBUG 2025-08-29 16:52:48 [main] debug - DriverSpy intialization...
+DEBUG 2025-08-29 16:52:48 [main] debug -   FOUND DRIVER org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:52:48 [main] debug - DriverSpy intialization done.
+DEBUG 2025-08-29 16:52:48 [main] SqlSessionFactoryBean - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+DEBUG 2025-08-29 16:52:48 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\spring-master\target\classes\sql\board\BoardMapper.xml]'
+DEBUG 2025-08-29 16:52:48 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\spring-master\target\classes\sql\user\UserMapper.xml]'
+DEBUG 2025-08-29 16:52:48 [main] Mappings - 
+	k.e.s.b.c.BoardController:
+	{POST [/board/write.do]}: writeBoard(Request,LoginUser)
+	{POST [/board/update.do]}: updateBoard(Request)
+	{GET [/board/delete.do]}: deleteBoard(int)
+	{GET [/board/down.do]}: getFileDown(int,HttpServletResponse)
+	{GET [/board/list/data.do]}: getListData(int)
+	{ [/board/list2.do]}: boardListView2(int)
+	{ [/board/list.do]}: boardListView(int)
+	{GET [/board/detail.do]}: getBoardDetailView(int,int,String,HttpServletResponse)
+	{GET [/board/write/view.do]}: getWriteView(int)
+	{GET [/board/form.do]}: writeView()
+	{PATCH [/board/like.do]}: updateLike(Map)
+DEBUG 2025-08-29 16:52:48 [main] Mappings - 
+	k.e.s.c.HomeController:
+	{GET [/hello.do]}: hello()
+DEBUG 2025-08-29 16:52:48 [main] Mappings - 
+	k.e.s.u.c.UserController:
+	{POST [/user/login.do]}: login(String,String,HttpServletRequest)
+	{POST [/user/add.do]}: addUser(UserInfo)
+	{GET [/user/list.do]}: userListView(int)
+	{GET [/user/login.do]}: loginView()
+	{GET [/user/join.do]}: joinView()
+	{GET [/user/search.do]}: searchUser(String,String)
+DEBUG 2025-08-29 16:52:49 [main] Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}
+DEBUG 2025-08-29 16:52:49 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/resources/**=ResourceHttpRequestHandler [classpath [resources/]]}
+DEBUG 2025-08-29 16:52:49 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]}
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: SELECT @@tx_isolation
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@1f03fba0, testMethod = insertBoardWithoutFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@3bbf6abe]; rollback [true]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e]
+DEBUG 2025-08-29 16:52:49 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1818236857 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@80bfa9d] will be managed by Spring
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - ==>  Preparing: insert into board(title, contents, writer) values( ?, ?, ? )
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - ==> Parameters: 테스트모드(String), 테스트모드(String), 테스트모드(String)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: insert  into  board(title, contents, writer)
+  	  values(  ?,  ?,  ? )
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - <==    Updates: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e] from current transaction
+DEBUG 2025-08-29 16:52:49 [main] getBoard - ==>  Preparing: select b.brd_id, b.title, b.contents , b.writer , b.read_count , b.like_count , b.create_date , b.update_date , bf.bf_id , bf.file_name, bf.stored_name, bf.file_path from board b left join board_files bf on b.brd_id = bf.brd_id where b.brd_id = ?
+DEBUG 2025-08-29 16:52:49 [main] getBoard - ==> Parameters: 44(Integer)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: select b.brd_id,
+		       b.title,
+		       b.contents ,
+		       b.writer ,
+		       b.read_count ,
+		       b.like_count ,
+		       b.create_date ,
+		       b.update_date ,
+		       bf.bf_id ,
+		       bf.file_name,
+		       bf.stored_name,
+		       bf.file_path
+		from board b
+		  left join board_files bf on b.brd_id  = bf.brd_id
+		where b.brd_id = ?
+DEBUG 2025-08-29 16:52:49 [main] getBoard - <==      Total: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ee8130e]
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@1f03fba0, testMethod = insertBoardWithoutFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@66f28a1f, testMethod = testGetBoardList@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@3bbf6abe]; rollback [true]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573]
+DEBUG 2025-08-29 16:52:49 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@324008184 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@80bfa9d] will be managed by Spring
+DEBUG 2025-08-29 16:52:49 [main] getBoardTotal - ==>  Preparing: select count(*) cnt from board
+DEBUG 2025-08-29 16:52:49 [main] getBoardTotal - ==> Parameters: 
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: select count(*) cnt
+  	 from board
+DEBUG 2025-08-29 16:52:49 [main] getBoardTotal - <==      Total: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573] from current transaction
+DEBUG 2025-08-29 16:52:49 [main] getBoardList - ==>  Preparing: select brd_id, title, writer, read_count, like_count, create_date, update_date from board order by brd_id desc limit ?, ?
+DEBUG 2025-08-29 16:52:49 [main] getBoardList - ==> Parameters: 0(Integer), 10(Integer)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: select brd_id,
+             title,
+             writer,
+             read_count,
+             like_count,
+             create_date,
+             update_date
+      from board
+      order by brd_id desc
+      limit ?, ?
+DEBUG 2025-08-29 16:52:49 [main] getBoardList - <==      Total: 10
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60a19573]
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@66f28a1f, testMethod = testGetBoardList@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@4f4c88f9, testMethod = insertBoardWithFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@3bbf6abe]; rollback [true]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1732902480 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@80bfa9d] will be managed by Spring
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - ==>  Preparing: insert into board(title, contents, writer) values( ?, ?, ? )
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - ==> Parameters: 테스트모드(String), 테스트모드(String), 테스트모드(String)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: insert  into  board(title, contents, writer)
+  	  values(  ?,  ?,  ? )
+DEBUG 2025-08-29 16:52:49 [main] insertBoard - <==    Updates: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad] from current transaction
+DEBUG 2025-08-29 16:52:49 [main] insertBoardFiles - ==>  Preparing: insert into board_files(brd_id, file_name, stored_name, file_path, file_size) values(?, ?, ?, ?, ? )
+DEBUG 2025-08-29 16:52:49 [main] insertBoardFiles - ==> Parameters: 45(Integer), test-file.txt(String), 35d3d77bf7c740ad.txt(String), C:\files\down\board\(String), 15(Long)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: insert into board_files(brd_id, file_name, stored_name, file_path, file_size)
+     values(?,  ?,  ?,  ?,  ?  )
+DEBUG 2025-08-29 16:52:49 [main] insertBoardFiles - <==    Updates: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad] from current transaction
+DEBUG 2025-08-29 16:52:49 [main] getBoard - ==>  Preparing: select b.brd_id, b.title, b.contents , b.writer , b.read_count , b.like_count , b.create_date , b.update_date , bf.bf_id , bf.file_name, bf.stored_name, bf.file_path from board b left join board_files bf on b.brd_id = bf.brd_id where b.brd_id = ?
+DEBUG 2025-08-29 16:52:49 [main] getBoard - ==> Parameters: 45(Integer)
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: select b.brd_id,
+		       b.title,
+		       b.contents ,
+		       b.writer ,
+		       b.read_count ,
+		       b.like_count ,
+		       b.create_date ,
+		       b.update_date ,
+		       bf.bf_id ,
+		       bf.file_name,
+		       bf.stored_name,
+		       bf.file_path
+		from board b
+		  left join board_files bf on b.brd_id  = bf.brd_id
+		where b.brd_id = ?
+DEBUG 2025-08-29 16:52:49 [main] getBoard - <==      Total: 1
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b63e6ad]
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:52:49 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:52:49 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:52:49 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@64aad809 testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@4f4c88f9, testMethod = insertBoardWithFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@17dd671f testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+INFO  2025-08-29 16:56:37 [main] DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+INFO  2025-08-29 16:56:37 [main] DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1e1a0406, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3cebbb30, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@12aba8be, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@290222c1, org.springframework.test.context.support.DirtiesContextTestExecutionListener@67f639d3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6253c26, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@49049a04, org.springframework.test.context.event.EventPublishingTestExecutionListener@71a8adcf]
+DEBUG 2025-08-29 16:56:37 [main] LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\test-classes\kr\exam\springs\TestBoardService.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\controller\BoardController.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\mapper\BoardMapper.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\service\BoardService.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$BoardFiles.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Detail.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Request.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board$Response.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\board\vo\Board.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\common\page\PageVO.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\controller\HomeController.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\interceptor\LoginInterceptor.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\service\TestService.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\controller\UserController.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Identified candidate component class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\mapper\UserMapper.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\service\UserService.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users$LoginUser.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users$UserInfo.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Ignored because not a concrete top-level class: file [C:\nahyun.shin\web_workspace\spring-master\target\classes\kr\exam\springs\user\vo\Users.class]
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'boardMapper' and 'kr.exam.springs.board.mapper.BoardMapper' mapperInterface
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'boardMapper'.
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'userMapper' and 'kr.exam.springs.user.mapper.UserMapper' mapperInterface
+DEBUG 2025-08-29 16:56:37 [main] ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'userMapper'.
+DEBUG 2025-08-29 16:56:37 [main] debug - log4jdbc-logj2 properties initialization...
+DEBUG 2025-08-29 16:56:37 [main] debug - Using logger: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.debug.stack.prefix is not defined
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.sqltiming.warn.threshold is not defined
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.sqltiming.error.threshold is not defined
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.booleanastruefalse is not defined (using default value false)
+DEBUG 2025-08-29 16:56:37 [main] debug -   log4jdbc.dump.sql.maxlinelength = 0
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.fulldebugstacktrace is not defined (using default value false)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.statement.warn is not defined (using default value false)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.select is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.insert is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.update is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.delete is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.create is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.dump.sql.addsemicolon is not defined (using default value false)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.auto.load.popular.drivers is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug -   log4jdbc.drivers = org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:56:37 [main] debug -     will look for specific driver org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.trim.sql is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.trim.sql.extrablanklines is not defined (using default value true)
+DEBUG 2025-08-29 16:56:37 [main] debug - x log4jdbc.suppress.generated.keys.exception is not defined (using default value false)
+DEBUG 2025-08-29 16:56:37 [main] debug - log4jdbc-logj2 properties initialization done.
+DEBUG 2025-08-29 16:56:37 [main] debug - DriverSpy intialization...
+DEBUG 2025-08-29 16:56:37 [main] debug -   FOUND DRIVER org.mariadb.jdbc.Driver
+DEBUG 2025-08-29 16:56:37 [main] debug - DriverSpy intialization done.
+DEBUG 2025-08-29 16:56:37 [main] SqlSessionFactoryBean - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+DEBUG 2025-08-29 16:56:37 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\spring-master\target\classes\sql\board\BoardMapper.xml]'
+DEBUG 2025-08-29 16:56:37 [main] SqlSessionFactoryBean - Parsed mapper file: 'file [C:\nahyun.shin\web_workspace\spring-master\target\classes\sql\user\UserMapper.xml]'
+DEBUG 2025-08-29 16:56:37 [main] Mappings - 
+	k.e.s.b.c.BoardController:
+	{POST [/board/write.do]}: writeBoard(Request,LoginUser)
+	{POST [/board/update.do]}: updateBoard(Request)
+	{GET [/board/delete.do]}: deleteBoard(int)
+	{ [/board/list.do]}: boardListView(int)
+	{GET [/board/write/view.do]}: getWriteView(int)
+	{GET [/board/down.do]}: getFileDown(int,HttpServletResponse)
+	{GET [/board/detail.do]}: getBoardDetailView(int,int,String,HttpServletResponse)
+	{GET [/board/list/data.do]}: getListData(int)
+	{ [/board/list2.do]}: boardListView2(int)
+	{PATCH [/board/like.do]}: updateLike(Map)
+	{GET [/board/form.do]}: writeView()
+DEBUG 2025-08-29 16:56:37 [main] Mappings - 
+	k.e.s.c.HomeController:
+	{GET [/hello.do]}: hello()
+DEBUG 2025-08-29 16:56:37 [main] Mappings - 
+	k.e.s.u.c.UserController:
+	{POST [/user/login.do]}: login(String,String,HttpServletRequest)
+	{GET [/user/list.do]}: userListView(int)
+	{POST [/user/add.do]}: addUser(UserInfo)
+	{GET [/user/login.do]}: loginView()
+	{GET [/user/join.do]}: joinView()
+	{GET [/user/search.do]}: searchUser(String,String)
+DEBUG 2025-08-29 16:56:38 [main] Mappings - 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping' {}
+DEBUG 2025-08-29 16:56:38 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0' {/resources/**=ResourceHttpRequestHandler [classpath [resources/]]}
+DEBUG 2025-08-29 16:56:38 [main] Mappings - 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]}
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: SELECT @@tx_isolation
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@64aad809, testMethod = insertBoardWithoutFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@17dd671f]; rollback [true]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f]
+DEBUG 2025-08-29 16:56:38 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@282812721 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2c8c16c0] will be managed by Spring
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - ==>  Preparing: insert into board(title, contents, writer) values( ?, ?, ? )
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - ==> Parameters: 테스트모드(String), 테스트모드(String), 테스트모드(String)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: insert  into  board(title, contents, writer)
+  	  values(  ?,  ?,  ? )
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - <==    Updates: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f] from current transaction
+DEBUG 2025-08-29 16:56:38 [main] getBoard - ==>  Preparing: select b.brd_id, b.title, b.contents , b.writer , b.read_count , b.like_count , b.create_date , b.update_date , bf.bf_id , bf.file_name, bf.stored_name, bf.file_path from board b left join board_files bf on b.brd_id = bf.brd_id where b.brd_id = ?
+DEBUG 2025-08-29 16:56:38 [main] getBoard - ==> Parameters: 46(Integer)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: select b.brd_id,
+		       b.title,
+		       b.contents ,
+		       b.writer ,
+		       b.read_count ,
+		       b.like_count ,
+		       b.create_date ,
+		       b.update_date ,
+		       bf.bf_id ,
+		       bf.file_name,
+		       bf.stored_name,
+		       bf.file_path
+		from board b
+		  left join board_files bf on b.brd_id  = bf.brd_id
+		where b.brd_id = ?
+DEBUG 2025-08-29 16:56:38 [main] getBoard - <==      Total: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44b21f9f]
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@64aad809, testMethod = insertBoardWithoutFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@47ac613b, testMethod = testGetBoardList@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@17dd671f]; rollback [true]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4]
+DEBUG 2025-08-29 16:56:38 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1621202291 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2c8c16c0] will be managed by Spring
+DEBUG 2025-08-29 16:56:38 [main] getBoardTotal - ==>  Preparing: select count(*) cnt from board
+DEBUG 2025-08-29 16:56:38 [main] getBoardTotal - ==> Parameters: 
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: select count(*) cnt
+  	 from board
+DEBUG 2025-08-29 16:56:38 [main] getBoardTotal - <==      Total: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4] from current transaction
+DEBUG 2025-08-29 16:56:38 [main] getBoardList - ==>  Preparing: select brd_id, title, writer, read_count, like_count, create_date, update_date from board order by brd_id desc limit ?, ?
+DEBUG 2025-08-29 16:56:38 [main] getBoardList - ==> Parameters: 0(Integer), 10(Integer)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: select brd_id,
+             title,
+             writer,
+             read_count,
+             like_count,
+             create_date,
+             update_date
+      from board
+      order by brd_id desc
+      limit ?, ?
+DEBUG 2025-08-29 16:56:38 [main] getBoardList - <==      Total: 10
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60d6fdd4]
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@47ac613b, testMethod = testGetBoardList@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=0
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = OFF
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Began transaction (1) for test context [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@75e27856, testMethod = insertBoardWithFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@17dd671f]; rollback [true]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Creating a new SqlSession
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1801709229 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2c8c16c0] will be managed by Spring
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - ==>  Preparing: insert into board(title, contents, writer) values( ?, ?, ? )
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - ==> Parameters: 테스트모드(String), 테스트모드(String), 테스트모드(String)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: insert  into  board(title, contents, writer)
+  	  values(  ?,  ?,  ? )
+DEBUG 2025-08-29 16:56:38 [main] insertBoard - <==    Updates: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992] from current transaction
+DEBUG 2025-08-29 16:56:38 [main] insertBoardFiles - ==>  Preparing: insert into board_files(brd_id, file_name, stored_name, file_path, file_size) values(?, ?, ?, ?, ? )
+DEBUG 2025-08-29 16:56:38 [main] insertBoardFiles - ==> Parameters: 47(Integer), test-file.txt(String), 10617cd002eb4c9b.txt(String), C:\files\down\board\(String), 15(Long)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: insert into board_files(brd_id, file_name, stored_name, file_path, file_size)
+     values(?,  ?,  ?,  ?,  ?  )
+DEBUG 2025-08-29 16:56:38 [main] insertBoardFiles - <==    Updates: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992] from current transaction
+DEBUG 2025-08-29 16:56:38 [main] getBoard - ==>  Preparing: select b.brd_id, b.title, b.contents , b.writer , b.read_count , b.like_count , b.create_date , b.update_date , bf.bf_id , bf.file_name, bf.stored_name, bf.file_path from board b left join board_files bf on b.brd_id = bf.brd_id where b.brd_id = ?
+DEBUG 2025-08-29 16:56:38 [main] getBoard - ==> Parameters: 47(Integer)
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: select b.brd_id,
+		       b.title,
+		       b.contents ,
+		       b.writer ,
+		       b.read_count ,
+		       b.like_count ,
+		       b.create_date ,
+		       b.update_date ,
+		       bf.bf_id ,
+		       bf.file_name,
+		       bf.stored_name,
+		       bf.file_path
+		from board b
+		  left join board_files bf on b.brd_id  = bf.brd_id
+		where b.brd_id = ?
+DEBUG 2025-08-29 16:56:38 [main] getBoard - <==      Total: 1
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f3b992]
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: ROLLBACK
+DEBUG 2025-08-29 16:56:38 [main] StandardClient - execute query: set autocommit=1
+DEBUG 2025-08-29 16:56:38 [main] OkPacket - System variable change:  autocommit = ON
+INFO  2025-08-29 16:56:38 [main] TransactionContext - Rolled back transaction for test: [DefaultTestContext@1886991b testClass = TestBoardService, testInstance = kr.exam.springs.TestBoardService@75e27856, testMethod = insertBoardWithFile@TestBoardService, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@1f03fba0 testClass = TestBoardService, locations = '{file:src/main/webapp/WEB-INF/spring/root-context.xml, file:src/main/webapp/WEB-INF/spring/servlet-context.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map['org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]

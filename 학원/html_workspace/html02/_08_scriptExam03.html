@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="text" name="text"></div>
+</body>
+<script>
+
+
+    //querySelecotr 사용
+    //선택자이용 -> 선택자는 css와 동일 #id명/ .class명 / 태그[name = "이름"]
+
+    //디테일하게 내가 원하는 엘리먼트(도큐먼트)를 가지고 올 수 있다 좀 더 범용적임
+    const div = document.querySelector('#text');
+    div.innerHTML = '<span>안녕</span>';
+
+
+    //메서드
+    function add(x, y){
+        return x+y;
+    }
+    //호출
+    console.log(add(10,11)); //콘솔창은 개발자가 오류를 확인하기 위해 넣는거라 주석처리한다.
+
+
+
+</script>
+</html>

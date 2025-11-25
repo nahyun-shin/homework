@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--<button onclick="javascript:openPop();">열기</button> 원래 형식-->
+    <button type="button" onclick="openPop();">열기</button>
+    <button type="button" id="closeBtn">닫기</button>
+</body>
+<script>
+    //왠만하면 버튼 이벤트는 익명함수로 사용해야 메모리사용량에 무리가 가지 않음.
+    
+    const openPop = ()=>{
+        alert('열렸다!');
+    }
+
+    const buttonEvt = ()=>{
+        const closeBtn = document.querySelector('#closeBtn');
+        closeBtn.addEventListener('click', (eventName)=>{
+            alert('닫혔다!');
+        })
+    }
+
+    //시작함수
+    (function(){
+        buttonEvt();
+    })();//즉시 실행 함수 한번실행되고 없어짐
+
+</script>
+</html>

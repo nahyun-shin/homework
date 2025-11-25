@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="openPopup();">팝업열기</button>
+    <button type="button" onclick="callChild();">자식호출</button>
+    
+</body>
+<script>
+
+    let popup ='';
+    const left =window.screenLeft + 200; //듀얼모니터 사용시에도 보는 모니터에서 설정값이 먹게끔 값을 구하고 띄우기 위해
+    const openPopup = ()=>{
+        popup = window.open('_08.01_insideHtml.html','팝업창',`width=500, height=500, scrollbars=yes, resizalble=yes, top=200, left=${left}`);
+    }
+
+    //외부에서 쓸꺼면
+    function call(){
+        alert('자식팝업에서 호출');
+    }
+
+    const callChild = ()=>{
+        popup.callChildren();
+    }
+
+</script>
+</html>

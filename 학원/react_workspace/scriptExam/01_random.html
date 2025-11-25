@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .square{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="square"></div>
+    </main>
+</body>
+<script>
+	let width=Math.floor((Math.random()*50))+50;
+    let color = (Math.floor(Math.random()*16777216)).toString(16);
+    console.log(color);
+    document.querySelector('.square').style.backgroundColor='#'+color;
+    function makeSquare(){
+	
+    }
+
+</script>
+</html>

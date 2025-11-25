@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.container{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+.contents{
+    width: 700px;
+    height: 100%;
+    
+}
+
+.canvas{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    height: 70%;
+    width: 100%;
+    border: 1px solid black;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-box{
+    text-align: center;
+}
+.btn{
+    margin: 0 5px;
+    width: 90px;
+    height: 36px;
+}

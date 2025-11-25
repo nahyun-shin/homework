@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="canvas"></div>
+</body>
+<script>
+    //도우미 Array(for보단 느리지만 스킬적인면에서 돋보일 수 있음)
+    const obj = {} //빈 객체
+    //from(객체타입, 콜백함수(리턴형))
+
+    // const arr = Array.from({length:10}, function(){
+    //     return Math.floor(Math.random()*30)+1;
+    // })
+
+    let arr = Array.from({length:10}, ()=> Math.floor(Math.random()*30)+1);
+
+    //map함수 - 원본은 유지됨
+    //콜백함수(리턴형) - return을 이용해서 continue 기능은 아능
+    arr = arr.map(function(n, i){
+        console.log('n:',n);
+        // if(i === 3){
+        //     return;
+        // }
+        console.log(i);
+        return n;
+    });
+
+    //filter
+    arr = arr.filter((n, i)=> n%2 === 0 );
+    console.log(arr);
+    
+
+    
+
+
+</script>
+</html>

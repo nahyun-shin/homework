@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+.user-table{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid #9b6d6d;
+    height: 80px;
+    align-items: center;
+}
+
+.user-box .item1{
+    flex: 1;
+}
+.user-box .item2{
+    flex: 1;
+}
+.user-box .item3{
+    flex: 2;
+}

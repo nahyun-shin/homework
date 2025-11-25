@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .nav-container{
+            display: flex;
+            background-color: black;
+            height: 80px;
+            line-height: 45px;
+            padding: 1rem 2rem;
+            justify-content: space-between;
+            
+        }
+        .nav-menu{
+            display: flex;
+            list-style-type: none;
+            gap: 20px;
+        }
+
+        .nav-link{
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1rem;
+            border-radius: 5px;
+        }
+
+        
+        .nav-link:hover{ 
+            background-color: #333;
+
+        }
+
+        .nav-link.active{
+            background-color: rgb(116, 137, 206);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="javascript:move('naver')" data-page="naver" class="nav-link">네이버</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:move('daum')" data-page="daum" class="nav-link">다음</a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="nav-menu">
+                    
+                    <li class="nav-item">
+                        <a href="javascript:move('register')" data-page="register" class="nav-link">회원가입</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+</body>
+<script>
+    function move(site){
+
+        const menuLinks=document.querySelectorAll('.nav-link');
+
+        menuLinks.forEach(link => {
+            link.classList.remove('active');//비활성화상태
+            id = link.getAttribute('data-page');
+
+            if(site===id){
+                link.classList.add('active');//활성화상태
+            }
+        });
+
+    }
+</script>
+</html>

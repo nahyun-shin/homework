@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<>
+    <!--a태그는 링크를 등록하는 태그-->
+    <!--href 이동할 경로-->
+    <!--blank는 새창에서 실행-->
+    <!--새창으로 실행하는 경우는 이전화면이 부모, 
+        열리는게 자식 화면으로 인식해서 서로 영향을 줄 수 있음
+
+        그래서 rel="noopener noreferrer" 
+        noopener : 이전페이지 없음
+        noreferrer : 부모없음
+        옵션을 부여하여 독립적인 새 페이지로 인식되도록 한다.
+
+        이렇게 쓰는 이유는 이전의 페이지가 있을 경우 
+        해커가 자식의 페이지를 타고 부모페이지를 바꿀 수 있음
+
+        그러하여 보안상의 이유로 자식페이지로 넘어갈 때 첫페이지로 인식 되게 끔 쓴다.
+
+        -->
+    <a href="http://www.naver.com" target="_blank" rel="noopener noreferrer">네이버</a><br>
+    <!-- 타겟을 주지 않으면 self가 기본으로 들어감-->
+    <a href="http://www.google.com">구글</a><br>
+
+    <a href="http://www.youtube.com">유튜브</a><br>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="callParent();">부모창 기능 호출</button>
+    <button onclick="window.close();">닫기</button>
+
+</body>
+<script>
+    const callParent = ()=>{
+        opener.call();
+    }
+    
+    //외부에서 호출하기 위해 만든 함수는
+    //익명함수가 아닌 일반함수로 만드는게 좋다.
+    function callChildren(){
+        alert('부모가 호출');
+    }
+</script>
+</html>

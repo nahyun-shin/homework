@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="result"></div>
+</body>
+<script>
+
+    //화살표 함수
+    // const add = function(x,y){
+    //     return x+y;
+    // }
+
+    const add = (x,y)=> x+y;
+
+    let a = Math.floor(Math.random()*30)+1;
+    let b = Math.floor(Math.random()*30)+1;
+
+    const resultDiv = document.querySelector('#result');
+    resultDiv.append(add(a,b));
+    
+
+</script>
+</html>

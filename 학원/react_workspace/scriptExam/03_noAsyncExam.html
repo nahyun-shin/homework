@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function getUser(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                console.log('사용자 정보 가져오기');
+                resolve({name : '홍길동'})
+            },1000)
+        });
+    }
+    function getOrder(userName){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                console.log('주문 정보 가져오기');
+                resolve({user : userName, item : '노트북' , price : '150만원'})
+            },1000)
+        });
+    }
+
+    getUser()
+    .then(user=>{
+        //매개변수로 이름을 넘김
+        //동기화 코드
+        return getOrder(user.name)
+    }).then(order=>{
+        alert(`주문자 : ${order.user}, 제품 : ${order.item}`)
+    })
+
+</script>
+</html>

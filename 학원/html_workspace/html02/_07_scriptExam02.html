@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color :red;
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+</body>
+
+<script>
+
+//html객체 - document
+//document.write("안녕하세요<br>");
+//document.write("날씨가 더워요");
+
+//div 를 가져와야한다.
+//객체는 값을 지니지 않아 변하지 않기 때문에 const를 많이 쓴다.
+//참조형 변수를 만들때 사용
+//getElementById / getElementsByTagName / getElementsByName / getElementCalssName
+// 1번만 나옴(단수)/   배열타입은 아니지만 배열타입으로 나온다고 이해해도 된다.
+
+
+//cl
+const textDiv = document.getElementById('text');
+//html 코드인식
+//textDiv.innerHTML = '<span>안녕</span>';
+const str = '<span>안녕</span>';
+textDiv.innerHTML = str; //html 코드 인식 덮어쓰기만 됨
+textDiv.append(str);//html 코드 미인식 text로 읽는다.
+textDiv.textContent=str;//html 코드 미인식 덮어쓰기만 됨
+
+//html tag를 직접 만들어서 넣을 수 있음
+//자바스크립트에서는 html tag => node 라고 부름
+
+const span = document.createElement('span');
+//자바스크립트에서 css를 부여할때는 background-color > backgroundColor 처럼 하이픈이 카멜식으로 변경
+
+//단일로 스타일클래스 적용할때
+span.className = 'red';
+//그룹으로 스타일 클래스 적용할때
+span.classList.add('red');
+
+span.innerHTML = '<br>안녕';
+textDiv.append(span);
+
+</script>
+</html>

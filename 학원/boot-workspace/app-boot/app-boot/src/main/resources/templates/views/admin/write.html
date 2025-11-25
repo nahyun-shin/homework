@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main_layout}" >
+
+<th:block layout:fragment="css">
+    <style>
+        .table th, .table td{
+            vertical-align: middle;
+        }
+        .table th label{
+            margin-top: 4px;
+        }
+        input.form-control[readonly]{
+            background-color: rgb(243, 246, 255);
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+    <main class="container d-lg-flex justify-content-center">
+        <section class="w-75 h-75">
+            <header class="text-center mt-5">
+                <h2>회원 정보 등록</h2>
+            </header>
+            <section class="mt-5">
+                <form autocomplete="off">
+
+                    <table class="table ">
+                        <tr>
+                            <th>
+                                <label for="userId" class="form-label">아이디</label>
+                            </th>
+                            <td>
+                                <input type="text" id="userId" name="userId" class="form-control"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="password" class="form-label">비밀번호</label>
+                            </th>
+                            <td>
+                                
+                                 <input type="password" id="passwd" name="passwd" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="userName" class="form-label">이름</label>
+                            </th>
+                            <td>
+                                <input type="text" id="userName" class="form-control" name="userName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="form-label">성별</label>
+                            </th>
+                            <td>
+                                <input type="radio"  id="man" name="gender" value="남자" checked></input>
+                                <label for="man">남자</label>
+                                <input type="radio"  id="woman" name="gender" value="여자"></input>
+                                <label for="woman">여자</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="birth" class="form-label">생년월일</label>
+                            </th>
+                            <td>
+                                <input type="text" id="birth" class="form-control" name="birth">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="phone" class="form-label">전화번호</label>
+                            </th>
+                            <td>
+                                <input type="text" id="phone" name="phone" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="email" class="form-label">이메일</label>
+                            </th>
+                            <td >
+                                <input type="text" id="emailId" name="emailId" class="form-control d-inline-block w-25"
+                                        >
+                                <span>@</span>
+                                <input type="text" id="agency" name="agency" class="form-control d-inline-block w-25"
+                                        readonly>
+                                <select class="form-select d-inline-block w-auto" onchange="changeMail(this)">
+                                    <option value="none">===== 선택 =====</option>
+                                    <option value="self">직접입력</option>
+                                    <option  value="gmail.com">gmail.com</option>
+                                    <option  value="naver.com">naver.com</option>
+                                    <option  value="kakao.com">kakao.com</option>
+                                    <option  value="yahoo.co.kr">yahoo.co.kr</option>
+                                </select>
+                                <div id="chkAgency" style="display: none;">검증메세지</div>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="form-label">주소</label>
+                            </th>
+                            <td>
+                                 <input type="text" id="addr" name="addr" class="form-control d-inline-block w-75"  readonly>
+                                 <button type="button" class="btn btn-warning ms-5 mb-2" onclick="searchAddr()">주소 찾기</button>
+                                 <input type="text" id="addrDetail" name="addrDetail" class="form-control d-inline-block w-75" >
+                                 
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="form-label">권한</label>
+                            </th>
+                            <td>
+                                <select class="form-select w-25" id="userRole">
+                                    <option value="ADMIN" selected>관리자</option>
+                                    <option value="USER" >사용자</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="form-label">사용여부</label>
+                            </th>
+                            <td>
+                                <select class="form-select w-25" id="useYn">
+                                    <option value="Y" selected>사용</option>
+                                    <option value="N" >미사용</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary me-2" onclick="createUser()">등록</button>
+                    <button type="button" class="btn btn-secondary me-2" onclick="goList()">목록</button>
+                </div>
+                </section>
+            </section>
+        </main>
+<script>
+    
+
+// ✅ 수정된 이메일 검증 함수들
+function emailChk(agency) {
+    // 도메인 정규식 (올바른 정규식 객체로 생성)
+    const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return domainRegex.test(agency);
+}
+
+// ✅ 전체 이메일 검증 함수 (추가)
+function fullEmailChk(emailId, agency) {
+    // 이메일 아이디 정규식
+    const emailIdRegex = /^[a-zA-Z0-9._%+-]+$/;
+    // 도메인 정규식
+    const domainRegex = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // 전체 이메일 정규식
+    const fullEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!emailId || !agency) {
+        return { valid: false, message: '이메일 주소를 완전히 입력해주세요.' };
+    }
+    
+    if (!emailIdRegex.test(emailId)) {
+        return { valid: false, message: '이메일 아이디 형식이 올바르지 않습니다.' };
+    }
+    
+    if (!domainRegex.test(agency)) {
+        return { valid: false, message: '도메인 형식이 올바르지 않습니다.' };
+    }
+    
+    const fullEmail = emailId + '@' + agency;
+    if (fullEmailRegex.test(fullEmail)) {
+        return { valid: true, message: '유효한 이메일 형식입니다.' };
+    } else {
+        return { valid: false, message: '유효하지 않은 이메일 형식입니다.' };
+    }
+}
+
+const changeMail = (select) => {
+    console.log($(select).val());
+    
+    const agency = $(select).val();
+    $('#agency').prop('readOnly', true);
+    
+    if(agency === 'none') {
+        $('#chkAgency').hide(); // 메시지 숨기기
+        return;
+    }
+    
+    if(agency === 'self') {
+        $('#agency').val('');
+        $('#agency').prop('readOnly', false);
+    } else {
+        $('#agency').val(agency);
+    }
+    
+    // 도메인 변경 후 검증 실행
+    validateEmailDisplay();
+}
+
+// ✅ 이메일 검증 결과 표시 함수
+function validateEmailDisplay() {
+    const emailId = $('#emailId').val().trim();
+    const agency = $('#agency').val().trim();
+    const chkAgency = $('#chkAgency');
+    
+    if (!emailId && !agency) {
+        chkAgency.hide();
+        return;
+    }
+    
+    const result = fullEmailChk(emailId, agency);
+    
+    if (result.valid) {
+        chkAgency.html(`<span style="color: #28a745;">✓ ${result.message}</span>`);
+    } else {
+        chkAgency.html(`<span style="color: #dc3545;">✗ ${result.message}</span>`);
+    }
+    
+    chkAgency.show();
+}
+
+// ✅ 수정된 validated 함수
+const validated = () => {
+    const eventMessage = {
+        userId: '아이디를 입력하십시오',
+        passwd: '비밀번호를 입력하십시오',
+        userName: '이름을 입력하십시오',
+        birth: '생년월일을 입력하십시오',
+        phone: '전화번호를 입력하십시오',
+        emailId: '메일 아이디를 입력하십시오',
+        agency: '메일 공급자를 선택하십시오',
+        addr: '주소를 입력해주세요.'
+    }
+    
+    const inputAddr = $('input[type="text"]:not(#addrDetail), input[type="password"]');
+    let isConfirm = true;
+    let errorMessage = '';
+    
+    $.each(inputAddr, (index, obj) => {
+        const id = obj.id;
+        const value = obj.value.trim();
+        
+        if(value.length === 0 && eventMessage[id]) {
+            isConfirm = false;
+            errorMessage = eventMessage[id];
+            return false;
+        }
+    });
+    // 전화번호 검증 추가
+    const phoneValue = $('#phone').val().trim();
+    if (phoneValue) {
+        const phoneResult = validatePhoneNumber(phoneValue);
+        if (!phoneResult.valid) {
+            alert(phoneResult.message);
+            return false;
+        }
+    }
+    
+    // 이메일 검증
+    const emailId = $('#emailId').val().trim();
+    const agency = $('#agency').val().trim();
+    const emailResult = fullEmailChk(emailId, agency);
+    
+    if (!emailResult.valid) {
+        alert(emailResult.message);
+        return false;
+    }
+    
+    if(!isConfirm) {
+        alert(errorMessage);
+        return false;
+    }
+    
+    return true;
+}
+
+// ✅ 전화번호 자동 포맷팅 함수
+function formatPhoneNumber(phoneNumber) {
+    // 숫자만 추출
+    const numbers = phoneNumber.replace(/[^\d]/g, '');
+    
+    // 길이에 따른 포맷팅
+    if (numbers.length <= 3) {
+        return numbers;
+    } else if (numbers.length <= 7) {
+        return numbers.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    } else if (numbers.length <= 11) {
+        return numbers.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+    }
+    
+    // 11자리 초과시 11자리까지만 사용
+    return numbers.substring(0, 11).replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+}
+
+// ✅ 전화번호 검증 함수
+function validatePhoneNumber(phone) {
+    // 하이픈 제거 후 숫자만 추출
+    const numbers = phone.replace(/[^\d]/g, '');
+    
+    // 핸드폰 번호 패턴 (010, 011, 016, 017, 018, 019)
+    const phoneRegex = /^01[0-9]\d{8}$/;
+    
+    if (numbers.length !== 11) {
+        return { valid: false, message: '전화번호는 11자리여야 합니다.' };
+    }
+    
+    if (!phoneRegex.test(numbers)) {
+        return { valid: false, message: '올바른 핸드폰 번호 형식이 아닙니다.' };
+    }
+    
+    return { valid: true, message: '올바른 전화번호 형식입니다.' };
+}
+
+// ✅ 실시간 검증을 위한 이벤트 리스너 (페이지 로드 후 실행)
+$(document).ready(function() {
+    // 이메일 아이디 입력시 실시간 검증
+    $('#emailId').on('input', validateEmailDisplay);
+    
+    // 도메인 입력시 실시간 검증 (직접입력 모드일 때)
+    $('#agency').on('input', validateEmailDisplay);
+    // 전화번호 실시간 포맷팅
+    $('#phone').on('input', function() {
+        const currentValue = $(this).val();
+        const formattedValue = formatPhoneNumber(currentValue);
+        $(this).val(formattedValue);
+    });
+    
+    // 전화번호 포커스 아웃시 검증
+    $('#phone').on('blur', function() {
+        const phoneValue = $(this).val().trim();
+        if (phoneValue) {
+            const result = validatePhoneNumber(phoneValue);
+            if (!result.valid) {
+                // 에러 메시지 표시할 div가 있다면 표시, 없다면 간단히 스타일로 표시
+                $(this).addClass('is-invalid');
+                // 또는 alert로 알림
+                // alert(result.message);
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        }
+    });
+    
+    // 페이지 로드시 초기 검증
+    validateEmailDisplay();
+});
+    const createUser=async()=>{
+        if(validated()){
+            const dataParam = {
+                userId : $('#userId').val(),
+                passwd : $('#passwd').val(),
+                userName : $('#userName').val(),
+                gender : $('input[name="gender"]:checked').val(),
+                birth : $('#birth').val(),
+                phone : $('#phone').val(),
+                email : $('#emailId').val()+'@'+$('#agency').val(),
+                addr :$('#addr').val(),
+                addrDetail : $('#addrDetail').val(),
+                userRole :$('#userRole').val(),
+                useYn : $('#useYn').val()
+            }
+
+
+            console.log(dataParam);
+
+            const header = {
+                'Content-type' :'application/json'
+            }
+
+            const res = await axios.post('/api/v1/admin/user',JSON.stringify(dataParam),{headers : header});
+
+            if(res.data.resultCode===200){
+                alert('사용자 등록이 완료되었습니다.');
+                location.href='/admin/list';
+            }else{
+                alert('사용자 등록이 실패하였습니다. 관리자에게 문의부탁드립니다.');
+            }
+        }
+    }
+    const searchAddr = () =>{
+            new daum.Postcode({
+
+                onComplete: function(data) {
+                    let fullAddr = '';
+                    let extraAddr = '';
+
+                    if(data.userSelectedType === 'R') {
+                        fullAddr = data.roadAddress;
+                    }else {
+                        fullAddr = data.jibunAddress;
+                    }
+
+                    //법정동
+                    if(data.bname.trim().length > 0 || /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+
+                    // 아파트명 또는 빌딩명
+                    if(data.buildingName.trim().length > 0) {
+                        extraAddr +=  (extraAddr.length > 0 ?  ', ' :  '')  + data.buildingName;
+                    }
+
+                    extraAddr =  extraAddr.length > 0 ?  `(${extraAddr})` : extraAddr;
+                    fullAddr += extraAddr;
+                    
+                    $('#addr').val(fullAddr);
+                }
+
+            }).open();
+        }
+
+    const goList=()=>{
+        location.href='/admin/list'
+    }
+    
+    
+</script>
+</div>
+
+</html>

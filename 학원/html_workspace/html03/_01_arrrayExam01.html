@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //배열선언
+    const array = []; //배열 초기화
+
+    /*
+    배열에 값을 넣을때에는
+    array[i] 처럼 인덱스를 이용하는 방법이 가능하지만
+    .psuh(값) 처럼 push함수를 이용해서 넣는 것이 일반적
+    */
+
+    //배열에 값을 넣을때
+    for(let i=0; i<10; i++){
+        const val = Math.floor(Math.random()*30)+1;
+        array.push(val);
+    }
+
+    //범위추출 - 원본은 유지
+    const arr = array.slice(0,3); // start <=x <end
+    console.log(arr,array);
+
+    //원본에서제거
+    //splice(offSet, count);  갯수에는 시작위치도 포함
+    const arr2 = array.splice(0,3);
+    console.log(arr2, array);
+
+    //특정위치 하나만 삭제
+    array.splice(1,1);
+    console.log(array);
+
+    //원하는 위치에 삭제없이 삽임(삭제할갯수 넣으면 삭제도 가능)
+    array.splice(2,0,100,110);//index 2번위치에서 삭제 없이 100과 110을 삽입
+    console.log(array);
+
+    
+
+</script>
+</html>

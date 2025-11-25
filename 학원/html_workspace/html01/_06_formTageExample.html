@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    폼태그는 브라우저 상에서 사용자의 입력을 받기 위한 여러가지 형태의 입력 form 을 말합니다.
+    예를 들자면 텍스트를 입력하는 text 관련 태그, 선택하는 selectBox, 라디오버튼, 체크박스 등
+    사용자의 데이터를 입력받거나 선택할 수 있는 tag 를 Form 이라고 합니다.
+
+    하나의 큰 문서자체
+
+    범위에 있는 form data를 서버에 한번에 전송 가능
+
+
+    -->
+    
+
+
+
+    <!--
+    autocomplete - 이전에 입력했던 값을 남기지 않기 위해 "off"로 설정해놓기 (ex - pw)
+    onsubmit="return false;" - enter키로 페이지가 넘어가지 않게 하기 위해 설정
+
+    radio - name class를 다르게 하면 둘다 선택되게 됨
+    checked - 하나를 먼저 선택해놓고 시작
+
+    작은 따옴표와 큰따옴표 모두 문자를 입력할 때 사용
+
+    select - selected를 넣어주면 맨처음에 나오게 설정가능
+    -->
+    
+    <form onsubmit="return false;">
+        <div>
+            <label for="myName">이름 :</label>
+            <input type="text" id="myName" name="myName" autocomplete="off" placeholder="이름을 입력하십시오.">
+        </div>
+        <div>
+            <label for="password">패스워드 : </label>
+            <input type="password" id="passwd" name="passwd">
+        </div>
+        <div>
+            <input type="radio" value="남자" id="man" name="gender">
+            <label for="man">남자</label>
+            <input type="radio" value="여자" id="woman" name="gender" checked>
+            <label for="woman">여자</label>
+        </div>
+        <div>
+            <input type="checkbox" id="movie" name="hobby" value="영화감상">
+            <label for="movie">영화감상</label>
+            <input type="checkbox" id="walk" name="hobby" value="산책">
+            <label for="walk">산책</label>
+            <input type="checkbox" id="book" name="hobby" value="독서">
+            <label for="book">독서</label>
+        </div>
+        <div>
+            <label for="country">나라</label>
+            <select id="country">
+                <option value="미국">America</option>
+                <option value="일본">Japan</option>
+                <option value="중국">Chaina</option>
+                <option value="영국">G.B</option>
+                <option value="한국" selected>Korea</option>
+            </select>
+        </div>
+    </form>
+
+</body>
+</html>

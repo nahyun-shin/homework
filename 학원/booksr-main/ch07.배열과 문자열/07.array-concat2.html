@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array::concat()</title>
+  <link rel="stylesheet" href="/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+  <style>
+    #pocket {
+      margin-top: 10px;
+      border-top: 3px solid #999;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <select class="form-select" multiple name="country">
+        <option value="france">프랑스</option>
+        <option value="australia">호주</option>
+        <option value="korea">대한민국</option>
+      </select>
+    </div>
+    <div class="col-5">
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button">concat()</button>
+      </div>
+      <div id="pocket">
+        <!--선택한 값 표시 영역-->
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-check">
+        <label><input class="form-check-input" type="checkbox" name="city" value="paris">파리</label>
+      </div>
+      <div class="form-check">
+        <label><input class="form-check-input" type="checkbox" name="city" value="sydney">시드니</label>
+      </div>
+      <div class="form-check">
+        <label><input class="form-check-input" type="checkbox" name="city" value="seoul">서울</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let countryArray = [];
+  let cityArray = [];
+
+  //선택된 값들 concat으로 합쳐서 하나의 배열로 만들고 출력
+  document.querySelector('.btn').onclick = function() {
+    if (countryArray.length && cityArray.length) {
+      const concatArray = countryArray.concat(cityArray);
+      document.querySelector('#pocket').innerText = concatArray.join(' | ');
+    } else {
+      alert('좌우 선택을 먼저해주세요.');
+    }
+  }
+
+  //나라
+  const country = document.querySelector('[name="country"]');
+  country.onchange = function() {
+    // console.log(country.selectedIndex);
+    countryArray = [];
+    //나라 옵션 수 만큼 반복
+    for (let option of country.options) {
+      //선택된 옵션이라면
+      if (option.selected) {
+        //배열에 해당 값을 넣기
+        countryArray.push(option.value);
+        
+      } else {
+        //현재는 선택되지 않았는데 이전에 선택하여 값이 배열에 들어가 있는지 확인
+        let index = countryArray.indexOf(option.value);
+        
+        //배열에 선택되지 않은 값이 아직 존재한다면
+        //배열에 없었다면 -1을 반환하는데
+        //if문으로 배열에 있다면 조건을 붙여서 선택되지 않은 값을 배열에서 삭제
+        if (index !== -1) {
+          countryArray.splice(index, 1);
+        }
+      }
+    }
+    console.log(countryArray);
+  }
+  //도시
+  const cities = document.querySelectorAll('[name="city"]');
+  for (let city of cities) {
+    city.onchange = function() {
+      if (city.checked) {
+        cityArray.push(city.value);
+      } else {
+        let index = cityArray.indexOf(city.value);
+        if(index !== -1) {
+          cityArray.splice(index, 1);
+        }
+      }
+      console.log(cityArray);
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //이벤트성 function을 만들때
+    //자바스크립트의 모든 function들은 static 처럼 메모리에 박혀있다.
+    //임시할당
+    function circleWidth(){
+        const result = getWidth(5) *3.14;
+        console.log(result);
+    }
+
+    circleWidth();
+
+
+    //익명함수 또는 함수 선언문이라고 한다.
+    //해당 방법은 함수를 변수에 넣는 것처럼 보인다.
+    //그래서 함수를 변수에 할당되는 함수를 사용하려면
+    //초기 선언 이후 사용이 가능
+    //변수명 자체는 호이스팅이 되지만 함수 접근이 불가하여 호이스팅을 못씀.
+
+    //익명함수
+    const getWidth = function(x){
+        return Math.pow(x,2); //제곱
+    }
+
+    //호이스팅이 되는 것 처럼 보이려면
+    //함수의 선언을 익명함수 이후에 하면된다.
+
+    circleWidth();
+
+</script>
+</html>

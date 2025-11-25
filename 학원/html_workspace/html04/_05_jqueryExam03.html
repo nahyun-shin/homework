@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>성별</th>
+                </tr>
+            </thead>
+            <tbody id="body"></tbody>
+        </table>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+
+    //스크립트객체
+    const arr= [
+        {
+        myName :'김민수',
+        age : 20,
+        gender : '남'
+        },
+        {
+        myName :'서인아',
+        age : 20,
+        gender : '여'
+        },
+        {
+        myName :'최민수',
+        age : 30,
+        gender : '남'
+        },
+        {
+        myName :'이진아',
+        age : 40,
+        gender : '여'
+        }
+    ];
+
+    const drawTable=()=>{
+        const tableBody = $('#body');
+        //기존에 있던 자식node를 비우기
+        tableBody.empty();
+        arr.forEach((obj)=>{
+        const tr = createTR();
+        const nameTd = createTD(obj.myName);
+        const ageTd = createTD(obj.age);
+        const genderTd = createTD(obj.gender);
+
+        tr.append(nameTd).append(ageTd).append(genderTd);
+        tableBody.append(tr);
+
+       });
+
+    }
+
+    function createTR(){
+        //const tr = document.createElemeent('tr');
+        return $('<tr></tr>');
+    }
+    function createTH(contents){
+        //const tr = document.createElemeent('th');
+        return $(`<th>${contents}</th>`);
+    }
+    function createTD(contents){
+        //const tr = document.createElemeent('th');
+        return $(`<td>${contents}</td>`);
+    }
+
+    drawTable();
+
+</script>
+</html>

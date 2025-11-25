@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //일반객체, 리터럴 객체
+    const obj = {}; //빈객체
+    //자바스크립트에서 함수의 body를 제외하고{}는 객체의 표현식
+
+    obj.myName = '김철수';
+    obj.age = 30;
+    obj.add = (x,y)=> x+y;
+
+
+    document.writeln(obj.myName,':', obj.age,'<br>');
+    document.writeln('합 : ', obj.add(10,11));
+
+    //함수형 클래스,class 식별자
+    //이아이는 함수이자 생성자이자
+
+    //함수형 클래스 또는 생성자 함수방식 클래스
+    function Person(){
+        this.name = '';
+        this.age = 0;
+        this.info = ()=>{
+            console.log('이름 :', this.name, '나이 :', this.age);
+        }
+    }
+
+
+    //함수형 객체는 new를 사용해서 할당
+    const p = new Person();
+    p.name = '김민수';
+    p.age = 30;
+
+    p.info();
+
+
+    //진짜 class사용
+    class Student {
+        #name =''; //#붙이면 privet
+        //__name__ = '';
+        age = 0;
+
+        setName(name){
+            this.#name = name;
+        }
+
+        getName(){
+            return this.#name;
+        }
+
+        getAge(){
+            return this.age;
+        }
+        
+    }
+
+    const student = new Student();
+
+    student.setName('홍길동');
+    console.log(student.getName());
+
+
+    const student2 =new Student();
+    student2.say = '안녕'; //student2의 인스턴스 변수
+    console.log(student.say);
+    console.log(student2.say);
+
+    /*
+    일반형 >> 자바스크립트에서 옵션, 데이터 전송용 객체 만들때 많이 씀
+    함수형  >> class  형이 나오기 이전에 사용하던 클래스 생성 방법
+    class형 >> 최신형 클래스 만드는 방법 객체를 정의/사용시 이 방법 추천
+    */
+
+</script>
+</html>

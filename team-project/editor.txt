@@ -1,0 +1,14 @@
+✨ 추가된 기능
+
+QuillEditor 통합 - textarea 대신 리치 텍스트 에디터
+이미지 업로드 - 툴바 버튼, 붙여넣기, 드래그&드롭
+상태 관리 - title, content state 추가
+제출 핸들러 - handleSubmit 함수 (실제 API 호출 로직 추가 필요)
+
+🔧 커스터마이징 필요 사항
+
+authToken: 실제 인증 토큰으로 변경
+uploadUrl: 실제 업로드 API 엔드포인트로 변경
+handleSubmit: 실제 게시글 등록/수정 API 호출 구현
+
+기존 스타일이 그대로 적용되도록 했으니, CSS 파일만 연결하면 바로 사용 가능합니다!

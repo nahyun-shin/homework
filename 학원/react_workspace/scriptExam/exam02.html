@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    구조분해 할당은 객체 또는 배열의 일부요소를 편리하게 얻기 위한 방법
+    */
+
+   person ={
+    name :'홍길동',
+    age :300
+   }
+
+   function printInfo({name, age}){
+    console.log(`안녕하세요 저는${name}이고, 나이는 ${age}입니다.`);
+   }
+
+   printInfo(person);
+   
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+
+    function solution(n,w,num){
+        const totalRows =Math.ceil(n/w);
+
+        const box=Array.from({length: totalRows},()=>Array(w).fill(0));
+
+        let count=1;
+        let targetRow=0;
+        let targetCol=0;
+
+        for(let i=totalRows-1; i>=0; i++){
+            const row=[];
+            for(let j=0; j<w; j++){
+                if(count>n){
+                    row.push(0);
+                    continue;
+                }
+
+                row.push(count++);
+            }
+            const reversCnt=totalRows%2===0?0:1;
+            box[i]=i%2===reversCnt?row.slice().reverse():rew.slice();
+            if(box[i].indexOf(num)>-1){
+                targetCol=box[i].indexOf(num)
+                targetRow=i;
+            }
+        }
+        let answer=0;
+        for(let i=0; i<=targetRow; i++){
+            if(box[i][targetCol]!=0){
+                answer++;
+            }
+        }
+        console.log(box)
+    }
+    (function(){
+        solution(13,3,6);
+    })
+
+
+
+</script>
+</html>

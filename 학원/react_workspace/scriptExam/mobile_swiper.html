@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>모바일스와이퍼메뉴</title>
+
+    <style>
+        
+       
+        html, body, div, span, h1, h2, p, img, ul, li, header{
+            margin:0;
+            padding:0;
+            border:0;
+            outline:0;
+            font-size:100%;
+            vertical-align:baseline;
+            background:transparent;
+        }
+        body,html {
+            line-height:1; height:100%; 
+        }
+        nav, ul, li{
+            list-style:none;
+        }
+        /* 초기설정 끝 */
+
+
+        /* 헤더영역 시작 */
+        div#header_wrap{
+            width:100%; height:70px; float:left; background:rgba(73,10,115,1); position:absolute; left:0px; top:0px; box-sizing:border-box; z-index:10;
+        }
+        header{
+            width:100%; height:100%; margin:0px auto; position:relative; left:0px; top:0px; z-index:1;
+        }
+        nav#mobilemenu{
+            width:700px; height:100%; position:absolute; right:0px; top:0px; background:white; display:none;
+        }
+        nav#mobilemenu img{
+            position:relative; top:0px; 
+        }
+        h2.mobilemenu_icon{
+            width:30px; height:20px; position: absolute; right:20px; top:30px; overflow:hidden;
+        }
+        h2.mobilemenu_icon img{
+            width:100%; position:absolute; right:0px; top:0px; 
+        }
+        div#mobilemenu_wrap{
+            width:100%; height:100%; position:absolute; right:0px; top:0px; 
+        }
+        div#mobilemenu_wrap p{
+            width:100%; height:180px; background:#490a73; font:normal 20px/30px "NanumBarunGothic"; color:white; padding-top:60px; padding-left:30px; box-sizing:border-box;
+        }
+        span#mobileclose_btn{
+            width:20px; height:20px; display:block; position:absolute; right:30px; top:40px; 
+        }
+        ul#mobileloginmenu{
+            width:100%; height:50px; 
+        }
+        ul#mobileloginmenu li{
+            width:50%; height:100%; background:#3c3c3c; font:normal 14px/50px "NanumBarunGothic"; color:white; text-align:center; float:left; border-right:solid 1px white; box-sizing:border-box;
+        }
+        ul#mobileloginmenu li:last-child{
+            border-right:none;
+        }
+        ul#mobilemenu_list{
+            width:100%; height:400px; overflow:scroll; /* 모바일 메뉴영역을 열렸을때 밖으로 나가서 안보이는것을 방지 ( 스크롤로 보이게함 ) */
+        }
+        ul#mobilemenu_list>li{
+            width:100%; height:55px; font:normal 14px/55px "NanumBarunGothic"; color:#3c3c3c; border-bottom:solid 1px #E3E3E3; box-sizing:border-box; text-indent:30px; 
+            position:relative; left:0px; top:0px; overflow:hidden; /* 서브메뉴가 안보이게 초기값 height:55px; overflow:hidden 설정 */
+        }       
+       
+        span.mobile_icon{
+            width:55px; height:55px; text-align:center; text-indent:0px; display:block; position:absolute; right:10px; top:0px; 
+            -webkit-transition:0.4s ease; /* 연속적인 모션효과 transition 지정 */
+            -moz-transition:0.4s ease;
+            -ms-transition:0.4s ease;
+            -o-transition:0.4s ease;
+        }
+        span.mobile_selected{ /* 모바일메뉴 화살표 아이콘 활성화 스타일 지정 (회전) */
+            -webkit-transform:rotate(180deg); 
+            -moz-transform:rotate(180deg); 
+            -ms-transform:rotate(180deg); 
+            -o-transform:rotate(180deg); 
+        }
+        ul.mobilesubmenu_list{
+            width:100%; position:absolute; left:0px; top:55px; 
+        }
+        ul.mobilesubmenu_list>li{
+            width:100%; height:50px; background:#f6f6f6; font:normal 13px/50px "NanumBarunGothic"; color:#3c3c3c; border-bottom:solid 1px #E3E3E3; box-sizing:border-box; text-indent:40px; 
+        }
+        ul.mobilesubmenu_list>li:first-child{
+            border-top:solid 1px #E3E3E3; 
+        }
+        
+        div#mobile_graylayer{ /* 전체를 어둡게 해주는 div 스타일 지정 */
+            width:100%; height:100%; background:black; opacity:0.8; position:fixed; left:0px; top:0px; 
+        }
+        /* 헤더영역 끝 */
+
+    </style>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+
+    <script>
+
+        // 모바일메뉴 작동 
+        $(window).load(function(){
+   
+          
+           var $mobileMenuWrap=$("#mobilemenu") // 모바일 메뉴 전체영역 
+           var $mobileBtn=$(".mobilemenu_icon") // 모바일 메뉴 아이콘
+           var $mobileCloseBtn=$("#mobileclose_btn")  // 모바일메뉴 닫기 아이콘
+           var $mobileGrayLayer=$("<div id='mobile_graylayer'></div>") // 모바일 메뉴 활성화시 문서 전체 어둡게 해주는 div 생성 
+           var mobileMenuWidth=$(window).innerWidth()*0.87 // 모바일 메뉴 전체영역의 가로크기 ( 윈도우 크기의 87% - 유동적 지정 )
+   
+           var openHeight // 메인메뉴 열리는 높이 ( 서브메뉴 갯수에 따라 달라짐 )
+           var closeHeight=55 // 메인메뉴 닫히는 높이 ( 메인메뉴 하나의 세로크기 - overflow:hidden 처리 )
+           var $mobileMenu=$("#mobilemenu_list").children() // 각 모바일 메인메뉴 
+           var $mobileIcon=$(".mobile_icon") // 모바일 화살표 아이콘          
+           
+           $mobileMenuWrap.css({"width":mobileMenuWidth,"height":$(window).innerHeight(),"right":-mobileMenuWidth})
+           // 모바일 메뉴 전체영역의 가로크기, 세로 크기(윈도우의 세로크기), 위치 ( 안보이게 오른쪽 바깥으로 빼놓음 )
+   
+           
+           // 모바일 메뉴 열리고 닫히는 작업 
+
+
+           $mobileBtn.on("click",mobileMenuOpen) // 모바일 아이콘 클릭시 모바일 메뉴 열리는 함수 실행 
+           $mobileCloseBtn.on("click",mobileMenuClose) // 모바일 닫히는 아이콘 클릭시 모바일 메뉴 닫히는 함수 실행 
+   
+          
+          
+           function mobileMenuOpen(){ // 모바일 메뉴 열리는 함수              
+   
+              $mobileGrayLayer.show() // 어둡게 해주는 div 보여줌                    
+              $mobileGrayLayer.appendTo($("#header_wrap"))
+
+              $("body").css({"overflow":"hidden"}) // 중요) body의 높이만큼만 보이게해서 스크롤이 안되고 메뉴영역이 들어오는 에니메이션을 할때 body 영역바깥으로는 안보이게 설정
+            
+              $mobileMenuWrap.show() // 모바일메뉴영역 보이게 
+              $mobileMenuWrap.animate({"right":0},500,"easeOutCubic") // 모바일 메뉴 열리는 에니메이션 실행 
+           }
+   
+           function mobileMenuClose(){ // 모바일 메뉴 닫히는 함수 
+               
+               onMobileMenuClose() // 모든 모바일메뉴 닫히게 해줌
+               
+               $mobileGrayLayer.hide() // 어둡게 해주는 div 사라짐                
+               
+               $mobileMenuWrap.animate({"right":-mobileMenuWidth},500,"easeOutCubic",function(){ // 모바일 메뉴 다시 닫히는 에니메이션 실행 
+
+                $mobileMenuWrap.hide(); // 에니메이션이 끝난후 모바일메뉴영역이 안보이게 설정 
+                $("body").css({"overflow":"visible"}) // body영역을 다시 스크롤 하고 모든 컨텐츠가 다 볼수있게  overflow:visible 처리 
+
+
+               }) 
+           }
+   
+           
+           
+           
+           // 모바일 메뉴 클릭시 서브메뉴 보여지게 해주는 작업 
+           
+           
+           $mobileMenu.each(function(isOpen,data){ // each() 함수를 활용하여 각 메뉴 li 의 열린상태를 지정 (초기값 모두 false)
+               $(this).data("isOpen",false) 
+           })
+   
+           $mobileMenu.on("click",onMobileMenuClick) // 메뉴를 클릭했을때 메뉴작동 시키는 함수 실행
+   
+           function onMobileMenuClick(){
+               
+               
+   
+               if($(this).data("isOpen")==false){ // 선택된  li 의 상태가 닫혀있다면 
+
+                   onMobileMenuClose() // 모든 각 메뉴를 닫혀줌 
+
+                   openHeight=closeHeight+$(".mobilesubmenu_list").children().innerHeight()*$(this).children(".mobilesubmenu_list").children().size()
+                   //열릴높이를 구함 ( 기존의 닫혔을때의 높이 + 서브메뉴li 한개의 높이에 선택한 메뉴의 서브메뉴li 갯수만큼 곱한값 )
+                   
+                   $(this).stop()
+                   $(this).animate({"height":openHeight}) // 해당메뉴 열림 
+   
+                   $(this).children("span").addClass("mobile_selected") // 화살표 아이콘 활성화 (회전)
+   
+                   $(this).data("isOpen",true) // 해당 메뉴의 상태를 열림으로 적용 
+               
+               }else{ // 선택된  li 의 상태가 열려있을때 
+                   $(this).stop()
+                   $(this).animate({"height":closeHeight}) // 해당메뉴를 닫혀줌 
+   
+                   $(this).children("span").removeClass("mobile_selected") // 화살표 아이콘 비활성화 (회전)
+   
+                   $(this).data("isOpen",false) // 해당 메뉴의 상태를 닫힘으로 적용 
+               }
+           }
+   
+           function onMobileMenuClose(){ // 모든 모바일 메뉴를 닫히게 하는 명령 
+               
+               $mobileMenu.stop()
+               $mobileMenu.animate({"height":closeHeight})
+               $mobileIcon.removeClass("mobile_selected"); // 화살표 아이콘 비활성화 (회전)
+   
+               $mobileMenu.each(function(isOpen,data){ // 모든 메뉴의 상태를 닫힘으로 적용 
+                   $(this).data("isOpen",false)
+               })
+           }
+   
+        })
+   
+    </script>
+
+
+</head>
+<body>
+
+    
+        <div id="header_wrap">
+            <header>
+                <h2 class="mobilemenu_icon"><img src="images/mobilemenu.png" alt="모바일메뉴"></h2>
+                <nav id="mobilemenu">                   
+                    <div id="mobilemenu_wrap">
+                        <p>환영합니다.<br>로그인 해주세요.
+                            <span id="mobileclose_btn"><img src="images/closebtn.png" alt="닫기"></span>
+                        </p>
+                        <ul id="mobileloginmenu">
+                            <li>로그인</li>
+                            <li>회원가입</li>
+                        </ul>
+                        <ul id="mobilemenu_list">
+                            <li>HOME</li>
+                            <li>여행정보
+                                <span class="mobile_icon"><img src="images/mobilemenu_icon04.png" alt=""></span>
+                                <ul class="mobilesubmenu_list">
+                                    <li>여행지정보</li>
+                                    <li>여행준비</li>
+                                    <li>유용한사이트</li>
+                                </ul>
+                            </li>
+                            <li>테마여행
+                                <span class="mobile_icon"><img src="images/mobilemenu_icon04.png" alt=""></span>
+                                <ul class="mobilesubmenu_list">
+                                    <li>액티비티</li>
+                                    <li>싱가폴의밤</li>
+                                    <li>미식여행</li>
+                                    <li>도심투어</li>
+                                </ul>
+                            </li>
+                            <li>이벤트
+                                <span class="mobile_icon"><img src="images/mobilemenu_icon04.png" alt=""></span>
+                                <ul class="mobilesubmenu_list">
+                                    <li>이벤트</li>
+                                </ul>
+                            </li>
+                            <li>고객센터
+                                <span class="mobile_icon"><img src="images/mobilemenu_icon04.png" alt=""></span>
+                                <ul class="mobilesubmenu_list">
+                                    <li>Q&A</li>
+                                    <li>고객의소리</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+               
+        </div> 
+
+        <div id="visual_wrap">
+
+            <!-- 비쥬얼영역 -->
+
+
+        </div>
+
+        
+        
+        <div id="contents_wrap">
+
+
+            <!-- 컨덴츠영역 -->
+
+
+
+        </div>
+
+        
+        <div id="footer_wrap">
+
+            <!-- 하단영역 -->
+
+
+        </div>
+
+
+   
+    
+</body>
+</html>

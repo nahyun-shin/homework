@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+.container{
+    display: flex;
+    flex-direction: column; /* ✅ 세로 배치로 변경 */
+    justify-content: center;
+    margin-top: 5vh;
+    max-width: 1200px; /* ✅ 최대 너비 제한 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contents{
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    /* padding-bottom: 80px; ✅ 제거 - 페이징이 밖으로 나왔으므로 불필요 */
+    
+}
+
+.table-list{
+    width: 100%;
+    height: auto; 
+}
+
+.admin-table{
+    border-collapse: collapse;
+    margin-top: 2vh;
+    width: 100%;
+    min-width: 600px;
+}
+
+.admin-table th {
+    text-align: center;
+}
+    
+.admin-table td {
+    border-bottom: 1px solid rgb(212, 212, 212);
+    text-align: center;
+}
+
+.admin-table .dark{
+    background-color: rgb(112, 151, 120);
+    color: white;
+}
+
+.dark:not(:last-child) th{
+    border-right-color: white;
+}
+
+.admin-table th {
+    height: 50px; 
+}
+
+.admin-table td {
+    height: 45px;    
+}
+
+.admin-table td a{
+    text-decoration: none;  
+    color: black;
+    cursor: pointer;
+}
+
+.admin-table td a:hover{
+    color: rgb(182, 182, 182);
+    font-weight: 600;
+}
+
+.sch-list{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ 기존 pagination-area 스타일 제거 - 더 이상 필요 없음 */
+
+/* ✅ 페이징 영역 스타일 - contents 밖의 section에 적용 */
+.container > section:last-child {
+    margin-top: 20px;
+    padding: 15px 0;
+    background-color: white;
+    
+}
+
+/* ✅ 페이징 네비게이션 스타일 */
+.container > section:last-child nav {
+    text-align: center;
+}
+
+/* ✅ Bootstrap pagination과 함께 사용하기 위한 추가 스타일 */
+.pagination {
+    margin-bottom: 0; /* Bootstrap 기본 margin 제거 */
+}
+
+/* ✅ 반응형 대응 */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 2vh;
+        padding: 0 15px;
+    }
+    
+    .admin-table {
+        font-size: 14px;
+    }
+    
+    .sch-list {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}

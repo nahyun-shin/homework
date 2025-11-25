@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 200px;
+            height: 200px;
+        }
+
+        .box{
+            display: none;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box"></div>
+    </div>
+    <div>
+        <button onclick="toggle()" id="toggleBtn">보이기</button>
+        <button onclick="toggleScript()" id="toggleBtn2">보이기</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    //const arr = [1,4,2,10,8,7,22,30];
+
+
+
+    //loop 돌리기-jquery
+    // $.each(arr, (index, val)=>{
+        
+    //     // if(index===3){
+    //     //     //return false >break;
+    //     //     //return >continue;
+    //     //     // return false;
+    //     // }
+    //     console.log(index+":"+val);
+
+    // });
+
+
+
+
+
+    function toggle(){
+                const box = $('#box');
+                $('#box').toggle();
+                const showText=box.is(":visible")?"숨기기":"보이기";
+                $('#toggleBtn').text(showText);
+    }
+
+
+
+
+    //순수스크립트 구현
+    function toggleScript(){
+        
+        const box = document.querySelector('#box');
+        const toggleBtn =document.querySelector('#toggleBtn2');
+        
+        // console.log(box.style.display ==='');
+
+        if(box.style.display === 'none' || box.style.display ===''){
+
+            box.style.display = 'block';
+            toggleBtn.textContent = '숨기기';
+
+        }else{
+            box.style.display = 'none';
+            toggleBtn.textContent = '보이기';
+        }
+        
+    }
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+        .p1{
+            padding: 10px;
+            /*border-box - 안에 있는 내용에 상관없이 박스사이즈를 그대로 유지*/
+            /*content-box - 안에 있는 내용, 컨텐츠의 사이즈는 고정되며 패딩과 보더는 박스의 바깥쪽에 생성됨*/
+            box-sizing: border-box; 
+        }
+        .child{
+            width: 50px;
+            height: 50px;
+            margin: 0;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div class="p1">
+        <div class="child">2</div>
+    </div>
+    <div style="width: 100px;height: 100px; background-color: antiquewhite;"></div>
+</body>
+</html>

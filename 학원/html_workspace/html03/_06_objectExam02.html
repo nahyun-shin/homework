@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //자바스크립트는 프로토타입 기반프로그래밍
+    //자바스크립트는 일반형/객체형이 별도로 없음 모두가 객체형임
+    //프로토타입은 생성자를 가지고 있는 객체만 가질 수 있다.
+    //경제적으로 프로토타입을 다루기 위해
+
+    //프로토타입을 쓰는 이유
+    /*
+    기존에 생성된 객체를 일일히 수정하지 않고
+    원하는 시점이나 위치에서 속성 및 기능을 추가하여 공유하기 위해 사용
+    프로토타입으로 생성된 속성 또는 기능은 해당 클래스로 정의된 모든 인스턴스 객체에 적용이 된다.
+    */
+
+    class Person{
+        
+        constructor(name, age){
+            this.name = name; //내부에서 this. 찍으면 없던 것은 신규 생성의 의미도 포함.
+            this.age = age;
+        }
+        info(){
+            console.log('이름 :', this.name, '나이 :', this.age);
+        }
+    }
+
+
+    //객체 선언
+    const p1 = new Person('김철수',30);
+    const p2 = new Person('이수정',30);
+
+
+    p1.info();
+    p2.info();
+
+    //프로토 타입 쓰는법
+    Person.prototype.greet = function(){
+        console.log(`안녕하세요 저는${this.name}입니다.`); //클래스 내부에서 쓴것이 아니기 때문에 여기서의 this는 Person 이다. 동적이다
+    }
+
+    //
+    Person.prototype.greet2 = ()=>{
+        console.log('안녕하세요 저는',this.name,'입니다.'); //this는 Person이 아니다. windows 브라우저의 객체이다. 정적이다. 스냅샷이라는 
+    }
+
+    /*
+    자바스크립트는 나를 호출하는 대상에 따라서 this 키워드의 주인이 바뀐다.
+    또한 익명함수를 변형한게 화살표 함수이지만 둘은 내부적으로 동작방식이 다르다.
+    익명함수 내의 this는 호출 대상에 따라 동적으로 변경 되고, 화살표 함수의 this는 생성될 때 기준으로 고정됩니다.
+    그래서 this의 기준이 서로 다를 수 있습니다.
+    */
+   
+   
+   //두 객체 모두 적용됨
+   p1.greet();
+   p2.greet();
+   
+   p1.greet2();
+   p2.greet2();
+
+
+
+   console.log(`오늘은 비가 안와요`);
+
+
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p>안녕</p>
+        <div class="inner">
+            <p class="target">안쪽 문단</p>
+        </div>
+        <div class="inner2">
+            <p>문단1</p>
+            <p>문단2</p>
+            <p>문단3</p>
+            <p>문단4</p>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    const inner=$('.container').find('.target');
+    inner.css('backgroundColor','red');
+
+    //jquery 객체 타입 배열
+    const inner2 = $('.inner2').find('p');
+
+    //jquery 객체도 자신의 loop기능이 있음
+    inner2.each((index, obj)=>{
+        //jquery 객체를 사용 시 콜백함수에서 전달 받는
+        //객체는 자바스크립트 객체 또는 변수
+        //이유는 jquery도 내부적으로 자바스크립트를 쓰기 때문이 아닐까..
+        //그래서 콜백으로 받은 객체를 처리할 때는 jquery 객체로 만들어서 쓰던지 아님
+        //자바스크립트 객체라고 인식하고 써야함
+
+        // console.log(obj);
+        //객체라고 인식하고 쓴방법
+        console.log($(obj).text());
+    })
+</script>
+</html>

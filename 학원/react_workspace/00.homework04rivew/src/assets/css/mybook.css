@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+.my-list{
+    height: 250px;
+    margin-top: 30px;
+}
+
+.borrow-list{
+    display: grid;
+    grid-template-columns: repeat(3,lfr);
+    align-items: start;
+    height: 150px;
+    overflow: auto;
+    row-gap: 20px
+    ;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 2rem 2rem;
+}

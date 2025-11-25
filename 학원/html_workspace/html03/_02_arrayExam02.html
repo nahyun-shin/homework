@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="canvas"></div>
+</body>
+<script>
+    //도우미 Array(for보단 느리지만 스킬적인면에서 돋보일 수 있음)
+    const obj = {} //빈 객체
+    //from(객체타입, 콜백함수(리턴형))
+
+    // const arr = Array.from({length:10}, function(){
+    //     return Math.floor(Math.random()*30)+1;
+    // })
+
+    const arr = Array.from({length:10}, ()=> Math.floor(Math.random()*30)+1);
+    console.log(arr);
+
+    //콜백없이도 가능
+    //1. 유사배열객체 : 몇개의 배열을 만들지 length 필수 > 배열로 만들고 싶은 객체
+    //2. 콜백함수(리턴형)
+
+    //{위치(index):값(value), ..... , length:만들 배열 갯수} index 연속적이여야함 0번째 만들고 바로 2번째 만들 수 없음
+
+    const arr2 = Array.from({0:1, 1:2, 2:3, length:3});
+
+    //배열은 자체 loop함수가 있음
+    //.forEach(콜백함수(요소, 인덱스, 배열자신){.........})
+    //중간에 continue, break 안됨. return은 continue 대체는 된다.
+    const canvas = document.querySelector('#canvas');
+    
+    arr.forEach(function(item, index){
+
+        if(index === 3){
+            return;
+        }
+
+        canvas.append(item+", ")
+    })
+
+
+</script>
+</html>

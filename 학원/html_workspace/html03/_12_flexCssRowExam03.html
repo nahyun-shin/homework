@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex; /**/
+            background-color: bisque;
+            height: 100vh;/**/
+            width: 100%;
+            flex-direction: column;/*방향설정 row(가로), column(세로), reverse-row, reverse-column*/
+            justify-content: center;/*flex가 꼬챙이라고 생각하고 거기서 정렬을 어떻게 할껀지*/
+            align-items: center;/*방향설정의 반대방향에서 어디로 위치할 것인지*/
+        }
+        .row{
+            display: flex;
+            background-color: aliceblue;
+            width: 80%;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;/*기본값이 nowap - 한라인의 영역이 넘칠때 다름 라인으로 넘어가지 않고 폭이 줄어든다. 넘칠때 다음라인으로 넘기려면 wrap*/
+            gap: 10px;
+            
+        }
+        .item{
+            flex: 0 0 calc(25% - 10px);
+            height: 150px;
+            background-color: aqua;
+        }
+        .pagnation{
+            background-color: brown;
+            margin-top: 20px;
+            border: 1px solid black;/*굵기 선의 모양 색*/
+            width: 100%;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    
+        <div class="container">
+            <div class="row">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="pagnation">
+                1
+                </div>
+            </div>
+        </div>
+        
+    
+</body>
+</html>

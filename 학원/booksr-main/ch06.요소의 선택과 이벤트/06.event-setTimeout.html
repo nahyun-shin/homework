@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>타이밍 이벤트 :: setTimeout()</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/bootstrap-5.3.2-dist/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container mt-5">
+    <!-- ID를 추가하여 명확하게 버튼 지정 -->
+    <button id="openModalBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      모달창 열기
+    </button>
+  </div>
+
+  <!-- 모달 구조 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          여기에 모달 내용을 입력하세요.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-primary">변경사항 저장</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Bootstrap Bundle JS (Popper 포함) -->
+  <script src="/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ✅ 모달 자동 열기 스크립트 -->
+  <script>
+    
+
+
+    setTimeout(function () {
+      document.getElementById('openModalBtn').click();
+    }, 1500);
+
+
+  </script>
+</body>
+</html>

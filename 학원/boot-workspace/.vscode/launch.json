@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppBootApplication<app-boot>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.korea.app_boot.AppBootApplication",
+            "projectName": "app-boot",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

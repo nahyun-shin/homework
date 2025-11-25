@@ -1,0 +1,36 @@
+
+import java.util.*;
+
+class Solution {
+    public int solution(String[] friends, String[] gifts) {
+        
+        Map<String, Integer> map = new HashMap<>();
+        
+        //친구목록의 배열값을 key로 배열순번을 value저장
+        for (int i = 0; i < friends.length; i++) {
+            map.put(friends[i], i);
+        }
+        int[] totalExc = new int[friends.length];
+        int[][] transaction = new int[friends.length][friends.length];
+        
+        for(String g:gifts) {
+        	//띄어쓰기를 구분하여 배열에 넣기
+        	String[] giveList = g.split(" ");
+        	//준사람과 받은사람에게 각각 점수매겨서 총점수 구하기
+        	//준사람에 해당한느 배열의 값을 +1
+        	totalExc[map.get(giveList[0])]++;
+        	//받은사람에 해당하는 배열의 값을 -1
+        	totalExc[map.get(giveList[0])]--;
+        	//표는 준것만이 표현되면 됨
+        	//a가 b에게 준 걸 표시
+        	//
+        	transaction[map.get(giveList[0])][map.get(giveList[0])]++;
+        	
+        }
+        
+
+       int ans = 0;
+       
+        return ans;
+    }
+}
